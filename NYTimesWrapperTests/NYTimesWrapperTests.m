@@ -20,68 +20,22 @@
     nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"e54e6d296ec5da4fc406da071676d50b:10:60749136"];
 }
 
-//- (void)testFormat;
-//{
-//    STAssertNil([nytimes format], @"Should be nil");
-//    [nytimes setFormat:@"JSON"];
-//    STAssertNotNil([nytimes format], @"Should NOT be nil");
-//}
+- (void)testFormat;
+{
+    STAssertNil([nytimes format], @"Should be nil");
+    [nytimes setFormat:@"JSON"];
+    STAssertNotNil([nytimes format], @"Should NOT be nil");
+}
 
 - (void)testQuery
 {
     STAssertNil([nytimes query], @"Should be nil");
     [nytimes setQuery:@"HackDay"];
-    STAssertNotNil([nytimes query], @"Should NOT be nil");
-}
-
-- (void)testFacets
-{
-    STAssertNil([nytimes facets], @"Should be nil");
-    [nytimes setFacets:@"Not Clue What this is."];
-    STAssertNotNil([nytimes facets], @"Should NOT be nil");
-}
-
-- (void)testBeginDate
-{
-    STAssertNil([nytimes beginDate], @"Should be nil");
-    [nytimes setBeginDate:@"20110130"];
-    STAssertNotNil([nytimes beginDate], @"Should NOT be nil");
-}
-
-- (void)testEndDate
-{
-    STAssertNil([nytimes endDate], @"Should be nil");
-    [nytimes setEndDate:@"20110230"];
-    STAssertNotNil([nytimes endDate], @"Should NOT be nil");
-}
-
-- (void)testFields
-{
-    STAssertNil([nytimes fields], @"Should be nil");
-    [nytimes setFields:@"No Sure what this means"];
-    STAssertNotNil([nytimes fields], @"Should NOT be nil");
-}
-
-- (void)testOffset
-{
-    STAssertNil([nytimes offset], @"Should be nil");
-    [nytimes setOffset:@"3"];
-    STAssertNotNil([nytimes offset], @"Should NOT be nil");
-}
-
-- (void)testRank
-{
-    STAssertNil([nytimes rank], @"Should be nil");
-    [nytimes setRank:@"Newest"];
-    STAssertNotNil([nytimes rank], @"Should NOT be nil");
-}
-
-- (void)testExceptions
-{
-    [nytimes setApiKey:@"e54e6d296ec5da4fc406da071676d50b:10:60749136"];
     
     [NYTimesArticle asyncRequest:nytimes 
                          success:^(NSData *data, NSURLResponse *response){
+                             
+                             NSLog(@"-----------------response URL %@", response.URL);
                              
                              SBJsonParser *parser = [[SBJsonParser alloc] init];
                              
@@ -91,16 +45,56 @@
                              
                              NSDictionary *result = [[parser objectWithString:jsonString error:&error] copy];
                              
-                             NSLog(@"--RESULT %@", result);
+                             NSLog(@"RESULT: %@", result);
                              
                          } failure:^(NSData *data, NSError *error){
                              NSLog(@"--FAILED");
                          } tag:@"tag"];
     
-    NSString *key = [nytimes apiKey];
-    
-    STAssertEqualObjects(key, @"e54e6d296ec5da4fc406da071676d50b:10:60749136", @"Should match.");
+    STAssertNotNil([nytimes query], @"Should NOT be nil");
 }
+
+//- (void)testFacets
+//{
+//    STAssertNil([nytimes facets], @"Should be nil");
+//    [nytimes setFacets:@"Not Clue What this is."];
+//    STAssertNotNil([nytimes facets], @"Should NOT be nil");
+//}
+//
+//- (void)testBeginDate
+//{
+//    STAssertNil([nytimes beginDate], @"Should be nil");
+//    [nytimes setBeginDate:@"20110130"];
+//    STAssertNotNil([nytimes beginDate], @"Should NOT be nil");
+//}
+//
+//- (void)testEndDate
+//{
+//    STAssertNil([nytimes endDate], @"Should be nil");
+//    [nytimes setEndDate:@"20110230"];
+//    STAssertNotNil([nytimes endDate], @"Should NOT be nil");
+//}
+//
+//- (void)testFields
+//{
+//    STAssertNil([nytimes fields], @"Should be nil");
+//    [nytimes setFields:@"No Sure what this means"];
+//    STAssertNotNil([nytimes fields], @"Should NOT be nil");
+//}
+//
+//- (void)testOffset
+//{
+//    STAssertNil([nytimes offset], @"Should be nil");
+//    [nytimes setOffset:@"3"];
+//    STAssertNotNil([nytimes offset], @"Should NOT be nil");
+//}
+//
+//- (void)testRank
+//{
+//    STAssertNil([nytimes rank], @"Should be nil");
+//    [nytimes setRank:@"Newest"];
+//    STAssertNotNil([nytimes rank], @"Should NOT be nil");
+//}
 
 //- (void)testBuildURL
 //{

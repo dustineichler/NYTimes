@@ -10,6 +10,8 @@
 #import "NSURLConnection+Blocks.h"
 #import "NYTimesWrapper.h"
 
+typedef void (^UpdateURLBlock)(void);
+
 @interface NYTimesArticle : NSURLConnection
 {
     NSString *tag;

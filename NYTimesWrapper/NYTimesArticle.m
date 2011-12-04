@@ -10,6 +10,7 @@
 
 @interface NYTimesArticle(NSStringExtensionMethods)
 + (NSString *)buildURLwithObj:(NYTimesWrapper *)obj;
+void DispatchBlocks(UpdateURLBlock *updateBlock);
 @end
 
 @implementation NYTimesArticle
@@ -40,6 +41,9 @@
     }
     
     NSString *str = [self buildURLwithObj:obj];
+    
+//    NSStream *str2 = DispatchBlocks();
+    
     NSURL *url = [NSURL URLWithString:str];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -47,6 +51,11 @@
     [super asyncRequest:(NSURLRequest *)request 
                 success:(NYTimesNSURLConnectionSuccessBlock)successBlock_
                 failure:(NYTImesErrorBlock)failureBlock_];
+}
+
+void DispatchBlocks(UpdateURLBlock *updateBlock)
+{
+
 }
 
 + (NSString *)buildURLwithObj:(NYTimesWrapper *)obj
@@ -60,11 +69,6 @@
     } else {
         [params appendFormat:@"format=%@&", obj.format];        
     }
-    
-    //    if (self.apiKey)
-    //    {
-    //        [params appendFormat:@"api-key=%@&", self.apiKey];
-    //    }
     
     if (obj.query)
     {        
@@ -133,6 +137,11 @@
     if (obj.rank == @"Newest" || obj.rank == @"Oldest" || obj.rank == @"Closest")
     {
         [params appendFormat:@"rank=%@&", obj.rank];
+    }
+    
+    if (obj.apiKey)
+    {
+        [params appendFormat:@"api-key=%@&", obj.apiKey];
     }
     
     NSString *baseURL = [NSString stringWithFormat:@"http://api.nytimes.com/svc/search/v1/article?%@", params];
