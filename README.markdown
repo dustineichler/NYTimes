@@ -15,11 +15,11 @@ To use NYTimesWrapper.
   nytimes.query = "TimesOpen HackDay";
   
   [NYTimesArticle asyncRequest:nytimes 
-                        success:^(NSData *data, NSURLResponse *resposne){
-                            NSLog(@"callback %@", data);
-                        } failure:^(NSData *data, NSError *error){
-                            NSLog(@"callback");
-                        } tag:@"tag"];
+                       success:^(NSData *data, NSURLResponse *response){
+                           NSLog(@"callback %@", data);
+                      }failure:^(NSData *data, NSError *error){
+                           NSLog(@"callback");
+                       } tag:@"tag"];
 </pre>
 
 ## References
