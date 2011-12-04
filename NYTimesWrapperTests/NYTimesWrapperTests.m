@@ -7,6 +7,7 @@
 //
 
 #import "NYTimesWrapperTests.h"
+#import "SBJson.h"
 
 @implementation NYTimesWrapperTests
 @synthesize nytimes, globalURL, receivedData;
@@ -75,13 +76,31 @@
     STAssertNotNil([nytimes rank], @"Should NOT be nil");
 }
 
-//- (void)testExceptions
-//{
-//    [nytimes setApiKey:nil];
-////   STAssertThrows(nytimes.apiKey = nil, @"Should Throw Exception", @"foobar");
-////   STAssertEquals(nytimes.apiKey, @"e54e6d296ec5da4fc406da071676d50b:10:60749136", @"Should match.");
-//}
-//
+- (void)testExceptions
+{
+    [nytimes setApiKey:@"e54e6d296ec5da4fc406da071676d50b:10:60749136"];
+    
+    [NYTimesArticle asyncRequest:nytimes 
+                         success:^(NSData *data, NSURLResponse *response){
+                             
+                             SBJsonParser *parser = [[SBJsonParser alloc] init];
+                             NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                             
+                             NSError *error = nil;
+                             
+                             NSDictionary *result = [[parser objectWithString:jsonString error:&error] copy];
+                             
+                             NSLog(@"------------------------------------RESULT %@", result);
+                             
+                         } failure:^(NSData *data, NSError *error){
+                             NSLog(@"-----------------failure callback");
+                         } tag:@"tag"];
+    
+    NSString *key = [nytimes apiKey];
+    
+    STAssertEqualObjects(key, @"e54e6d296ec5da4fc406da071676d50b:10:60749136", @"Should match.");
+}
+
 //- (void)testBuildURL
 //{
 //    NSString *url = [nytimes buildURL];
@@ -118,18 +137,6 @@
 ////    globalURL = [nytimes buildURL];
 ////    STAssertEqualObjects(globalURL, @"http://api.nytimes.com/svc/search/v1/article?format=json&query=HackDay&facets=FacetsParam&begin_date=11112233&end_date=33332211&fields=FieldsParam&offset=3&rank=Newest&", @"Should be equal");
 //}
-
-- (void)testAsyncResponse
-{    
-    NYTimesWrapper *ny = [[NYTimesWrapper alloc] initWithAPIKey:@"API_KEY"];
-    
-    [NYTimesArticle asyncRequest:ny 
-                          success:^(NSData *data, NSURLResponse *resposne){
-                              NSLog(@"-----------------success callback %@", data);
-                          } failure:^(NSData *data, NSError *error){
-                              NSLog(@"-----------------failure callback");
-                          } tag:@"tag"];
-}
 
 - (void)tearDown
 {

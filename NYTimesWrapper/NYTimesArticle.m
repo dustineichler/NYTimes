@@ -24,7 +24,21 @@
              success:(NYTimesNSURLConnectionSuccessBlock)successBlock_ 
              failure:(NYTImesErrorBlock)failureBlock_ 
                  tag:(NSString *)t
-{
+{    
+    @try {
+        NSString *apiKey = obj.apiKey;
+        if (apiKey == nil)
+        {
+            NSException *exception = [NSException exceptionWithName: @"Argument Error"
+                                                             reason: @"API-Key is either not set or not right"
+                                                           userInfo: nil];
+            @throw exception;
+        }
+    }
+    @catch (NSException *e) {
+        NSLog(@"Exception %@", e);
+    }
+    
     NSString *str = [self buildURLwithObj:obj];
     NSURL *url = [NSURL URLWithString:str];
     

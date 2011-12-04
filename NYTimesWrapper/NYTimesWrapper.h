@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef void (^NYTimesWrapperObjectBlock) (NSString *url);
 
 @interface NYTimesWrapper : NSObject
 {
