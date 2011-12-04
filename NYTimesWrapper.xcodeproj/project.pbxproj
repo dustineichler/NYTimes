@@ -48,6 +48,7 @@
 		9FF8A00D148AB65000E470A6 /* NYTimesArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesArticle.m; sourceTree = "<group>"; };
 		9FF8A01C148AC05C00E470A6 /* NSURLConnection+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLConnection+Blocks.h"; sourceTree = "<group>"; };
 		9FF8A01D148AC05C00E470A6 /* NSURLConnection+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLConnection+Blocks.m"; sourceTree = "<group>"; };
+		9FF8A431148B0A7400E470A6 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +77,7 @@
 		9F749C3E1489B015009E1372 = {
 			isa = PBXGroup;
 			children = (
+				9FF8A431148B0A7400E470A6 /* libz.1.2.5.dylib */,
 				9F749C4E1489B016009E1372 /* NYTimesWrapper */,
 				9F749C621489B016009E1372 /* NYTimesWrapperTests */,
 				9F749C4B1489B016009E1372 /* Frameworks */,
