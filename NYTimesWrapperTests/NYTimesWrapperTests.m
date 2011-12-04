@@ -84,16 +84,17 @@
                          success:^(NSData *data, NSURLResponse *response){
                              
                              SBJsonParser *parser = [[SBJsonParser alloc] init];
+                             
                              NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                              
                              NSError *error = nil;
                              
                              NSDictionary *result = [[parser objectWithString:jsonString error:&error] copy];
                              
-                             NSLog(@"------------------------------------RESULT %@", result);
+                             NSLog(@"--RESULT %@", result);
                              
                          } failure:^(NSData *data, NSError *error){
-                             NSLog(@"-----------------failure callback");
+                             NSLog(@"--FAILED");
                          } tag:@"tag"];
     
     NSString *key = [nytimes apiKey];
