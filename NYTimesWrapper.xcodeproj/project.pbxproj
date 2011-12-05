@@ -40,6 +40,8 @@
 		9F99BAAE148BF2A100F2AC6F /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99BA95148BF2A100F2AC6F /* SBJsonUTF8Stream.m */; };
 		9F99BAAF148BF2A100F2AC6F /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F99BA96148BF2A100F2AC6F /* SBJsonWriter.h */; };
 		9F99BAB0148BF2A100F2AC6F /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99BA97148BF2A100F2AC6F /* SBJsonWriter.m */; };
+		9F99BAB7148C544400F2AC6F /* NYTimesWrapperBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F99BAB5148C544400F2AC6F /* NYTimesWrapperBase.h */; };
+		9F99BAB8148C544400F2AC6F /* NYTimesWrapperBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99BAB6148C544400F2AC6F /* NYTimesWrapperBase.m */; };
 		9FF8A00E148AB65000E470A6 /* NYTimesArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FF8A00C148AB65000E470A6 /* NYTimesArticle.h */; };
 		9FF8A00F148AB65000E470A6 /* NYTimesArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF8A00D148AB65000E470A6 /* NYTimesArticle.m */; };
 		9FF8A01E148AC05C00E470A6 /* NSURLConnection+Blocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FF8A01C148AC05C00E470A6 /* NSURLConnection+Blocks.h */; };
@@ -94,6 +96,8 @@
 		9F99BA95148BF2A100F2AC6F /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		9F99BA96148BF2A100F2AC6F /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		9F99BA97148BF2A100F2AC6F /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		9F99BAB5148C544400F2AC6F /* NYTimesWrapperBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesWrapperBase.h; sourceTree = "<group>"; };
+		9F99BAB6148C544400F2AC6F /* NYTimesWrapperBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesWrapperBase.m; sourceTree = "<group>"; };
 		9FF8A00C148AB65000E470A6 /* NYTimesArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesArticle.h; sourceTree = "<group>"; };
 		9FF8A00D148AB65000E470A6 /* NYTimesArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesArticle.m; sourceTree = "<group>"; };
 		9FF8A01C148AC05C00E470A6 /* NSURLConnection+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLConnection+Blocks.h"; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 			children = (
 				9F749C511489B016009E1372 /* NYTimesWrapper.h */,
 				9F749C521489B016009E1372 /* NYTimesWrapper.m */,
+				9F99BAB5148C544400F2AC6F /* NYTimesWrapperBase.h */,
+				9F99BAB6148C544400F2AC6F /* NYTimesWrapperBase.m */,
 				9FF8A00C148AB65000E470A6 /* NYTimesArticle.h */,
 				9FF8A00D148AB65000E470A6 /* NYTimesArticle.m */,
 				9FF8A020148ACE2600E470A6 /* Utilities */,
@@ -257,6 +263,7 @@
 				9F99BAAB148BF2A100F2AC6F /* SBJsonTokeniser.h in Headers */,
 				9F99BAAD148BF2A100F2AC6F /* SBJsonUTF8Stream.h in Headers */,
 				9F99BAAF148BF2A100F2AC6F /* SBJsonWriter.h in Headers */,
+				9F99BAB7148C544400F2AC6F /* NYTimesWrapperBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +381,7 @@
 				9F99BAAC148BF2A100F2AC6F /* SBJsonTokeniser.m in Sources */,
 				9F99BAAE148BF2A100F2AC6F /* SBJsonUTF8Stream.m in Sources */,
 				9F99BAB0148BF2A100F2AC6F /* SBJsonWriter.m in Sources */,
+				9F99BAB8148C544400F2AC6F /* NYTimesWrapperBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

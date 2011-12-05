@@ -8,11 +8,6 @@
 
 #import "NYTimesArticle.h"
 
-@interface NYTimesArticle(NSStringExtensionMethods)
-+ (NSString *)buildURLwithObj:(NYTimesWrapper *)obj;
-void DispatchBlocks(UpdateURLBlock *updateBlock);
-@end
-
 @implementation NYTimesArticle
 @synthesize tag;
 
@@ -26,36 +21,9 @@ void DispatchBlocks(UpdateURLBlock *updateBlock);
              failure:(NYTImesErrorBlock)failureBlock_ 
                  tag:(NSString *)t
 {    
-    @try {
-        NSString *apiKey = obj.apiKey;
-        if (apiKey == nil)
-        {
-            NSException *exception = [NSException exceptionWithName: @"Argument Error"
-                                                             reason: @"API-Key is either not set or not right"
-                                                           userInfo: nil];
-            @throw exception;
-        }
-    }
-    @catch (NSException *e) {
-        NSLog(@"Exception %@", e);
-    }
-    
-    NSString *str = [self buildURLwithObj:obj];
-    
-//    NSStream *str2 = DispatchBlocks();
-    
-    NSURL *url = [NSURL URLWithString:str];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    
-    [super asyncRequest:(NSURLRequest *)request 
-                success:(NYTimesNSURLConnectionSuccessBlock)successBlock_
+    [super asyncRequest:obj 
+                success:(NYTimesNSURLConnectionSuccessBlock)successBlock_ 
                 failure:(NYTImesErrorBlock)failureBlock_];
-}
-
-void DispatchBlocks(UpdateURLBlock *updateBlock)
-{
-
 }
 
 + (NSString *)buildURLwithObj:(NYTimesWrapper *)obj

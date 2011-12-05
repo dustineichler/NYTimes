@@ -7,12 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NSURLConnection+Blocks.h"
+#import "NYTimesWrapperBase.h"
 #import "NYTimesWrapper.h"
 
-typedef void (^UpdateURLBlock)(void);
-
-@interface NYTimesArticle : NSURLConnection
+@interface NYTimesArticle : NYTimesWrapperBase
 {
     NSString *tag;
 }
