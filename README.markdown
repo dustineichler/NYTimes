@@ -4,26 +4,39 @@ NYTimes Objective-C API Wrapper
 
 ## Classes (currently)
 
+* [NYTimesWrapper][] - Base Class.
 * [NYTimesArticle][] - API support for NYTimes Articles.
+* [NYTimesBestSeller][]; - API support for NYTimes Best Sellers.
 
 ## Example
 
-To use NYTimesWrapper.
+To use.
 
 <pre>
-  NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithKey:@"YOUR-API-KEY"];
-  nytimes.query = "TimesOpen HackDay";
+  NYTimesWrapper *articles = [[NYTimesWrapper alloc] initWithKey:@"ARTICLES-API-KEY"];
+  [articles setQuery:@"NYTimes HackDay"];
   
-  [NYTimesArticle asyncRequest:nytimes 
+  [NYTimesArticle asyncRequest:articles 
                        success:^(NSData *data, NSURLResponse *response){
-                           NSLog(@"callback %@", data);
+                           NSLog(@"Articles Results %@", data);
                       }failure:^(NSData *data, NSError *error){
-                           NSLog(@"callback");
+                           NSLog(@"Errors %@", error);
                        } tag:@"tag"];
 </pre>
 
-## References
-http://vinceyuan.blogspot.com/2011/04/wwdc2010-session206-introducing-blocks_07.html http://vinceyuan.blogspot.com/2011/04/wwdc2010-session211-simplifying-iphone.html http://blog.logichigh.com/2010/09/12/cocoa-blocks/ http://cocoasamurai.blogspot.com/2009/09/guide-to-blocks-grand-central-dispatch.html http://www.fieryrobot.com/blog/2010/06/27/a-simple-job-queue-with-grand-central-dispatch/ http://blog.slaunchaman.com/2011/02/28/cocoa-touch-tutorial-using-grand-central-dispatch-for-asynchronous-table-view-cells/ https://github.com/SlaunchaMan/GCDExample
+<pre>
+  NYTimesWrapper *bestSellers = [[NYTimesWrapper alloc] initWithKey:@"BESTSELLER-API-KEY"];
+  [bestSeller setFormat:@"json"];
+  
+  [NYTimesBestSeller asyncRequest:bestSellers
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Best Seller Results %@", result);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"best sellers"];
+</pre>
 
-## TODOD
+
+
+## TODO
 plenty.

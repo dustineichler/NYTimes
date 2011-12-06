@@ -19,8 +19,6 @@
         return nil;
     }
     
-    self->article.format = @"test";
-    
     NSParameterAssert(key != nil || [key length] == 0);
     
     self.apiKey = key;
