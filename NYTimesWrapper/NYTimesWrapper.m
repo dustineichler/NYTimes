@@ -19,11 +19,21 @@
         return nil;
     }
     
+    self->article.format = @"test";
+    
     NSParameterAssert(key != nil || [key length] == 0);
     
     self.apiKey = key;
     
     return self;
+}
+
+- (void)setFormat:(NSString *)string
+{
+    if (string)
+    {
+        self->article.format = string;
+    }
 }
 
 @end

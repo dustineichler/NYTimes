@@ -34,7 +34,7 @@
     
     if (obj.article.format == nil || [obj.article.format length] == 0)
     {
-        [obj.article.format setFormat:@"json"];
+        [obj setFormat:@"json"];
         [params appendFormat:@"format=%@&", obj.article.format];
     } else {
         [params appendFormat:@"format=%@&", obj.article.format];        

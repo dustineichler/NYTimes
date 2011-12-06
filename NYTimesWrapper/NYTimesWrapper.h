@@ -25,20 +25,22 @@ struct _BestSellerStruct {
     NSString *offset;
     NSString *sortBy;
     NSString *sortOrder;
-    NSArray *format;
+    NSString *format;
 };
 
 @interface NYTimesWrapper : NSObject
 {
     NSString *apiKey;
     struct _ArticleStruct article;
+    struct _BestSellerStruct bestSeller;
 }
 
-@property (assign) struct _ArticleStruct article;
-@property (assign) struct _BestSellerStruct bestSeller;
+@property (nonatomic) struct _ArticleStruct article;
+@property struct _BestSellerStruct bestSeller;
 
 @property (nonatomic, retain) NSString *apiKey;
 
 - (id)initWithAPIKey:(NSString *)key;
+- (void)setFormat:(NSString *)string;
 
 @end
