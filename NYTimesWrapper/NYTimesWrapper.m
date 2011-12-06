@@ -9,7 +9,7 @@
 #import "NYTimesWrapper.h"
 
 @implementation NYTimesWrapper
-@synthesize format, query, facets, beginDate, endDate, fields, offset, rank, apiKey;
+@synthesize article, bestSeller, apiKey;
 
 - (id)initWithAPIKey:(NSString *)key
 {

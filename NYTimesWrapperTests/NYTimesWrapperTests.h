@@ -9,15 +9,18 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "NYTimesWrapper.h"
 #import "NYTimesArticle.h"
+#import "NYTimesBestSeller.h"
 
 @interface NYTimesWrapperTests : SenTestCase
 {
-    NYTimesWrapper *nytimes;
+    NYTimesWrapper *articles;
+    NYTimesWrapper *bestSellers;
     NSURL *globalURL;
     NSData *receivedData;
 }
 
-@property (nonatomic, retain) NYTimesWrapper *nytimes;
+@property (nonatomic, retain) NYTimesWrapper *articles;
+@property (nonatomic, retain) NYTimesWrapper *bestSellers;
 @property (nonatomic, retain) NSURL *globalURL;
 @property (nonatomic, retain) NSData *receivedData;
 

@@ -8,6 +8,8 @@
 
 #import "NYTimesArticle.h"
 
+#define SERVER_URL @"http://api.nytimes.com/svc/search/v1/article?"
+
 @implementation NYTimesArticle
 @synthesize tag;
 
@@ -30,34 +32,37 @@
 {    
     NSMutableString *params = [NSMutableString stringWithFormat:@"%@", @""];
     
-    if (obj.format == nil || [obj.format length] == 0)
+    if (obj.article.format == nil || [obj.article.format length] == 0)
     {
-        [obj setFormat:@"json"];
-        [params appendFormat:@"format=%@&", obj.format];
+        [obj.article.format setFormat:@"json"];
+        [params appendFormat:@"format=%@&", obj.article.format];
     } else {
-        [params appendFormat:@"format=%@&", obj.format];        
+        [params appendFormat:@"format=%@&", obj.article.format];        
     }
     
-    if (obj.query)
-    {        
-        [params appendFormat:@"query=%@&", obj.query];
-    }
-    
-    if (obj.facets)
+    if (obj.article.query)
     {
-        [params appendFormat:@"facets=%@&", obj.facets];
+        NSArray *stringsArry = [obj.article.query componentsSeparatedByString:@" "];
+        NSString *temp = [stringsArry componentsJoinedByString: @"+"];
+        
+        [params appendFormat:@"query=%@&", temp];
     }
     
-    if (obj.beginDate)
+    if (obj.article.facets)
+    {
+        [params appendFormat:@"facets=%@&", obj.article.facets];
+    }
+    
+    if (obj.article.startDate)
     {
         NSError *error = NULL;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(([0-9]{4})([0-9]{2})([0-9]{2}))"
                                                                                options:NSRegularExpressionCaseInsensitive
                                                                                  error:&error];
         
-        NSUInteger numberOfMatches = [regex numberOfMatchesInString:obj.beginDate
+        NSUInteger numberOfMatches = [regex numberOfMatchesInString:obj.article.startDate
                                                             options:0
-                                                              range:NSMakeRange(0, [obj.beginDate length])];
+                                                              range:NSMakeRange(0, [obj.article.startDate length])];
         
         if (error)
         {
@@ -66,20 +71,20 @@
         
         if (numberOfMatches > 0)
         {
-            [params appendFormat:@"begin_date=%@&", obj.beginDate];
+            [params appendFormat:@"begin_date=%@&", obj.article.startDate];
         }
     }
     
-    if (obj.endDate)
+    if (obj.article.endDate)
     {
         NSError *error = NULL;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(([0-9]{4})([0-9]{2})([0-9]{2}))"
                                                                                options:NSRegularExpressionCaseInsensitive
                                                                                  error:&error];
         
-        NSUInteger numberOfMatches = [regex numberOfMatchesInString:obj.endDate
+        NSUInteger numberOfMatches = [regex numberOfMatchesInString:obj.article.endDate
                                                             options:0
-                                                              range:NSMakeRange(0, [obj.endDate length])];
+                                                              range:NSMakeRange(0, [obj.article.endDate length])];
         
         if (error)
         {
@@ -88,31 +93,31 @@
         
         if (numberOfMatches > 0)
         {
-            [params appendFormat:@"end_date=%@&", obj.endDate];
+            [params appendFormat:@"end_date=%@&", obj.article.endDate];
         }
     }
     
-    if (obj.fields)
+    if (obj.article.fields)
     {
-        [params appendFormat:@"fields=%@&", obj.fields];
+        [params appendFormat:@"fields=%@&", obj.article.fields];
     }
     
-    if (obj.offset)
+    if (obj.article.offset)
     {
-        [params appendFormat:@"offset=%@&", obj.offset];
+        [params appendFormat:@"offset=%@&", obj.article.offset];
     }
     
-    if (obj.rank == @"Newest" || obj.rank == @"Oldest" || obj.rank == @"Closest")
+    if (obj.article.rank == @"Newest" || obj.article.rank == @"Oldest" || obj.article.rank == @"Closest")
     {
-        [params appendFormat:@"rank=%@&", obj.rank];
+        [params appendFormat:@"rank=%@&", obj.article.rank];
     }
     
     if (obj.apiKey)
     {
-        [params appendFormat:@"api-key=%@&", obj.apiKey];
+        [params appendFormat:@"api-key=%@", obj.apiKey];
     }
     
-    NSString *baseURL = [NSString stringWithFormat:@"http://api.nytimes.com/svc/search/v1/article?%@", params];
+    NSString *baseURL = [NSString stringWithFormat:SERVER_URL@"%@", params];
     
     return baseURL;
 }

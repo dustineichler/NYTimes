@@ -8,27 +8,35 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NYTimesWrapper : NSObject
-{
+struct _ArticleStruct {
     NSString *format;
     NSString *query;
     NSString *facets;
-    NSString *beingDate;
-    NSString *endDate;
     NSString *fields;
     NSString *offset;
     NSString *rank;
+    NSString *startDate;
+    NSString *endDate;
+};
+
+struct _BestSellerStruct {
+    NSString *listName;
+    NSString *date;
+    NSString *offset;
+    NSString *sortBy;
+    NSString *sortOrder;
+    NSArray *format;
+};
+
+@interface NYTimesWrapper : NSObject
+{
     NSString *apiKey;
+    struct _ArticleStruct article;
 }
 
-@property (nonatomic, retain) NSString *format;
-@property (nonatomic, retain) NSString *query;
-@property (nonatomic, retain) NSString *facets;
-@property (nonatomic, retain) NSString *beginDate;
-@property (nonatomic, retain) NSString *endDate;
-@property (nonatomic, retain) NSString *fields;
-@property (nonatomic, retain) NSString *offset;
-@property (nonatomic, retain) NSString *rank;
+@property (assign) struct _ArticleStruct article;
+@property (assign) struct _BestSellerStruct bestSeller;
+
 @property (nonatomic, retain) NSString *apiKey;
 
 - (id)initWithAPIKey:(NSString *)key;
