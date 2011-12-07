@@ -44,6 +44,8 @@
 		9F99BAB8148C544400F2AC6F /* NYTimesWrapperBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99BAB6148C544400F2AC6F /* NYTimesWrapperBase.m */; };
 		9FE48B95148D764200CE008F /* NYTimesBestSeller.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FE48B93148D764200CE008F /* NYTimesBestSeller.h */; };
 		9FE48B96148D764200CE008F /* NYTimesBestSeller.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE48B94148D764200CE008F /* NYTimesBestSeller.m */; };
+		9FE48B9C148EFABE00CE008F /* NYTimesCampaignFinance.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FE48B9A148EFABE00CE008F /* NYTimesCampaignFinance.h */; };
+		9FE48B9D148EFABE00CE008F /* NYTimesCampaignFinance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE48B9B148EFABE00CE008F /* NYTimesCampaignFinance.m */; };
 		9FF8A00E148AB65000E470A6 /* NYTimesArticle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FF8A00C148AB65000E470A6 /* NYTimesArticle.h */; };
 		9FF8A00F148AB65000E470A6 /* NYTimesArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF8A00D148AB65000E470A6 /* NYTimesArticle.m */; };
 		9FF8A01E148AC05C00E470A6 /* NSURLConnection+Blocks.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FF8A01C148AC05C00E470A6 /* NSURLConnection+Blocks.h */; };
@@ -102,6 +104,8 @@
 		9F99BAB6148C544400F2AC6F /* NYTimesWrapperBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesWrapperBase.m; sourceTree = "<group>"; };
 		9FE48B93148D764200CE008F /* NYTimesBestSeller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesBestSeller.h; sourceTree = "<group>"; };
 		9FE48B94148D764200CE008F /* NYTimesBestSeller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesBestSeller.m; sourceTree = "<group>"; };
+		9FE48B9A148EFABE00CE008F /* NYTimesCampaignFinance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesCampaignFinance.h; sourceTree = "<group>"; };
+		9FE48B9B148EFABE00CE008F /* NYTimesCampaignFinance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesCampaignFinance.m; sourceTree = "<group>"; };
 		9FF8A00C148AB65000E470A6 /* NYTimesArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesArticle.h; sourceTree = "<group>"; };
 		9FF8A00D148AB65000E470A6 /* NYTimesArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesArticle.m; sourceTree = "<group>"; };
 		9FF8A01C148AC05C00E470A6 /* NSURLConnection+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLConnection+Blocks.h"; sourceTree = "<group>"; };
@@ -172,6 +176,8 @@
 				9FF8A00D148AB65000E470A6 /* NYTimesArticle.m */,
 				9FE48B93148D764200CE008F /* NYTimesBestSeller.h */,
 				9FE48B94148D764200CE008F /* NYTimesBestSeller.m */,
+				9FE48B9A148EFABE00CE008F /* NYTimesCampaignFinance.h */,
+				9FE48B9B148EFABE00CE008F /* NYTimesCampaignFinance.m */,
 				9FF8A020148ACE2600E470A6 /* Utilities */,
 				9F749C4F1489B016009E1372 /* Supporting Files */,
 			);
@@ -271,6 +277,7 @@
 				9F99BAAF148BF2A100F2AC6F /* SBJsonWriter.h in Headers */,
 				9F99BAB7148C544400F2AC6F /* NYTimesWrapperBase.h in Headers */,
 				9FE48B95148D764200CE008F /* NYTimesBestSeller.h in Headers */,
+				9FE48B9C148EFABE00CE008F /* NYTimesCampaignFinance.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +397,7 @@
 				9F99BAB0148BF2A100F2AC6F /* SBJsonWriter.m in Sources */,
 				9F99BAB8148C544400F2AC6F /* NYTimesWrapperBase.m in Sources */,
 				9FE48B96148D764200CE008F /* NYTimesBestSeller.m in Sources */,
+				9FE48B9D148EFABE00CE008F /* NYTimesCampaignFinance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

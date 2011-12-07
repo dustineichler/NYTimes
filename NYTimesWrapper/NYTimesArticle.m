@@ -32,37 +32,38 @@
 {    
     NSMutableString *params = [NSMutableString stringWithFormat:@"%@", @""];
     
-    if (obj.article.format == nil || [obj.article.format length] == 0)
+    if (obj.format == nil || [obj.format length] == 0)
     {
         [obj setFormat:@"json"];
-        [params appendFormat:@"format=%@&", obj.article.format];
+
+        [params appendFormat:@"format=%@&", obj.format];
     } else {
-        [params appendFormat:@"format=%@&", obj.article.format];        
+        [params appendFormat:@"format=%@&", obj.format];        
     }
     
-    if (obj.article.query)
+    if (obj.query)
     {
-        NSArray *stringsArry = [obj.article.query componentsSeparatedByString:@" "];
+        NSArray *stringsArry = [obj.query componentsSeparatedByString:@" "];
         NSString *temp = [stringsArry componentsJoinedByString: @"+"];
         
         [params appendFormat:@"query=%@&", temp];
     }
     
-    if (obj.article.facets)
+    if (obj.facets)
     {
-        [params appendFormat:@"facets=%@&", obj.article.facets];
+        [params appendFormat:@"facets=%@&", obj.facets];
     }
     
-    if (obj.article.startDate)
+    if (obj.startDate)
     {
         NSError *error = NULL;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(([0-9]{4})([0-9]{2})([0-9]{2}))"
                                                                                options:NSRegularExpressionCaseInsensitive
                                                                                  error:&error];
         
-        NSUInteger numberOfMatches = [regex numberOfMatchesInString:obj.article.startDate
+        NSUInteger numberOfMatches = [regex numberOfMatchesInString:obj.startDate
                                                             options:0
-                                                              range:NSMakeRange(0, [obj.article.startDate length])];
+                                                              range:NSMakeRange(0, [obj.startDate length])];
         
         if (error)
         {
@@ -71,20 +72,20 @@
         
         if (numberOfMatches > 0)
         {
-            [params appendFormat:@"begin_date=%@&", obj.article.startDate];
+            [params appendFormat:@"begin_date=%@&", obj.startDate];
         }
     }
     
-    if (obj.article.endDate)
+    if (obj.endDate)
     {
         NSError *error = NULL;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(([0-9]{4})([0-9]{2})([0-9]{2}))"
                                                                                options:NSRegularExpressionCaseInsensitive
                                                                                  error:&error];
         
-        NSUInteger numberOfMatches = [regex numberOfMatchesInString:obj.article.endDate
+        NSUInteger numberOfMatches = [regex numberOfMatchesInString:obj.endDate
                                                             options:0
-                                                              range:NSMakeRange(0, [obj.article.endDate length])];
+                                                              range:NSMakeRange(0, [obj.endDate length])];
         
         if (error)
         {
@@ -93,23 +94,23 @@
         
         if (numberOfMatches > 0)
         {
-            [params appendFormat:@"end_date=%@&", obj.article.endDate];
+            [params appendFormat:@"end_date=%@&", obj.endDate];
         }
     }
     
-    if (obj.article.fields)
+    if (obj.fields)
     {
-        [params appendFormat:@"fields=%@&", obj.article.fields];
+        [params appendFormat:@"fields=%@&", obj.fields];
     }
     
-    if (obj.article.offset)
+    if (obj.offset)
     {
-        [params appendFormat:@"offset=%@&", obj.article.offset];
+        [params appendFormat:@"offset=%@&", obj.offset];
     }
     
-    if (obj.article.rank == @"Newest" || obj.article.rank == @"Oldest" || obj.article.rank == @"Closest")
+    if (obj.rank == @"Newest" || obj.rank == @"Oldest" || obj.rank == @"Closest")
     {
-        [params appendFormat:@"rank=%@&", obj.article.rank];
+        [params appendFormat:@"rank=%@&", obj.rank];
     }
     
     if (obj.apiKey)

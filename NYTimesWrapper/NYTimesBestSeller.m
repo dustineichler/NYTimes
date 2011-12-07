@@ -32,16 +32,16 @@
 {   
     NSMutableString *params = [NSMutableString stringWithFormat:@"%@", @""];
     
-    if (obj.bestSeller.date)
-    {
+    if (obj.date)
+    {        
         NSError *error = NULL;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(([0-9]{4})([0-9]{2})([0-9]{2}))"
                                                                                options:NSRegularExpressionCaseInsensitive
                                                                                  error:&error];
         
-        NSUInteger numberOfMatches = [regex numberOfMatchesInString:obj.bestSeller.date
+        NSUInteger numberOfMatches = [regex numberOfMatchesInString:obj.date
                                                             options:0
-                                                              range:NSMakeRange(0, [obj.bestSeller.date length])];
+                                                              range:NSMakeRange(0, [obj.date length])];
         
         if (error)
         {
@@ -50,43 +50,43 @@
         
         if (numberOfMatches > 0)
         {
-            [params appendFormat:@"%@/", obj.bestSeller.date];
+            [params appendFormat:@"%@/", obj.date];
         }
     } else {
         [params appendString:@"/"];
     }
     
-    if (obj.bestSeller.listName)
+    if (obj.listName)
     {
-        NSArray *stringsArry = [obj.bestSeller.listName componentsSeparatedByString:@" "];
+        NSArray *stringsArry = [obj.listName componentsSeparatedByString:@" "];
         NSString *temp = [stringsArry componentsJoinedByString: @"+"];
         [params appendFormat:@"%@.", temp];
     }
     
-    if (obj.bestSeller.format == @"XML")
+    if (obj.format == @"XML")
     {
-        [params appendFormat:@"%@?&", obj.bestSeller.format];
+        [params appendFormat:@"%@?&", obj.format];
     } else {
         [params appendFormat:@".json%@?&"];
     }
     
-    if (obj.bestSeller.offset)
+    if (obj.offset)
     {
-        [params appendFormat:@"offset=%@&",obj.bestSeller.offset];
+        [params appendFormat:@"offset=%@&",obj.offset];
     } else {
         [params appendString:@"offset=&"];
     }
     
-    if (obj.bestSeller.sortBy == @"BestSellers-Date" || obj.bestSeller.sortBy == @"Date" || obj.bestSeller.sortBy == @"ISBN" || obj.bestSeller.sortBy == @"List" || obj.bestSeller.sortBy == @"List-Name" || obj.bestSeller.sortBy == @"Published-Date" || obj.bestSeller.sortBy == @"Rank" || obj.bestSeller.sortBy == @"Rank-Last-Week" || obj.bestSeller.sortBy == @"Weeks-On-List")
+    if (obj.sortBy == @"BestSellers-Date" || obj.sortBy == @"Date" || obj.sortBy == @"ISBN" || obj.sortBy == @"List" || obj.sortBy == @"List-Name" || obj.sortBy == @"Published-Date" || obj.sortBy == @"Rank" || obj.sortBy == @"Rank-Last-Week" || obj.sortBy == @"Weeks-On-List")
     {
-        [params appendFormat:@"sortby=%@&", obj.bestSeller.sortBy];
+        [params appendFormat:@"sortby=%@&", obj.sortBy];
     } else {
         [params appendString:@"sortby=&"];
     }
     
-    if (obj.bestSeller.sortOrder == @"ASC" || obj.bestSeller.sortOrder == @"DESC")
+    if (obj.sortOrder == @"ASC" || obj.sortOrder == @"DESC")
     {
-        [params appendFormat:@"sortorder=%@&", obj.bestSeller.sortOrder];
+        [params appendFormat:@"sortorder=%@&", obj.sortOrder];
     } else {
         [params appendString:@"sortorder=&"];
     }
