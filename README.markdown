@@ -6,7 +6,8 @@ NYTimes Objective-C API Wrapper
 
 * [NYTimesWrapper][] - Base Class.
 * [NYTimesArticle][] - API support for NYTimes Articles.
-* [NYTimesBestSeller][]; - API support for NYTimes Best Sellers.
+* [NYTimesBestSeller][] - API support for NYTimes Best Sellers.
+* [NYTimesCampaignFinance][] - API support for NYTimes Campaign Finance.
 
 ## Example
 
@@ -36,7 +37,19 @@ To use.
                           }tag:@"best sellers"];
 </pre>
 
-
+<pre>
+  NYTimesWrapper *campaignFinance = [[NYTimesWrapper alloc] initWithKey:@"CAMPAIGNFINANCE-API-KEY"];
+  [campaignFinance.candidateSearch setCycle:@"2006"];
+  [campaignFinance.candidateSearch setSearchParameter:@"Foo"];
+  [campaignFinance.candidateSearch setLastName:@"Bar"];
+  
+  [NYTimesBestSeller asyncRequest:bestSellers
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Best Seller Results %@", result);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"best sellers"];
+</pre>
 
 ## TODO
-plenty.
+plenty. 
