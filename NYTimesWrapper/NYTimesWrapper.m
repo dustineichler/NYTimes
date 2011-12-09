@@ -9,18 +9,29 @@
 #import "NYTimesWrapper.h"
 
 @implementation _CampaignFinance
+@synthesize candidateSearch, candidateDetails, candidateLeaders, stateCandidates, newCandidates, committeeSearch, committeeDetails, newCommittee, committeeContributions, committeeContributionsTo, committeeFilings, leadershipCommittee, electronicFilingsByDate, formTypes, filingsByType, presCandidateTotals, presCAndidateDetails, presStateAndZipTotals, presDonorInformation;
 
 #pragma mark -
 #pragma mark CandidateSearch Methods
 
+// TODO: DWE: Why are their so many setters and getters for Candidate Search. The API Console only has 3 attrs.
+
 - (NSString *)cycle
 {
-    return self->candidateSearch.cycle;
+    if (self->candidateSearch.cycle)
+    {
+        return self->candidateSearch.cycle;
+    } else {
+        return nil;
+    }
 }
 
 - (void)setCycle:(NSString *)cycle
-{
-    self->candidateSearch.cycle = cycle;
+{    
+    if (cycle)
+    {
+        self->candidateSearch.cycle = cycle;
+    }
 }
 
 - (NSString *)searchParameter
@@ -35,12 +46,20 @@
 
 - (NSString *)lastName
 {
-    return self->candidateSearch.lastName;
+    if (self->candidateSearch.lastName)
+    {
+        return self->candidateSearch.lastName;
+    } else {
+        return nil;
+    }
 }
 
 - (void)setLastName:(NSString *)lastName
 {
-    self->candidateSearch.lastName = lastName;
+    if (lastName) 
+    {
+        self->candidateSearch.lastName = lastName;
+    }
 }
 
 - (NSString *)firstName
@@ -70,7 +89,12 @@
 
 - (void)setFormat:(NSString *)format
 {
-    self->candidateSearch.format = format;
+    if (format)
+    {
+        self->candidateSearch.format = format;
+    } else {
+        self->candidateSearch.format = @"xml";
+    }
 }
 
 #pragma mark -
@@ -78,29 +102,53 @@
 
 - (NSString *)candidateDetailsCycle
 {
-    return self->candidateDetails.cycle;
+    if (self->candidateDetails.cycle)
+    {
+        return self->candidateDetails.cycle;
+    } else {
+        return  nil;
+    }
 }
 
-// TODO: DUPE
 - (void)setcandidateDetailsCycle:(NSString *)cycle
 {
-    self->candidateDetails.cycle = cycle;
+    if (cycle)
+    {
+        self->candidateDetails.cycle = cycle;
+    }
 }
 
 - (NSString *)candidateId
 {
-    return self->candidateDetails.candidateId;
+    if (self->candidateDetails.candidateId)
+    {
+        return self->candidateDetails.candidateId;
+    }
 }
 
 - (void)setCandidateId:(NSString *)candidateId
 {
-    self->candidateDetails.candidateId = candidateId;
+    if (candidateId)
+    {
+        self->candidateDetails.candidateId = candidateId;
+    } else {
+        self->candidateDetails.candidateId = nil;
+    }
 }
 
-// TODO: DUPE
 - (NSString *)candidateDetailsFormat
 {
     return self->candidateDetails.format;
+}
+
+- (void)setCandidateDetailsFormat:(NSString *)format
+{
+    if (format)
+    {
+        self->candidateDetails.format = format;
+    } else {
+        self->candidateDetails.format = @"xml";
+    } 
 }
 
 #pragma mark - 
@@ -113,7 +161,10 @@
 
 - (void)setCAndidateLeadersCycle:(NSString *)cycle
 {
-    self->candidateLeaders.cycle = cycle;
+    if (cycle)
+    {
+        self->candidateLeaders.cycle = cycle;
+    }
 }
 
 - (NSString *)candidateLeadersCategory
@@ -123,7 +174,27 @@
 
 - (void)setCandidateLeadersCategory:(NSString *)category
 {
-    self->candidateLeaders.category = category;
+    if (category == @"Candidate Loan"){
+        self->candidateLeaders.category = @"candidate_loan";
+    } else if (category == @"Contribution Total"){
+        self->candidateLeaders.category = @"contribution_total";
+    } else if (category == @"Debts Owed"){
+        self->candidateLeaders.category = @"debts_owed";
+    } else if (category == @"Disbursements Total"){
+        self->candidateLeaders.category = @"disbursements_total";
+    } else if (category == @"End Cash"){
+        self->candidateLeaders.category = @"end_cash";
+    } else if (category == @"Individual Total"){
+        self->candidateLeaders.category = @"individual_total";
+    } else if (category == @"PAC Total"){
+        self->candidateLeaders.category = @"pac_total";
+    } else if (category == @"Receipts Total"){
+        self->candidateLeaders.category = @"receipts_total";
+    } else if (category == @"Refund Total"){
+        self->candidateLeaders.category = @"refund_total";
+    } else {
+        self->candidateLeaders.category = nil;
+    }
 }
 
 - (NSString *)candidateLeadersFormat
@@ -132,8 +203,13 @@
 }
 
 - (void)setCandidateLeadersFormat:(NSString *)format
-{
-    self->candidateLeaders.format = format;
+{    
+    if (format)
+    {
+        self->candidateLeaders.format = format;
+    } else {
+        self->candidateLeaders.format = @"xml";
+    } 
 }
 
 #pragma mark -
@@ -147,7 +223,10 @@
 
 - (void)setStateCandidatesCycle:(NSString *)cycle
 {
-    self->stateCandidates.cycle = cycle;
+    if (cycle)
+    {
+        self->stateCandidates.cycle = cycle;
+    }
 }
 
 - (NSString *)stateCandidatesState
@@ -157,7 +236,113 @@
 
 -(void)setStateCandidatesState:(NSString *)state
 {
-    self->stateCandidates.state = state;
+    if (state == @"AK"){
+        self->stateCandidates.state = state;
+    } else if (state == @"AZ"){
+        self->stateCandidates.state = state;
+    } else if (state == @"CT"){
+        self->stateCandidates.state = state;    
+    } else if (state == @"FL"){
+        self->stateCandidates.state = state;        
+    } else if (state == @"HI"){
+        self->stateCandidates.state = state;
+    } else if (state == @"IL"){
+        self->stateCandidates.state = state;
+    } else if (state == @"KY"){
+        self->stateCandidates.state = state;
+    } else if (state == @"MD"){
+        self->stateCandidates.state = state;        
+    } else if (state == @"MN"){
+        self->stateCandidates.state = state;
+    } else if (state == @"MT"){
+        self->stateCandidates.state = state;
+    } else if (state == @"NE"){
+        self->stateCandidates.state = state;
+    } else if (state == @"NM"){
+        self->stateCandidates.state = state;
+    } else if (state == @"OH"){
+        self->stateCandidates.state = state;
+    } else if (state == @"PA"){
+        self->stateCandidates.state = state;
+    } else if (state == @"SC"){
+        self->stateCandidates.state = state;
+    } else if (state == @"TX"){
+        self->stateCandidates.state = state; 
+    } else if (state == @"VI"){
+        self->stateCandidates.state = state;
+    } else if (state == @"WI"){
+        self->stateCandidates.state = state;
+    } else if (state == @"AL"){
+        self->stateCandidates.state = state;
+    } else if (state == @"CA"){
+        self->stateCandidates.state = state;
+    } else if (state == @"DC"){
+        self->stateCandidates.state = state;
+    } else if (state == @"GA"){
+        self->stateCandidates.state = state;
+    } else if (state == @"IA"){
+        self->stateCandidates.state = state;
+    } else if (state == @"IN"){
+        self->stateCandidates.state = state;
+    } else if (state == @"LA"){
+        self->stateCandidates.state = state; 
+    } else if (state == @"ME"){
+        self->stateCandidates.state = state;
+    } else if (state == @"MO"){
+        self->stateCandidates.state = state;
+    } else if (state == @"NC"){
+        self->stateCandidates.state = state;
+    } else if (state == @"NH"){
+        self->stateCandidates.state = state;
+    } else if (state == @"NV"){
+        self->stateCandidates.state = state;
+    } else if (state == @"OK"){
+        self->stateCandidates.state = state;
+    } else if (state == @"PR"){
+        self->stateCandidates.state = state;
+    } else if (state == @"SD"){
+        self->stateCandidates.state = state;
+    } else if (state == @"UT"){
+        self->stateCandidates.state = state;
+    } else if (state == @"WV"){
+        self->stateCandidates.state = state;
+    } else if (state == @"AR"){
+        self->stateCandidates.state = state;
+    } else if (state == @"CO"){
+        self->stateCandidates.state = state;
+    } else if (state == @"DE"){
+        self->stateCandidates.state = state;
+    } else if (state == @"GU"){
+        self->stateCandidates.state = state;
+    } else if (state == @"ID"){
+        self->stateCandidates.state = state;
+    } else if (state == @"KS"){
+        self->stateCandidates.state = state;
+    } else if (state == @"MA"){
+        self->stateCandidates.state = state;
+    } else if (state == @"MI"){
+        self->stateCandidates.state = state;
+    } else if (state == @"MS"){
+        self->stateCandidates.state = state;
+    } else if (state == @"ND"){
+        self->stateCandidates.state = state;
+    } else if (state == @"NJ"){
+        self->stateCandidates.state = state;
+    } else if (state == @"NY"){
+        self->stateCandidates.state = state;
+    } else if (state == @"OR"){
+        self->stateCandidates.state = state;
+    } else if (state == @"RI"){
+        self->stateCandidates.state = state;
+    } else if (state == @"TN"){
+        self->stateCandidates.state = state;
+    } else if (state == @"VA"){
+        self->stateCandidates.state = state;
+    } else if (state == @"WA"){
+        self->stateCandidates.state = state;
+    } else if (state == @"WY"){
+        self->stateCandidates.state = state;
+    }
 }
 
 - (NSString *)chamber
@@ -167,7 +352,11 @@
 
 - (void)setChamber:(NSString *)chamber
 {
-    self->stateCandidates.chamber = chamber;
+    if (chamber == @"house") {
+        self->stateCandidates.chamber = chamber;
+    } else {
+        self->stateCandidates.chamber = @"senate";
+    }
 }
 
 - (NSString *)stateCandidatesFormat
@@ -178,7 +367,12 @@
 // TODO: DUPE
 - (void)setStateCandidatesFormat:(NSString *)format
 {
-    self->stateCandidates.format = format;
+    if (format)
+    {
+        self->stateCandidates.format = format;
+    } else {
+        self->stateCandidates.format = @"xml";
+    } 
 }
 
 #pragma mark -
@@ -274,7 +468,7 @@
 }
 
 #pragma mark -
-#pragma mark NewCommittee Methods  
+#pragma mark NewCommittee Methods
 
 - (NSString *)newCommitteeCycle
 {
@@ -548,7 +742,7 @@
 
 - (NSString *)presCandidateDetailsCycle
 {
-    return presCAndidateDetails.cycle;
+    return self->presCAndidateDetails.cycle;
 }
 
 - (void)setPresCAndidateDetailsCycle:(NSString *)cycle
@@ -672,10 +866,24 @@
     self->presDonorInformation.format = format;
 }
 
+- (void)checkValuesOfStructsUsingBlock:(void (^)(int, NSUInteger, BOOL *))block
+{
+    NSLog(@"-----------------candidateSearch 1 %@", self->candidateSearch);
+    NSLog(@"-----------------candidateSearch 2 %@", self->candidateSearch.cycle);
+    NSLog(@"-----------------candidateSearch 3 %@", self->candidateSearch.searchParameter);
+    NSLog(@"-----------------candidateSearch 4 %@", self->candidateSearch.format);
+}
+
 @end
 
 @implementation NYTimesWrapper
 @synthesize article, bestSeller, campaignFinance, apiKey;
+
+- (void)dealloc
+{
+    [super release];
+    [campaignFinance release];
+}
 
 - (id)initWithAPIKey:(NSString *)key
 {
@@ -684,6 +892,8 @@
     {
         return nil;
     }
+    
+    campaignFinance = [[_CampaignFinance alloc] init];
     
     NSParameterAssert(key != nil || [key length] == 0);
     
@@ -858,8 +1068,6 @@
 
 //NSString *format;
 
-#pragma mark -
-#pragma CampaignFinance Methods
 
 
 @end

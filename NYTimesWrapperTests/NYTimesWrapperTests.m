@@ -30,49 +30,49 @@
     campaignFinance = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
 }
 
-- (void)testArticlesQuery
-{
-    [NYTimesArticle asyncRequest:articles 
-                         success:^(NSData *data, NSURLResponse *response){
-                             
-                             NSError *error = nil;
-                             SBJsonParser *parser = [[SBJsonParser alloc] init];
-                             
-                             NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                             
-                             NSDictionary *result = [[parser objectWithString:jsonString 
-                                                                        error:&error] copy];
-                             
-                             NSLog(@"Articles Result %@", result);
-                             
-                         } failure:^(NSData *data, NSError *error){
-                             
-                             NSLog(@"Errors %@", error);
-                             
-                         } tag:@"articles"];
-}
+//- (void)testArticlesQuery
+//{
+//    [NYTimesArticle asyncRequest:articles 
+//                         success:^(NSData *data, NSURLResponse *response){
+//                             
+//                             NSError *error = nil;
+//                             SBJsonParser *parser = [[SBJsonParser alloc] init];
+//                             
+//                             NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//                             
+//                             NSDictionary *result = [[parser objectWithString:jsonString 
+//                                                                        error:&error] copy];
+//                             
+//                             NSLog(@"Articles Result %@", result);
+//                             
+//                         } failure:^(NSData *data, NSError *error){
+//                             
+//                             NSLog(@"Errors %@", error);
+//                             
+//                         } tag:@"articles"];
+//}
 
-- (void)testBestSellersQuery
-{
-    [NYTimesBestSeller asyncRequest:bestSellers
-                            success:^(NSData *data, NSURLResponse *response){
-                                
-                                NSError *error = nil;
-                                SBJsonParser *parser = [[SBJsonParser alloc] init];
-                                
-                                NSString *jsonString = [[NSString alloc] initWithData:data 
-                                                                             encoding:NSUTF8StringEncoding];
-                                
-                                NSDictionary *result = [[parser objectWithString:jsonString 
-                                                                           error:&error] copy];
-                                NSLog(@"Best Seller Results %@", result);
-                                
-                            }failure:^(NSData *data, NSError *error){
-                                
-                                NSLog(@"Errors %@", error);
-                                
-                            }tag:@"best sellers"];
-}
+//- (void)testBestSellersQuery
+//{
+//    [NYTimesBestSeller asyncRequest:bestSellers
+//                            success:^(NSData *data, NSURLResponse *response){
+//                                
+//                                NSError *error = nil;
+//                                SBJsonParser *parser = [[SBJsonParser alloc] init];
+//                                
+//                                NSString *jsonString = [[NSString alloc] initWithData:data 
+//                                                                             encoding:NSUTF8StringEncoding];
+//                                
+//                                NSDictionary *result = [[parser objectWithString:jsonString 
+//                                                                           error:&error] copy];
+//                                NSLog(@"Best Seller Results %@", result);
+//                                
+//                            }failure:^(NSData *data, NSError *error){
+//                                
+//                                NSLog(@"Errors %@", error);
+//                                
+//                            }tag:@"best sellers"];
+//}
 
 - (void)testCampaignFinanceQuery
 {

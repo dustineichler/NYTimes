@@ -16,55 +16,56 @@ struct _CandidateSearch {
     NSString *offSet;
     NSString *format;
 };
-struct _CandidateSearch candidateSearch;
+typedef struct _CandidateSearch candidateSearch;
 
 struct _CandidateDetails {
     NSString *cycle;
     NSString *candidateId;
     NSString *format;
 };
-struct _CandidateDetails candidateDetails;
+typedef struct _CandidateDetails candidateDetails;
 
 struct _CandidateLeaders {
     NSString *cycle;
     NSString *category;
     NSString *format;
 };
-struct _CandidateLeaders candidateLeaders;
+typedef struct _CandidateLeaders candidateLeaders;
 
+// TODO: DWE: Need to add District when House is selected.
 struct _StateCandidates {
     NSString *cycle;
     NSString *state;
     NSString *chamber;
     NSString *format;
 };
-struct _StateCandidates stateCandidates;
+typedef struct _StateCandidates stateCandidates;
 
 struct _NewCandidates {
     NSString *cycle;
     NSString *format;
 };
-struct _NewCandidates newCandidates;
+typedef struct _NewCandidates newCandidates;
 
 struct _CommitteeSearch {
     NSString *cycle;
     NSString *name;
     NSString *format;
 };
-struct _CommitteeSearch committeeSearch;
+typedef struct _CommitteeSearch committeeSearch;
 
 struct _CommitteeDetails {
     NSString *cycle;
     NSString *committeeId;
     NSString *format;
 };
-struct _CommitteeDetails committeeDetails;
+typedef struct _CommitteeDetails committeeDetails;
 
 struct _NewCommittee {
     NSString *cycle;
     NSString *format;
 };
-struct _NewCommittee newCommittee;    
+typedef struct _NewCommittee newCommittee;    
 
 struct _CommitteeContributions {
     NSString *cycle;
@@ -72,7 +73,7 @@ struct _CommitteeContributions {
     NSString *offset;
     NSString *format;
 };
-struct _CommitteeContributions committeeContributions;
+typedef struct _CommitteeContributions committeeContributions;
 
 struct _CommitteeContributionsTo {
     NSString *cycle;
@@ -80,53 +81,53 @@ struct _CommitteeContributionsTo {
     NSString *committeeId;
     NSString *format;
 };
-struct _CommitteeContributionsTo committeeContributionsTo;
+typedef struct _CommitteeContributionsTo committeeContributionsTo;
 
 struct _CommitteeFilings {
     NSString *cycle;
     NSString *committeeId;
     NSString *format;
 };
-struct _CommitteeFilings committeeFilings;
+typedef struct _CommitteeFilings committeeFilings;
 
 struct _LeadershipCommittee {
     NSString *cycle;
     NSString *format;
 };
-struct _LeadershipCommittee leadershipCommittee;
+typedef struct _LeadershipCommittee leadershipCommittee;
 
 struct _ElectronicFilingsByDate {
     NSString *cycle;
     NSString *date;
     NSString *format;
 };
-struct _ElectronicFilingsByDate electronicFilingsByDate;
+typedef struct _ElectronicFilingsByDate electronicFilingsByDate;
 
 struct _FormTypes {
     NSString *cycle;
     NSString *format;
 };
-struct _FormTypes formTypes;
+typedef struct _FormTypes formTypes;
 
 struct _FilingsByType {
     NSString *fields;
     NSString *filingType;
     NSString *format;
 };
-struct _FilingsByType filingsByType;
+typedef struct _FilingsByType filingsByType;
 
 struct _PresCandidateTotals {
     NSString *cycle;
     NSString *format;
 };
-struct _PresCandidateTotals presCandidateTotals;
+typedef struct _PresCandidateTotals presCandidateTotals;
 
 struct _PresCAndidateDetails {
     NSString *cycle;
     NSString *candidateNameOrCommitteeId;
     NSString *format;
 };
-struct _PresCAndidateDetails presCAndidateDetails;
+typedef struct _PresCAndidateDetails presCAndidateDetails;
 
 struct _PresStateAndZipTotals {
     NSString *cycle;
@@ -134,7 +135,7 @@ struct _PresStateAndZipTotals {
     NSString *stateAbbr;
     NSString *format;
 };
-struct _PresStateAndZipTotals presStateAndZipTotals;
+typedef struct _PresStateAndZipTotals presStateAndZipTotals;
 
 struct _PresDonorInformation {
     NSString *cycle;
@@ -144,7 +145,10 @@ struct _PresDonorInformation {
     NSString *offSet;
     NSString *format;
 };
-struct _PresDonorInformation presDonorInformation;
+typedef struct _PresDonorInformation presDonorInformation;
+
+#pragma mark -
+#pragma mark CampaignFinance
 
 @interface _CampaignFinance : NSObject
 {
@@ -189,6 +193,202 @@ struct _PresDonorInformation presDonorInformation;
 @property struct _PresStateAndZipTotals presStateAndZipTotals;
 @property struct _PresDonorInformation presDonorInformation;
 
+- (void)checkValuesOfStructsUsingBlock:(void (^)(int i, NSUInteger idx, BOOL *stop))block;
+
+#pragma mark -
+#pragma mark CandidateSearch
+
+- (void)setCycle:(NSString *)cycle;
+- (NSString *)cycle;
+- (NSString *)searchParameter;
+- (void)setSearchParameter:(NSString *)searchParameter;
+- (NSString *)lastName;
+- (void)setLastName:(NSString *)lastName;
+- (NSString *)firstName;
+- (void)setFirstName:(NSString *)firstName;
+- (NSString *)offSet;
+- (void)setOffSet:(NSString *)offset;
+- (NSString *)format;
+- (void)setFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark CandidateDetails
+
+- (NSString *)candidateDetailsCycle;
+- (void)setcandidateDetailsCycle:(NSString *)cycle;
+- (NSString *)candidateId;
+- (void)setCandidateId:(NSString *)candidateId;
+- (NSString *)candidateDetailsFormat;
+
+#pragma mark - 
+#pragma mark CandidateLeaders
+
+- (NSString *)candidateLeadersCycle;
+- (void)setCAndidateLeadersCycle:(NSString *)cycle;
+- (NSString *)candidateLeadersCategory;
+- (void)setCandidateLeadersCategory:(NSString *)category;
+- (NSString *)candidateLeadersFormat;
+- (void)setCandidateLeadersFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark StateCandidates
+
+- (NSString *)stateCandidatesCycle;
+- (void)setStateCandidatesCycle:(NSString *)cycle;
+- (NSString *)stateCandidatesState;
+- (void)setStateCandidatesState:(NSString *)state;
+- (NSString *)chamber;
+- (void)setChamber:(NSString *)chamber;
+- (NSString *)stateCandidatesFormat;
+- (void)setStateCandidatesFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark NewCandidates
+
+- (NSString *)newCandidatesCycle;
+- (void)setNewCandidatesCycle:(NSString *)cycle;
+- (NSString *)newCandidatesFormat;
+- (void)setNewCandidatesFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark CommitteeSearch
+
+- (NSString *)committeeSearchCycle;
+- (void)setCommitteeSearchCycle:(NSString *)cycle;
+- (NSString *)committeeSearchName;
+- (void)setCommitteeSearchName:(NSString *)name;
+- (NSString *)committeeSearchFormat;
+- (void)setCommitteeSearchFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark CommitteeDetails
+
+- (NSString *)committeeDetailsCycle;
+- (NSString *)committeeDetailsCommitteeId;
+- (void)setCommitteeDetailsCommitteeId:(NSString *)committeeId;
+- (NSString *)committeeDetailsFormat;
+- (void)setCommitteeDetailsFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark NewCommittee
+
+- (NSString *)newCommitteeCycle;
+- (void)setNewCommitteeCycle:(NSString *)cycle;
+- (NSString *)newCommitteeFormat;
+- (void)setNewCommitteeFormat:(NSString *)format;
+
+#pragma mark -
+#pragma CommitteeContributions
+
+- (NSString *)committeeContributionsCycle;
+- (void)setCommitteeContributionsCommitteeId:(NSString *)committeeId;
+- (NSString *)committeeContributionsOffset;
+- (void)setCommitteeContributionsOffset:(NSString *)offSet;
+- (NSString *)committeeContributionsFormat;
+- (void)setCommitteeContributionsFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark CommitteeContributionsTo
+
+- (NSString *)committeeContributionsToCycle;
+- (void)setCommitteeContributionsToCycle:(NSString *)cycle;
+- (NSString *)committeeContributionsToCandidateId;
+- (void)setCommitteeContributionsToCandidateId:(NSString *)candidateId;
+- (NSString *)committeeContributionsToCommitteeId;
+- (void)setCommitteeContributionsToCommitteeId:(NSString *)committeeId;
+- (NSString *)committeeContributionsToFormat;
+- (void)setCommitteeContributionsToFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark CommitteeFilings
+
+- (NSString *)committeeFilingsCycle;
+- (void)setCommitteeFilingsCycle:(NSString *)cycle;
+- (NSString *)committeeFilingsCommitteeId;
+- (void)setCommitteeFilingsCommitteeId:(NSString *)committeeId;
+- (NSString *)committeeFilingsFormat;
+- (void)setCommitteeFilingsFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark LeadershipCommittee
+
+- (NSString *)leadershipCommitteeCycle;
+- (void)setLeadershipCommitteeCycle:(NSString *)cycle;
+- (NSString *)leadershipCommitteeFormat;
+- (void)setLeadershipCommitteeFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark ElectronicFilingsByDate
+
+- (NSString *)electronicFilingsByDateCycle;
+- (void)setElectronicFilingsByDateCycle:(NSString *)cycle;
+- (NSString *)electronicFilingsByDateDate;
+- (void)setElectronicFilingsByDateDate:(NSString *)date;
+- (NSString *)electronicFilingsByDateFormat;
+- (void)setElectronicFilingsByDateFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark FormTypes
+
+- (NSString *)formTypesCycle;
+- (void)formTypesCycle:(NSString *)cycle;
+- (NSString *)formTypesFormat;
+- (void)formTypesFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark FilingsByType
+
+- (NSString *)filingsByTypeFields;
+- (void)setFilingsByTypeFields:(NSString *)fields;
+- (NSString *)filingsByTypeFilingType;
+- (void)setFilingsByTypeFilingType:(NSString *)filingType;
+- (NSString *)filingsByTypeFormat;
+- (void)setFilingsByTypeFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark PresCandidateTotals
+
+- (NSString *)presCandidateTotalsCycle;
+- (void)setPresCandidateTotalsCycle:(NSString *)cycle;
+- (NSString *)presCandidateTotalsFormat;
+- (void)setPresCandidateTotalsFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark _PresCandidateDetails
+
+- (NSString *)presCandidateDetailsCycle;
+- (void)setPresCAndidateDetailsCycle:(NSString *)cycle;
+- (NSString *)presCAndidateDetailsCandidateNameOrCommitteeId;
+- (void)setPresCandidateDetailsCandidateNameOrCommitteeId:(NSString *)candidateNameOrCommitteeId;
+- (NSString *)presCandidateDetailsFormat;
+- (void)setPresCandidateDetailsFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark PresStateAndZipTotals
+
+- (NSString *)presStateAndZipTotalsCycle;
+- (void)setPresStateAndZipTotalsCycle:(NSString *)cycle;
+- (NSString *)presStateAndZipTotalsResourceType;
+- (void)setPresStateAndZipTotalsResourceType:(NSString *)resourceType;
+- (NSString *)presStateAndZipTotalsStateAbbr;
+- (void)setPresStateAndZipTotalsStateAbbr:(NSString *)stateAbbr;
+- (NSString *)presStateAndZipTotalsFormat;
+- (void)setPresStateAndZipTotalsFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark PresDonorInformation
+
+- (NSString *)presDonorInformationCycle;
+- (void)setPresDonorInformationCycle:(NSString *)cycle;
+- (NSString *)presDonorInformationSearchParameter;
+- (void)setPresDonorInformationSearchParameter:(NSString *)searchParameter;
+- (NSString *)presDonorInformationLastName;
+- (void)setPresDonorInformationLastName:(NSString *)lastName;
+- (NSString *)presDonorInformationOffSet;
+- (void)setPresDonorInformationOffSet:(NSString *)offSet;
+- (NSString *)presDonorInformationFormat;
+- (void)setPresDonorInformationFormat:(NSString *)format;
+
 @end
 
 struct _ArticleStruct {
@@ -201,6 +401,7 @@ struct _ArticleStruct {
     NSString *startDate;
     NSString *endDate;
 };
+typedef struct _ArticleStruct article;
 
 struct _BestSellerStruct {
     NSString *listName;
@@ -210,6 +411,10 @@ struct _BestSellerStruct {
     NSString *sortOrder;
     NSString *format;
 };
+typedef struct _BestSellerStruct bestSeller;
+
+#pragma mark -
+#pragma mark NYTimesWrapper
 
 @interface NYTimesWrapper : NSObject
 {    

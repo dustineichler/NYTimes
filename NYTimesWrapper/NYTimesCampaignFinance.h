@@ -16,7 +16,7 @@
 
 @property (nonatomic, retain) NSString *tag;
 
-+ (void)asyncRequest:(NSObject *)obj 
++ (void)asyncRequest:(NSObject *)obj
              success:(NYTimesNSURLConnectionSuccessBlock)successBlock_ 
              failure:(NYTImesErrorBlock)failureBlock_ 
                  tag:(NSString *)t;
