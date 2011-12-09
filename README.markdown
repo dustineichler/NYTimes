@@ -43,9 +43,9 @@ To use.
   [campaignFinance.candidateSearch setSearchParameter:@"Foo"];
   [campaignFinance.candidateSearch setLastName:@"Bar"];
   
-  [NYTimesBestSeller asyncRequest:bestSellers
+  [NYTimesBestSeller asyncRequest:campaignFinance
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Best Seller Results %@", result);
+                              NSLog(@"Campaign Finance Results %@", result);
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"best sellers"];
