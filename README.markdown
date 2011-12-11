@@ -2,6 +2,10 @@
 
 NYTimes Objective-C API Wrapper
 
+## Article
+
+Concieved at NYTimes HackDay 2011. Related article. http://open.blogs.nytimes.com/2011/12/06/recapping-timesopen-hack-day/
+
 ## Classes (currently)
 
 * [NYTimesWrapper][] - Base Class.
