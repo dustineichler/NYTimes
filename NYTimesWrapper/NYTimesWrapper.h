@@ -141,6 +141,7 @@ struct _PresDonorInformation {
     NSString *cycle;
     NSString *searchParameter;
     NSString *lastName;
+    NSString *zipCode;
     NSString *firstName;
     NSString *offSet;
     NSString *format;
@@ -281,6 +282,8 @@ typedef struct _PresDonorInformation presDonorInformation;
 #pragma CommitteeContributions
 
 - (NSString *)committeeContributionsCycle;
+- (void)setCommitteeContributionsCycle:(NSString *)cycle;
+- (NSString *)committeeContributionsCommitteeId;
 - (void)setCommitteeContributionsCommitteeId:(NSString *)committeeId;
 - (NSString *)committeeContributionsOffset;
 - (void)setCommitteeContributionsOffset:(NSString *)offSet;
@@ -384,6 +387,8 @@ typedef struct _PresDonorInformation presDonorInformation;
 - (void)setPresDonorInformationSearchParameter:(NSString *)searchParameter;
 - (NSString *)presDonorInformationLastName;
 - (void)setPresDonorInformationLastName:(NSString *)lastName;
+- (NSString *)presDonorInformationZipCode;
+- (void)setPresDonorInformationZipCode:(NSString *)zipCode;
 - (NSString *)presDonorInformationOffSet;
 - (void)setPresDonorInformationOffSet:(NSString *)offSet;
 - (NSString *)presDonorInformationFormat;

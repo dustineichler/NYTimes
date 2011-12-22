@@ -461,7 +461,6 @@
     return self->committeeDetails.format;
 }
 
-// TODO: DUPE
 - (void)setCommitteeDetailsFormat:(NSString *)format
 {
     self->committeeDetails.format = format;
@@ -499,6 +498,16 @@
     return self->committeeContributions.cycle;
 }
 
+- (void)setCommitteeContributionsCycle:(NSString *)cycle
+{
+    self->committeeContributions.cycle = cycle;
+}
+
+- (NSString *)committeeContributionsCommitteeId
+{
+    return self->committeeContributions.committeeId;
+}
+
 - (void)setCommitteeContributionsCommitteeId:(NSString *)committeeId
 {
     self->committeeContributions.committeeId = committeeId;
@@ -519,7 +528,6 @@
     return self->committeeContributions.format;
 }
 
-// TODO: DUPE
 - (void)setCommitteeContributionsFormat:(NSString *)format
 {
     self->committeeContributions.format = format;
@@ -828,7 +836,12 @@
 
 - (NSString *)presDonorInformationSearchParameter
 {
-    return self->presDonorInformation.searchParameter;
+    if (self->presDonorInformation.searchParameter)
+    {
+        return self->presDonorInformation.searchParameter;
+    } else {
+        return self->presDonorInformation.searchParameter = @"lname";
+    }
 }
 
 - (void)setPresDonorInformationSearchParameter:(NSString *)searchParameter
@@ -844,6 +857,16 @@
 - (void)setPresDonorInformationLastName:(NSString *)lastName
 {
     self->presDonorInformation.lastName = lastName;
+}
+
+- (NSString *)presDonorInformationZipCode
+{
+    return self->presDonorInformation.zipCode;
+}
+
+- (void)setPresDonorInformationZipCode:(NSString *)zipCode
+{
+    self->presDonorInformation.zipCode = zipCode;
 }
 
 - (NSString *)presDonorInformationOffSet

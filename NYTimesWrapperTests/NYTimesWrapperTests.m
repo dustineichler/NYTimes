@@ -86,11 +86,11 @@
                                      
                                      NSDictionary *result = [[parser objectWithString:jsonString 
                                                                                 error:&error] copy];
-                                     NSLog(@"Campaign Finance Results %@", result);
+                                     NSLog(@"-------Campaign Finance Results %@", result);
                                      
                                  }failure:^(NSData *data, NSError *error){
                                      
-                                     NSLog(@"Errors %@", error);
+                                     NSLog(@"-------Errors %@", error);
                                  }tag:@"best sellers"];
 }
 
