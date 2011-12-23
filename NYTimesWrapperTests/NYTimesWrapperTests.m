@@ -26,6 +26,7 @@
     articles = [[NYTimesWrapper alloc] initWithAPIKey:ARTICLE_API_KEY];
 }
 
+// TODO: DWE: This needs to be moved into its own Articles Class, not NYTimesWrapper
 - (void)testArticleGettersAndSetters
 {    
     [articles setStartDate:@"20110102"];
@@ -51,6 +52,64 @@
     
     [articles setFormat:@"json"];
     STAssertEqualObjects(@"json", articles.format, @"Should Equal JSON");
+}
+
+// TODO: DWE: This needs to be moved into its own BestSeller Class, not NYTimesWrapper
+- (void)testBestSellerGettersAndSetters
+{
+    [articles setListName:@"List Name"];
+    STAssertEqualObjects(@"List-Name", articles.listName, @"Should Equal, replace whitespame and join with hypens");
+    
+    [articles setListName:@"List"];    
+    STAssertEqualObjects(@"List", articles.listName, @"Should Equal, replace whitespame and join with hypens");
+    
+    [articles setDate:@"20110102"];
+    STAssertEqualObjects(@"20110102", articles.date, @"Should Accept Formatted Date");
+    
+    [articles setBestSellerOffset:@"20"];
+    STAssertEqualObjects(@"20", articles.bestSellerOffset, @"Should be true and a positive multiple of 20");
+    
+    [articles setBestSellerOffset:@"25"];
+    STAssertNil(articles.bestSellerOffset, @"Should be nil if not a multiple of 20");
+    
+    [articles setSortBy:@"BestSellers-Date"];
+    STAssertEqualObjects(@"bestsellers", articles.sortBy, @"Should be equal");
+    
+    [articles setSortBy:@"Date"];
+    STAssertEqualObjects(@"date", articles.sortBy, @"Should be equal");
+    
+    [articles setSortBy:@"ISBN"];
+    STAssertEqualObjects(@"isbn", articles.sortBy, @"Should be equal");
+    
+    [articles setSortBy:@"List"];
+    STAssertEqualObjects(@"list", articles.sortBy, @"Should be equal");
+    
+    [articles setSortBy:@"List-Name"];
+    STAssertEqualObjects(@"list-name", articles.sortBy, @"Should be equal");
+    
+    [articles setSortBy:@"Published-Date"];
+    STAssertEqualObjects(@"published-date", articles.sortBy, @"Should be equal");
+    
+    [articles setSortBy:@"Rank"];
+    STAssertEqualObjects(@"rank", articles.sortBy, @"Should be equal");
+    
+    [articles setSortBy:@"Rank-Last-Week"];
+    STAssertEqualObjects(@"rank-last-week", articles.sortBy, @"Should be equal");
+    
+    [articles setSortBy:@"Weeks-On-List"];
+    STAssertEqualObjects(@"weeks-on-list", articles.sortBy, @"Should be equal");
+    
+    [articles setSortBy:@"Foobar"];
+    STAssertNil(articles.sortBy, @"Should be bil, Foobar not a SortBy description");
+    
+    [articles setBestSellerFormat:@"xml"];
+    STAssertEqualObjects(@"xml", articles.bestSellerFormat, @"Should be equal");
+    
+    [articles setBestSellerFormat:@"json"];
+    STAssertEqualObjects(@"json", articles.bestSellerFormat, @"Should be equal");
+    
+//    [articles setBestSellerFormat:@"FooType"];
+//    STAssertNil(articles.bestSellerFormat, @"Should be nil if type is incorrect");
 }
 
 - (void)tearDown

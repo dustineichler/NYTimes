@@ -1062,10 +1062,13 @@
 #pragma Best Sellers Methods
 
 - (void)setListName:(NSString *)listName
-{
-    if (listName)
+{    
+    NSArray *_fields = [listName componentsSeparatedByString:@" "];
+    NSString *result = [_fields componentsJoinedByString:@"-"];
+    
+    if (result)
     {
-        self->bestSeller.listName = listName;
+        self->bestSeller.listName = result;
     }
 }
 
@@ -1076,9 +1079,16 @@
 
 - (void)setDate:(NSString *)date
 {
-    if (date)
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_date = [formatter dateFromString:date];
+    
+    NSString *result = [formatter stringFromDate:_date];
+    
+    if (result)
     {
-        self->bestSeller.date = date;
+        self->bestSeller.date = result;
     }
 }
 
@@ -1087,13 +1097,46 @@
     return self->bestSeller.date;
 }
 
-//NSString *offset;
+- (void)setBestSellerOffset:(NSString *)offset
+{
+    NSInteger multipleOfTwenty = [offset intValue];
+    
+    if (offset && (multipleOfTwenty % 20 == 0))
+    {
+        self->bestSeller.offset = offset;
+    } else {
+        self->bestSeller.offset = nil;
+    }
+}
+
+- (NSString *)bestSellerOffset
+{
+    return self->bestSeller.offset;
+}
 
 - (void)setSortBy:(NSString *)sortBy
 {
-    if (sortBy)
+    if (sortBy == @"BestSellers-Date")
     {
-        self->bestSeller.sortBy = sortBy;
+        self->bestSeller.sortBy = @"bestsellers";
+    } else if (sortBy == @"Date") {
+        self->bestSeller.sortBy = @"date";
+    } else if (sortBy == @"ISBN") {
+        self->bestSeller.sortBy = @"isbn";
+    } else if (sortBy == @"List") {
+        self->bestSeller.sortBy = @"list";
+    } else if (sortBy == @"List-Name") {
+        self->bestSeller.sortBy = @"list-name";
+    } else if (sortBy == @"Published-Date") {
+        self->bestSeller.sortBy = @"published-date";
+    } else if (sortBy == @"Rank") {
+        self->bestSeller.sortBy = @"rank";
+    } else if (sortBy == @"Weeks-On-List") {
+        self->bestSeller.sortBy = @"weeks-on-list";
+    } else if (sortBy == @"Rank-Last-Week") {
+        self->bestSeller.sortBy = @"rank-last-week";
+    } else {
+        self->bestSeller.sortBy = nil;    
     }
 }
 
@@ -1107,6 +1150,8 @@
     if (sortOrder)
     {
         self->bestSeller.sortOrder = sortOrder;
+    } else {
+        self->bestSeller.sortOrder = nil;
     }
 }
 
@@ -1115,7 +1160,27 @@
     return self->bestSeller.sortOrder;
 }
 
-//NSString *format;
+- (void)setBestSellerFormat:(NSString *)format
+{
+    if (format == @"xml")
+    {
+        self->bestSeller.format = format;
+    } else if (format == @"json") {
+        self->bestSeller.format = format;
+    } else {
+        self->bestSeller.format = nil;    
+    }
+}
+
+- (NSString *)bestSellerFormat
+{
+    if (self->bestSeller.format)
+    {
+        return self->bestSeller.format;
+    } else {
+        return self->bestSeller.format = @"json";
+    }
+}
 
 
 

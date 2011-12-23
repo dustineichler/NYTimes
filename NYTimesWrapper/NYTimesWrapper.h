@@ -459,14 +459,16 @@ typedef struct _BestSellerStruct bestSeller;
 
 - (void)setListName:(NSString *)listName;
 - (void)setDate:(NSString *)date;
-//NSString *offset;
+- (void)setBestSellerOffset:(NSString *)offset;
 - (void)setSortBy:(NSString *)sortBy;
 - (void)setSortOrder:(NSString *)sortOrder;
-//NSString *format;
+- (void)setBestSellerFormat:(NSString *)format;
 
 - (NSString *)listName;
 - (NSString *)date;
+- (NSString *)bestSellerOffset;
 - (NSString *)sortBy;
 - (NSString *)sortOrder;
+- (NSString *)bestSellerFormat;
 
 @end
