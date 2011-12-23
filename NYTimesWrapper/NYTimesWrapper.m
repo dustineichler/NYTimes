@@ -930,9 +930,11 @@
 
 - (void)setFormat:(NSString *)string
 {
-    if (string)
+    if (string == @"xml")
     {
         self->article.format = string;
+    } else {
+        self->article.format = @"json";
     }
 }
 
@@ -956,9 +958,14 @@
 
 - (void)setFacets:(NSString *)facets
 {
-    if (facets)
+    NSString *trim = [facets stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSArray *_facets = [trim componentsSeparatedByString:@","];
+    NSString *result = [_facets componentsJoinedByString:@"+"];
+    
+    if (result)
     {
-        self->article.facets = facets;
+        self->article.facets = result;
     }
 }
 
@@ -969,9 +976,14 @@
 
 - (void)setFields:(NSString *)fields
 {
-    if (fields)
+    NSString *trim = [fields stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSArray *_fields = [trim componentsSeparatedByString:@","];
+    NSString *result = [_fields componentsJoinedByString:@"+"];
+    
+    if (result)
     {
-        self->article.fields = fields;
+        self->article.fields = result;
     }
 }
 
@@ -1008,9 +1020,16 @@
 
 - (void)setStartDate:(NSString *)startDate
 {
-    if (startDate)
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_startDate = [formatter dateFromString:startDate];
+    
+    NSString *result = [formatter stringFromDate:_startDate];
+    
+    if (result)
     {
-        self->article.startDate = startDate;
+        self->article.startDate = result;
     }
 }
 
@@ -1021,9 +1040,16 @@
 
 - (void)setEndDate:(NSString *)endDate
 {
-    if (endDate)
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_endDate = [formatter dateFromString:endDate];
+    
+    NSString *result = [formatter stringFromDate:_endDate];
+    
+    if (result)
     {
-        self->article.endDate = endDate;
+        self->article.endDate = result;
     }
 }
 

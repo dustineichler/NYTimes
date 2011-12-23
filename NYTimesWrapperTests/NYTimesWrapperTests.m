@@ -23,84 +23,40 @@
 - (void)setUp
 {
     [super setUp];
-    // Set-up code here.
-    
     articles = [[NYTimesWrapper alloc] initWithAPIKey:ARTICLE_API_KEY];
-    bestSellers = [[NYTimesWrapper alloc] initWithAPIKey:BEST_SELLER_API_KEY];
-    campaignFinance = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
 }
 
-//- (void)testArticlesQuery
-//{
-//    [NYTimesArticle asyncRequest:articles 
-//                         success:^(NSData *data, NSURLResponse *response){
-//                             
-//                             NSError *error = nil;
-//                             SBJsonParser *parser = [[SBJsonParser alloc] init];
-//                             
-//                             NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//                             
-//                             NSDictionary *result = [[parser objectWithString:jsonString 
-//                                                                        error:&error] copy];
-//                             
-//                             NSLog(@"Articles Result %@", result);
-//                             
-//                         } failure:^(NSData *data, NSError *error){
-//                             
-//                             NSLog(@"Errors %@", error);
-//                             
-//                         } tag:@"articles"];
-//}
+- (void)testArticleGettersAndSetters
+{    
+    [articles setStartDate:@"20110102"];
+    STAssertEqualObjects(@"20110102", articles.startDate, @"Should Accept Formatted Date");
+    
+    [articles setEndDate:@"20110202"];
+    STAssertEqualObjects(@"20110202", articles.endDate, @"Should Accept Formatted Date");
+    
+    [articles setFacets:@"Facet1, Facet2, Facet3"];
+    STAssertEqualObjects(@"Facet1+Facet2+Facet3", articles.facets, @"Should Equal, replace Commas and join with Plus sign");
+    
+    [articles setFacets:@"Facet1"];
+    STAssertEqualObjects(@"Facet1", articles.facets, @"Should Equal, replace Commas and join with Plus sign");
 
-//- (void)testBestSellersQuery
-//{
-//    [NYTimesBestSeller asyncRequest:bestSellers
-//                            success:^(NSData *data, NSURLResponse *response){
-//                                
-//                                NSError *error = nil;
-//                                SBJsonParser *parser = [[SBJsonParser alloc] init];
-//                                
-//                                NSString *jsonString = [[NSString alloc] initWithData:data 
-//                                                                             encoding:NSUTF8StringEncoding];
-//                                
-//                                NSDictionary *result = [[parser objectWithString:jsonString 
-//                                                                           error:&error] copy];
-//                                NSLog(@"Best Seller Results %@", result);
-//                                
-//                            }failure:^(NSData *data, NSError *error){
-//                                
-//                                NSLog(@"Errors %@", error);
-//                                
-//                            }tag:@"best sellers"];
-//}
-
-- (void)testCampaignFinanceQuery
-{
-    [NYTimesCampaignFinance asyncRequest:campaignFinance
-                                 success:^(NSData *data, NSURLResponse *response){
-                                     NSError *error = nil;
-                                     SBJsonParser *parser = [[SBJsonParser alloc] init];
-                                     
-                                     NSString *jsonString = [[NSString alloc] initWithData:data
-                                                                                  encoding:NSUTF8StringEncoding];
-                                     
-                                     NSDictionary *result = [[parser objectWithString:jsonString 
-                                                                                error:&error] copy];
-                                     NSLog(@"-------Campaign Finance Results %@", result);
-                                     
-                                 }failure:^(NSData *data, NSError *error){
-                                     
-                                     NSLog(@"-------Errors %@", error);
-                                 }tag:@"best sellers"];
+    [articles setFields:@"Fields1, Fields2, Fields3"];
+    STAssertEqualObjects(@"Fields1+Fields2+Fields3", articles.fields, @"Should Equal, replace Commas and join with Plus sign");
+    
+    [articles setFields:@"Fields1"];
+    STAssertEqualObjects(@"Fields1", articles.fields, @"Should Equal, replace Commas and join with Plus sign");
+    
+    [articles setFormat:@"xml"];
+    STAssertEqualObjects(@"xml", articles.format, @"Should Equal XML");
+    
+    [articles setFormat:@"json"];
+    STAssertEqualObjects(@"json", articles.format, @"Should Equal JSON");
 }
 
 - (void)tearDown
 {
     [super tearDown];
-    // Tear-down code here.
-
     [articles release];
-    [bestSellers release];
 }
 
 @end
