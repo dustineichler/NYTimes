@@ -421,16 +421,16 @@
     NSMutableString *presidentialCandidateDetails;
     NSMutableString *params14 = [NSMutableString stringWithFormat:@"", @""];
     
-    if (obj.campaignFinance.presCandidateDetailsCycle && obj.campaignFinance.presCAndidateDetailsCandidateNameOrCommitteeId) 
+    if (obj.campaignFinance.presCandidateDetailsCycle && obj.campaignFinance.presCandidateDetailsCandidateNameOrCommitteeId) 
     {
         if (obj.campaignFinance.presCandidateDetailsCycle) 
         {
             presidentialCandidateDetails = [NSMutableString stringWithFormat:@"http://api.nytimes.com/svc/elections/us/v3/finances/%@/", obj.campaignFinance.presCandidateDetailsCycle];
         }
         
-        if (obj.campaignFinance.presCAndidateDetailsCandidateNameOrCommitteeId)
+        if (obj.campaignFinance.presCandidateDetailsCandidateNameOrCommitteeId)
         {
-            [params14 appendFormat:@"president/candidates/%@", obj.campaignFinance.presCAndidateDetailsCandidateNameOrCommitteeId];
+            [params14 appendFormat:@"president/candidates/%@", obj.campaignFinance.presCandidateDetailsCandidateNameOrCommitteeId];
         }
         
         if (obj.campaignFinance.presCandidateDetailsFormat)

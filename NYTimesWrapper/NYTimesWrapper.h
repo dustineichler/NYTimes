@@ -274,6 +274,7 @@ typedef struct _PresDonorInformation presDonorInformation;
 #pragma mark CommitteeDetails
 
 - (NSString *)committeeDetailsCycle;
+- (void)setCommitteeDetailsCycle:(NSString *)cycle;
 - (NSString *)committeeDetailsCommitteeId;
 - (void)setCommitteeDetailsCommitteeId:(NSString *)committeeId;
 - (NSString *)committeeDetailsFormat;
@@ -343,15 +344,15 @@ typedef struct _PresDonorInformation presDonorInformation;
 #pragma mark FormTypes
 
 - (NSString *)formTypesCycle;
-- (void)formTypesCycle:(NSString *)cycle;
+- (void)setFormTypesCycle:(NSString *)cycle;
 - (NSString *)formTypesFormat;
-- (void)formTypesFormat:(NSString *)format;
+- (void)setFormTypesFormat:(NSString *)format;
 
 #pragma mark -
 #pragma mark FilingsByType
 
-- (NSString *)filingsByTypeFields;
-- (void)setFilingsByTypeFields:(NSString *)fields;
+- (NSString *)filingsByTypeCycle;
+- (void)setFilingsByTypeCycle:(NSString *)cycle;
 - (NSString *)filingsByTypeFilingType;
 - (void)setFilingsByTypeFilingType:(NSString *)filingType;
 - (NSString *)filingsByTypeFormat;
@@ -366,11 +367,11 @@ typedef struct _PresDonorInformation presDonorInformation;
 - (void)setPresCandidateTotalsFormat:(NSString *)format;
 
 #pragma mark -
-#pragma mark _PresCandidateDetails
+#pragma mark PresCandidateDetails
 
 - (NSString *)presCandidateDetailsCycle;
-- (void)setPresCAndidateDetailsCycle:(NSString *)cycle;
-- (NSString *)presCAndidateDetailsCandidateNameOrCommitteeId;
+- (void)setPresCandidateDetailsCycle:(NSString *)cycle;
+- (NSString *)presCandidateDetailsCandidateNameOrCommitteeId;
 - (void)setPresCandidateDetailsCandidateNameOrCommitteeId:(NSString *)candidateNameOrCommitteeId;
 - (NSString *)presCandidateDetailsFormat;
 - (void)setPresCandidateDetailsFormat:(NSString *)format;

@@ -414,7 +414,17 @@
 
 - (void)setNewCandidatesCycle:(NSString *)cycle
 {
-    self->newCandidates.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->newCandidates.cycle = result;
+    }
 }
 
 - (NSString *)newCandidatesFormat
@@ -425,7 +435,12 @@
 // TODO: DUPE
 - (void)setNewCandidatesFormat:(NSString *)format
 {
-    self->newCandidates.format = format;
+    if (format == @"JSON")
+    {
+        self->newCandidates.format = @"json";
+    } else if (format == @"XML"){
+        self->newCandidates.format = @"xml";
+    }
 }
 
 #pragma mark -
@@ -438,7 +453,17 @@
 
 - (void)setCommitteeSearchCycle:(NSString *)cycle
 {
-    self->committeeSearch.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->committeeSearch.cycle = result;
+    }
 }
 
 - (NSString *)committeeSearchName
@@ -448,7 +473,10 @@
 
 - (void)setCommitteeSearchName:(NSString *)name
 {
-    self->committeeSearch.name = name;
+    if (name && [name length] > 0)
+    {
+        self->committeeSearch.name = name;
+    }
 }
 
 - (NSString *)committeeSearchFormat
@@ -456,10 +484,14 @@
     return self->committeeSearch.format;
 }
 
-// TODO: DUPE
 - (void)setCommitteeSearchFormat:(NSString *)format
 {
-    self->committeeSearch.format = format;
+    if (format == @"XML")
+    {
+        self->committeeSearch.format = @"xml";
+    } else if (format == @"JSON") {
+        self->committeeSearch.format = @"json";
+    }
 }
 
 #pragma mark -
@@ -472,7 +504,17 @@
 
 - (void)setCommitteeDetailsCycle:(NSString *)cycle
 {
-    self->committeeDetails.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->committeeDetails.cycle = result;
+    }
 }
 
 - (NSString *)committeeDetailsCommitteeId
@@ -482,7 +524,10 @@
 
 - (void)setCommitteeDetailsCommitteeId:(NSString *)committeeId
 {
-    self->committeeDetails.committeeId = committeeId;
+    if (committeeId)
+    {
+        self->committeeDetails.committeeId = committeeId;
+    }
 }
 
 - (NSString *)committeeDetailsFormat
@@ -492,7 +537,12 @@
 
 - (void)setCommitteeDetailsFormat:(NSString *)format
 {
-    self->committeeDetails.format = format;
+    if (format == @"XML")
+    {
+        self->committeeDetails.format = @"xml";
+    } else if (format == @"JSON") {
+        self->committeeDetails.format = @"json";
+    }
 }
 
 #pragma mark -
@@ -505,7 +555,17 @@
 
 - (void)setNewCommitteeCycle:(NSString *)cycle
 {
-    self->newCommittee.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->newCommittee.cycle = result;
+    }
 }
 
 - (NSString *)newCommitteeFormat
@@ -516,7 +576,12 @@
 // TODO: DUPE
 - (void)setNewCommitteeFormat:(NSString *)format
 {
-    self->newCommittee.format = format;
+    if (format == @"XML")
+    {
+        self->newCommittee.format = @"xml";
+    } else if (format == @"JSON") {
+        self->newCommittee.format = @"json";
+    }
 }
 
 #pragma mark -
@@ -529,7 +594,17 @@
 
 - (void)setCommitteeContributionsCycle:(NSString *)cycle
 {
-    self->committeeContributions.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->committeeContributions.cycle = result;
+    }
 }
 
 - (NSString *)committeeContributionsCommitteeId
@@ -549,7 +624,14 @@
 
 - (void)setCommitteeContributionsOffset:(NSString *)offSet
 {
-    self->committeeContributions.offset = offSet;
+    NSInteger multipleOfTwenty = [offSet intValue];
+    
+    if (offSet && (multipleOfTwenty % 20 == 0))
+    {
+        self->committeeContributions.offset = offSet;
+    } else {
+        self->committeeContributions.offset = offSet;
+    }
 }
 
 - (NSString *)committeeContributionsFormat
@@ -559,7 +641,12 @@
 
 - (void)setCommitteeContributionsFormat:(NSString *)format
 {
-    self->committeeContributions.format = format;
+    if (format == @"XML")
+    {
+        self->committeeContributions.format = @"xml";
+    } else if (format == @"JSON") {
+        self->committeeContributions.format = @"json";
+    }
 }
 
 #pragma mark -
@@ -572,7 +659,17 @@
 
 - (void)setCommitteeContributionsToCycle:(NSString *)cycle
 {
-    self->committeeContributionsTo.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->committeeContributionsTo.cycle = result;
+    }
 }
 
 - (NSString *)committeeContributionsToCandidateId
@@ -600,10 +697,14 @@
     return self->committeeContributionsTo.format;
 }
 
-// TODO: DUPE
 - (void)setCommitteeContributionsToFormat:(NSString *)format
 {
-    self->committeeContributionsTo.format = format;
+    if (format == @"XML")
+    {
+        self->committeeContributionsTo.format = @"xml";
+    } else if (format == @"JSON") {
+        self->committeeContributionsTo.format = @"json";
+    }
 }
 
 #pragma mark -
@@ -616,7 +717,17 @@
 
 - (void)setCommitteeFilingsCycle:(NSString *)cycle
 {
-    self->committeeFilings.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->committeeFilings.cycle = cycle;
+    }
 }
 
 - (NSString *)committeeFilingsCommitteeId
@@ -636,7 +747,12 @@
 
 - (void)setCommitteeFilingsFormat:(NSString *)format
 {
-    self->committeeFilings.format = format;
+    if (format == @"XML")
+    {
+        self->committeeFilings.format = @"xml";
+    } else if (format == @"JSON") {
+        self->committeeFilings.format = @"json";
+    }
 }
 
 #pragma mark -
@@ -649,7 +765,17 @@
 
 - (void)setLeadershipCommitteeCycle:(NSString *)cycle
 {
-    self->leadershipCommittee.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->leadershipCommittee.cycle = result;
+    }
 }
 
 - (NSString *)leadershipCommitteeFormat
@@ -659,7 +785,12 @@
 
 - (void)setLeadershipCommitteeFormat:(NSString *)format
 {
-    self->leadershipCommittee.format = format;
+    if (format == @"XML")
+    {
+        self->leadershipCommittee.format = @"xml";
+    } else if (format == @"JSON") {
+        self->leadershipCommittee.format = @"json";
+    }
 }
 
 #pragma mark -
@@ -672,7 +803,17 @@
 
 - (void)setElectronicFilingsByDateCycle:(NSString *)cycle
 {
-    self->electronicFilingsByDate.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->electronicFilingsByDate.cycle = result;
+    }
 }
 
 - (NSString *)electronicFilingsByDateDate
@@ -682,7 +823,17 @@
 
 - (void)setElectronicFilingsByDateDate:(NSString *)date
 {
-    self->electronicFilingsByDate.date = date;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_date = [formatter dateFromString:date];
+    
+    NSString *result = [formatter stringFromDate:_date];
+    
+    if (result)
+    {
+        self->electronicFilingsByDate.date = result;
+    }
 }
 
 - (NSString *)electronicFilingsByDateFormat
@@ -692,7 +843,12 @@
 
 - (void)setElectronicFilingsByDateFormat:(NSString *)format
 {
-    self->electronicFilingsByDate.format = format;
+    if (format == @"XML")
+    {
+        self->electronicFilingsByDate.format = @"xml";
+    } else if (format == @"JSON") {
+        self->electronicFilingsByDate.format = @"json";
+    }
 }
 
 #pragma mark -
@@ -703,9 +859,19 @@
     return self->formTypes.cycle;
 }
 
-- (void)formTypesCycle:(NSString *)cycle
+- (void)setFormTypesCycle:(NSString *)cycle
 {
-    self->formTypes.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->formTypes.cycle = result;
+    }
 }
 
 - (NSString *)formTypesFormat
@@ -713,22 +879,37 @@
     return self->formTypes.format;
 }
 
-- (void)formTypesFormat:(NSString *)format
+- (void)setFormTypesFormat:(NSString *)format
 {
-    self->formTypes.format = format;
+    if (format == @"XML")
+    {
+        self->formTypes.format = @"xml";
+    } else if (format == @"JSON") {
+        self->formTypes.format = @"json";
+    }
 }
 
 #pragma mark -
 #pragma mark FilingsByType
 
-- (NSString *)filingsByTypeFields
+- (NSString *)filingsByTypeCycle
 {
     return self->filingsByType.fields;
 }
 
-- (void)setFilingsByTypeFields:(NSString *)fields
+- (void)setFilingsByTypeCycle:(NSString *)cycle
 {
-    self->filingsByType.fields = fields;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->filingsByType.fields = result;
+    }
 }
 
 - (NSString *)filingsByTypeFilingType
@@ -748,7 +929,12 @@
 
 - (void)setFilingsByTypeFormat:(NSString *)format
 {
-    self->filingsByType.format = format;
+    if (format == @"XML")
+    {
+        self->filingsByType.format = @"xml";
+    } else if (format == @"JSON") {
+        self->filingsByType.format = @"json";
+    }
 }
 
 #pragma mark -
@@ -761,7 +947,17 @@
 
 - (void)setPresCandidateTotalsCycle:(NSString *)cycle
 {
-    self->presCandidateTotals.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->presCandidateTotals.cycle = result;
+    }
 }
 
 - (NSString *)presCandidateTotalsFormat
@@ -771,7 +967,12 @@
 
 - (void)setPresCandidateTotalsFormat:(NSString *)format
 {
-    self->presCandidateTotals.format = format;
+    if (format == @"XML")
+    {
+        self->presCandidateTotals.format = @"xml";
+    } else if (format == @"JSON") {
+        self->presCandidateTotals.format = @"json";
+    }
 }
 
 #pragma mark -
@@ -782,12 +983,22 @@
     return self->presCAndidateDetails.cycle;
 }
 
-- (void)setPresCAndidateDetailsCycle:(NSString *)cycle
+- (void)setPresCandidateDetailsCycle:(NSString *)cycle
 {
-    self->presCAndidateDetails.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->presCAndidateDetails.cycle = result;
+    }
 }
 
-- (NSString *)presCAndidateDetailsCandidateNameOrCommitteeId
+- (NSString *)presCandidateDetailsCandidateNameOrCommitteeId
 {
     return self->presCAndidateDetails.candidateNameOrCommitteeId;
 }
@@ -804,7 +1015,12 @@
 
 - (void)setPresCandidateDetailsFormat:(NSString *)format
 {
-    self->presCAndidateDetails.format = format;
+    if (format == @"XML")
+    {
+        self->presCAndidateDetails.format = @"xml";
+    } else if (format == @"JSON") {
+        self->presCAndidateDetails.format = @"json";
+    }
 }
 
 #pragma mark -
@@ -817,7 +1033,17 @@
 
 - (void)setPresStateAndZipTotalsCycle:(NSString *)cycle
 {
-    self->presStateAndZipTotals.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
+    {
+        self->presStateAndZipTotals.cycle = result;
+    }
 }
 
 - (NSString *)presStateAndZipTotalsResourceType
@@ -827,7 +1053,12 @@
 
 - (void)setPresStateAndZipTotalsResourceType:(NSString *)resourceType
 {
-    self->presStateAndZipTotals.resourceType = resourceType;
+    if (resourceType == @"State")
+    {
+        self->presStateAndZipTotals.resourceType = @"states";
+    } else if (resourceType == @"Zip") {
+        self->presStateAndZipTotals.resourceType = @"zips";
+    }
 }
 
 - (NSString *)presStateAndZipTotalsStateAbbr
@@ -837,7 +1068,113 @@
 
 - (void)setPresStateAndZipTotalsStateAbbr:(NSString *)stateAbbr
 {
-    self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    if (stateAbbr == @"AK"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"AZ"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"CT"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"FL"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"HI"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"IL"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"KY"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"MD"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"MN"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"MT"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"NE"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"NM"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"OH"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"PA"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"SC"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"TX"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"VI"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"WI"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"AL"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"CA"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"DC"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"GA"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"IA"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"IN"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"LA"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"ME"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"MO"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"NC"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"NH"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"NV"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"OK"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"PR"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"SD"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"UT"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"WV"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"AR"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"CO"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"DE"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"GU"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"ID"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"KS"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"MA"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"MI"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"MS"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"ND"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"NJ"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"NY"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"OR"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"RI"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"TN"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"VA"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"WA"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    } else if (stateAbbr == @"WY"){
+        self->presStateAndZipTotals.stateAbbr = stateAbbr;
+    }
 }
 
 - (NSString *)presStateAndZipTotalsFormat
@@ -847,7 +1184,12 @@
 
 - (void)setPresStateAndZipTotalsFormat:(NSString *)format
 {
-    self->presStateAndZipTotals.format = format;
+    if (format == @"XML")
+    {
+        self->presStateAndZipTotals.format = @"xml";
+    } else if (format == @"JSON") {
+        self->presStateAndZipTotals.format = @"json";
+    }
 }
 
 #pragma mark -
