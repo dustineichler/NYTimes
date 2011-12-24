@@ -199,33 +199,42 @@ typedef struct _PresDonorInformation presDonorInformation;
 #pragma mark -
 #pragma mark CandidateSearch
 
-- (void)setCycle:(NSString *)cycle;
-- (NSString *)cycle;
-- (NSString *)searchParameter;
-- (void)setSearchParameter:(NSString *)searchParameter;
-- (NSString *)lastName;
-- (void)setLastName:(NSString *)lastName;
-- (NSString *)firstName;
-- (void)setFirstName:(NSString *)firstName;
-- (NSString *)offSet;
-- (void)setOffSet:(NSString *)offset;
-- (NSString *)format;
-- (void)setFormat:(NSString *)format;
+- (NSString *)candidateSearchCycle;
+- (void)setCandidateSearchCycle:(NSString *)cycle;
+
+// TODO: DWE: What is CandidateSearchParameter? I think this was a mistake. Delete?
+- (NSString *)candidateSearchSearchParameter;
+- (void)setCandidateSearchSearchParameter:(NSString *)searchParameter;
+
+- (NSString *)candidateSearchLastName;
+- (void)setCandidateSearchLastName:(NSString *)lastName;
+
+// TODO: DWE: Why is this in here. Not in the spec. Delete?
+- (NSString *)candidateSearchFirstName;
+- (void)setCandidateSearchFirstName:(NSString *)firstName;
+
+// TODO: DWE: Why is this in here. Not in the spec. Delete?
+- (NSString *)candidateSearchOffSet;
+- (void)setCandidateSearchOffSet:(NSString *)offset;
+
+- (NSString *)candidateSearchFormat;
+- (void)setCandidateSearchFormat:(NSString *)format;
 
 #pragma mark -
 #pragma mark CandidateDetails
 
 - (NSString *)candidateDetailsCycle;
-- (void)setcandidateDetailsCycle:(NSString *)cycle;
-- (NSString *)candidateId;
-- (void)setCandidateId:(NSString *)candidateId;
+- (void)setCandidateDetailsCycle:(NSString *)cycle;
+- (NSString *)candidateDetailCandidateId;
+- (void)setCandidateDetailCandidateId:(NSString *)candidateId;
 - (NSString *)candidateDetailsFormat;
+- (void)setCandidateDetailsFormat:(NSString *)format;
 
 #pragma mark - 
 #pragma mark CandidateLeaders
 
 - (NSString *)candidateLeadersCycle;
-- (void)setCAndidateLeadersCycle:(NSString *)cycle;
+- (void)setCandidateLeadersCycle:(NSString *)cycle;
 - (NSString *)candidateLeadersCategory;
 - (void)setCandidateLeadersCategory:(NSString *)category;
 - (NSString *)candidateLeadersFormat;
@@ -238,8 +247,8 @@ typedef struct _PresDonorInformation presDonorInformation;
 - (void)setStateCandidatesCycle:(NSString *)cycle;
 - (NSString *)stateCandidatesState;
 - (void)setStateCandidatesState:(NSString *)state;
-- (NSString *)chamber;
-- (void)setChamber:(NSString *)chamber;
+- (NSString *)stateCandidatesChamber;
+- (void)setStateCandidatesChamber:(NSString *)chamber;
 - (NSString *)stateCandidatesFormat;
 - (void)setStateCandidatesFormat:(NSString *)format;
 

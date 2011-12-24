@@ -37,21 +37,21 @@
     NSMutableString *campaignSearchURL;
     NSMutableString *params = [NSMutableString stringWithFormat:@"", @""];
     
-    if (obj.campaignFinance.cycle && obj.campaignFinance.lastName)
+    if (obj.campaignFinance.candidateLeadersCycle && obj.campaignFinance.candidateSearchLastName)
     {
-        if (obj.campaignFinance.cycle)
+        if (obj.campaignFinance.candidateSearchCycle)
         {
-            campaignSearchURL = [NSMutableString stringWithFormat:@"http://api.nytimes.com/svc/elections/us/v3/finances/%@/candidates/", obj.campaignFinance.cycle];
+            campaignSearchURL = [NSMutableString stringWithFormat:@"http://api.nytimes.com/svc/elections/us/v3/finances/%@/candidates/", obj.campaignFinance.candidateSearchCycle];
         }
         
-        if (obj.campaignFinance.format)
+        if (obj.campaignFinance.candidateSearchFormat)
         {
-            [params appendFormat:@"search.%@?", obj.campaignFinance.format];
+            [params appendFormat:@"search.%@?", obj.campaignFinance.candidateSearchFormat];
         }
         
-        if (obj.campaignFinance.lastName)
+        if (obj.campaignFinance.candidateSearchLastName)
         {
-            [params appendFormat:@"query=%@&", obj.campaignFinance.lastName];
+            [params appendFormat:@"query=%@&", obj.campaignFinance.candidateSearchLastName];
         }
         
         if (obj.apiKey)
@@ -67,16 +67,16 @@
     NSMutableString *candidateDetailsURL;
     NSMutableString *params2 = [NSMutableString stringWithFormat:@"", @""];
     
-    if (obj.campaignFinance.candidateDetailsCycle && obj.campaignFinance.candidateId)
+    if (obj.campaignFinance.candidateDetailsCycle && obj.campaignFinance.candidateDetailsCycle)
     {
         if (obj.campaignFinance.candidateDetailsCycle)
         {
             candidateDetailsURL = [NSMutableString stringWithFormat:@"http://api.nytimes.com/svc/elections/us/v3/finances/%@/", obj.campaignFinance.candidateDetailsCycle];
         }
         
-        if (obj.campaignFinance.candidateId)
+        if (obj.campaignFinance.candidateDetailCandidateId)
         {
-            [params2 appendFormat:@"candidates/%@.", obj.campaignFinance.candidateId];
+            [params2 appendFormat:@"candidates/%@.", obj.campaignFinance.candidateDetailCandidateId];
         }
         
         if (obj.campaignFinance.candidateDetailsFormat)
@@ -139,7 +139,7 @@
             [params4 appendFormat:@"seats/%@/", obj.campaignFinance.stateCandidatesState];
         }
         
-        if (obj.campaignFinance.chamber == @"house")
+        if (obj.campaignFinance.stateCandidatesChamber == @"house")
         {
             [params4 appendString:@"house."];
             

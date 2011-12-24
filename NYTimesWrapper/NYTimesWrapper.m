@@ -16,7 +16,7 @@
 
 // TODO: DWE: Why are their so many setters and getters for Candidate Search. The API Console only has 3 attrs.
 
-- (NSString *)cycle
+- (NSString *)candidateSearchCycle
 {
     if (self->candidateSearch.cycle)
     {
@@ -26,25 +26,32 @@
     }
 }
 
-- (void)setCycle:(NSString *)cycle
-{    
-    if (cycle)
+- (void)setCandidateSearchCycle:(NSString *)cycle
+{
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
     {
-        self->candidateSearch.cycle = cycle;
+        self->candidateSearch.cycle = result;
     }
 }
 
-- (NSString *)searchParameter
+- (NSString *)candidateSearchSearchParameter
 {
     return self->candidateSearch.searchParameter;
 }
 
-- (void)setSearchParameter:(NSString *)searchParameter
+- (void)setCandidateSearchSearchParameter:(NSString *)searchParameter
 {
     self->candidateSearch.searchParameter = searchParameter;
 }
 
-- (NSString *)lastName
+- (NSString *)candidateSearchLastName
 {
     if (self->candidateSearch.lastName)
     {
@@ -54,42 +61,44 @@
     }
 }
 
-- (void)setLastName:(NSString *)lastName
+- (void)setCandidateSearchLastName:(NSString *)lastName
 {
-    if (lastName) 
+    if (lastName && [lastName length] > 0) 
     {
         self->candidateSearch.lastName = lastName;
+    } else {
+        self->candidateSearch.lastName = nil;
     }
 }
 
-- (NSString *)firstName
+- (NSString *)candidateSearchFirstName
 {
     return self->candidateSearch.firstName;
 }
 
-- (void)setFirstName:(NSString *)firstName
+- (void)setCandidateSearchFirstName:(NSString *)firstName
 {
     self->candidateSearch.firstName = firstName;
 }
 
-- (NSString *)offSet
+- (NSString *)candidateSearchOffSet
 {
     return self->candidateSearch.offSet;
 }
 
-- (void)setOffSet:(NSString *)offset
+- (void)setCandidateSearchOffSet:(NSString *)offset
 {
     self->candidateSearch.offSet = offset;
 }
 
-- (NSString *)format
+- (NSString *)candidateSearchFormat
 {
     return self->candidateSearch.format;
 }
 
-- (void)setFormat:(NSString *)format
+- (void)setCandidateSearchFormat:(NSString *)format
 {
-    if (format)
+    if (format == @"json")
     {
         self->candidateSearch.format = format;
     } else {
@@ -102,31 +111,32 @@
 
 - (NSString *)candidateDetailsCycle
 {
-    if (self->candidateDetails.cycle)
+    return self->candidateDetails.cycle;
+}
+
+- (void)setCandidateDetailsCycle:(NSString *)cycle
+{
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
     {
-        return self->candidateDetails.cycle;
+        self->candidateDetails.cycle = result;
     } else {
-        return  nil;
+        self->candidateDetails.cycle = nil;
     }
 }
 
-- (void)setcandidateDetailsCycle:(NSString *)cycle
+- (NSString *)candidateDetailCandidateId
 {
-    if (cycle)
-    {
-        self->candidateDetails.cycle = cycle;
-    }
+    return self->candidateDetails.candidateId;
 }
 
-- (NSString *)candidateId
-{
-    if (self->candidateDetails.candidateId)
-    {
-        return self->candidateDetails.candidateId;
-    }
-}
-
-- (void)setCandidateId:(NSString *)candidateId
+- (void)setCandidateDetailCandidateId:(NSString *)candidateId
 {
     if (candidateId)
     {
@@ -143,12 +153,14 @@
 
 - (void)setCandidateDetailsFormat:(NSString *)format
 {
-    if (format)
+    if (format == @"JSON")
     {
         self->candidateDetails.format = format;
+    } else if (format == @"XML") {
+        self->candidateDetails.format = @"xml";
     } else {
         self->candidateDetails.format = @"xml";
-    } 
+    }
 }
 
 #pragma mark - 
@@ -159,11 +171,20 @@
     return self->candidateLeaders.cycle;
 }
 
-- (void)setCAndidateLeadersCycle:(NSString *)cycle
+- (void)setCandidateLeadersCycle:(NSString *)cycle
 {
-    if (cycle)
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
     {
-        self->candidateLeaders.cycle = cycle;
+        self->candidateLeaders.cycle = result;
+    } else {
+        self->candidateLeaders.cycle = nil;
     }
 }
 
@@ -223,9 +244,16 @@
 
 - (void)setStateCandidatesCycle:(NSString *)cycle
 {
-    if (cycle)
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result)
     {
-        self->stateCandidates.cycle = cycle;
+        self->stateCandidates.cycle = result;
     }
 }
 
@@ -345,16 +373,17 @@
     }
 }
 
-- (NSString *)chamber
+- (NSString *)stateCandidatesChamber
 {
     return self->stateCandidates.chamber;
 }
 
-- (void)setChamber:(NSString *)chamber
+- (void)setStateCandidatesChamber:(NSString *)chamber
 {
-    if (chamber == @"house") {
-        self->stateCandidates.chamber = chamber;
-    } else {
+    if (chamber == @"House")
+    {
+        self->stateCandidates.chamber = @"house";
+    } else if (chamber == @"Senate") {
         self->stateCandidates.chamber = @"senate";
     }
 }
