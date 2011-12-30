@@ -433,33 +433,29 @@
 
 - (void)testCampaignFinancePresDonorInformation
 {
-//    - (NSString *)presDonorInformationCycle;
-//    - (void)setPresDonorInformationCycle:(NSString *)cycle;
-    
-    
-    
-//    - (NSString *)presDonorInformationSearchParameter;
-//    - (void)setPresDonorInformationSearchParameter:(NSString *)searchParameter;
-    
-    
-    
-//    - (NSString *)presDonorInformationLastName;
-//    - (void)setPresDonorInformationLastName:(NSString *)lastName;
-    
-    
-    
-//    - (NSString *)presDonorInformationZipCode;
-//    - (void)setPresDonorInformationZipCode:(NSString *)zipCode;
-    
-    
-    
-//    - (NSString *)presDonorInformationOffSet;
-//    - (void)setPresDonorInformationOffSet:(NSString *)offSet;
-    
-    
-    
-//    - (NSString *)presDonorInformationFormat;
-//    - (void)setPresDonorInformationFormat:(NSString *)format;
+    [articles.campaignFinance setPresDonorInformationCycle:@"20111223"];
+    NSString *presDonorInformationCycle = articles.campaignFinance.presDonorInformationCycle;
+    STAssertEqualObjects(@"20111223", presDonorInformationCycle, @"Should be valid date format");
+
+    [articles.campaignFinance setPresDonorInformationSearchParameter:@"LNAME"];
+    NSString *presDonorInformationSearchParameter = articles.campaignFinance.presDonorInformationSearchParameter;
+    STAssertEqualObjects(@"lname", presDonorInformationSearchParameter, @"Should be either LNAME or ZIP");
+
+    [articles.campaignFinance setPresDonorInformationLastName:@"AnyLastName"];
+    NSString *presDonorInformationLastName = articles.campaignFinance.presDonorInformationLastName;
+    STAssertEqualObjects(@"AnyLastName", presDonorInformationLastName, @"Should be valid string and > 0");
+
+    [articles.campaignFinance setPresDonorInformationZipCode:@"99999"];
+    NSString *presDonorInformationZipCode = articles.campaignFinance.presDonorInformationZipCode;
+    STAssertEqualObjects(@"99999", presDonorInformationZipCode, @"Should be 5 digit zipcode (string)");
+
+    [articles.campaignFinance setPresDonorInformationOffSet:@"20"];
+    NSString *presDonorInformationOffSet = articles.campaignFinance.presDonorInformationOffSet;
+    STAssertEqualObjects(@"20", presDonorInformationOffSet, @"Should be true and a positive multiple of 20");
+
+    [articles.campaignFinance setPresDonorInformationFormat:@"JSON"];
+    NSString *presDonorInformationFormat = articles.campaignFinance.presDonorInformationFormat;
+    STAssertEqualObjects(@"json", presDonorInformationFormat, @"Should be valid format");
 }
 
 - (void)tearDown

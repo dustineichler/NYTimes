@@ -1202,7 +1202,17 @@
 
 - (void)setPresDonorInformationCycle:(NSString *)cycle
 {
-    self->presDonorInformation.cycle = cycle;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_cycle = [formatter dateFromString:cycle];
+    
+    NSString *result = [formatter stringFromDate:_cycle];
+    
+    if (result) 
+    {
+        self->presDonorInformation.cycle = result;
+    }
 }
 
 - (NSString *)presDonorInformationSearchParameter
@@ -1217,7 +1227,12 @@
 
 - (void)setPresDonorInformationSearchParameter:(NSString *)searchParameter
 {
-    self->presDonorInformation.searchParameter = searchParameter;
+    if (searchParameter == @"LNAME") 
+    {
+        self->presDonorInformation.searchParameter = @"lname";
+    } else if (searchParameter == @"ZIP") {
+        self->presDonorInformation.searchParameter = @"zip";
+    }
 }
 
 - (NSString *)presDonorInformationLastName
@@ -1227,7 +1242,10 @@
 
 - (void)setPresDonorInformationLastName:(NSString *)lastName
 {
-    self->presDonorInformation.lastName = lastName;
+    if (lastName && [lastName length] > 0)
+    {
+        self->presDonorInformation.lastName = lastName;
+    }
 }
 
 - (NSString *)presDonorInformationZipCode
@@ -1237,7 +1255,10 @@
 
 - (void)setPresDonorInformationZipCode:(NSString *)zipCode
 {
-    self->presDonorInformation.zipCode = zipCode;
+    if (zipCode && [zipCode isKindOfClass:[NSString class]] && ([zipCode length] > 4 && [zipCode length] < 6)) 
+    {
+        self->presDonorInformation.zipCode = zipCode;
+    }
 }
 
 - (NSString *)presDonorInformationOffSet
@@ -1247,7 +1268,14 @@
 
 - (void)setPresDonorInformationOffSet:(NSString *)offSet
 {
-    self->presDonorInformation.offSet = offSet;
+    NSInteger multipleOfTwenty = [offSet intValue];
+    
+    if (offSet && (multipleOfTwenty % 20 == 0))
+    {
+        self->presDonorInformation.offSet = offSet;
+    } else {
+        self->presDonorInformation.offSet = offSet;
+    }
 }
 
 - (NSString *)presDonorInformationFormat
@@ -1257,7 +1285,12 @@
 
 - (void)setPresDonorInformationFormat:(NSString *)format
 {
-    self->presDonorInformation.format = format;
+    if (format == @"JSON") 
+    {
+        self->presDonorInformation.format = @"json";
+    } else if (format == @"XML") {
+        self->presDonorInformation.format = @"xml";
+    }
 }
 
 - (void)checkValuesOfStructsUsingBlock:(void (^)(int, NSUInteger, BOOL *))block
