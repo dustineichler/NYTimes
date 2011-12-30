@@ -8,6 +8,236 @@
 
 #import "NYTimesWrapper.h"
 
+@implementation _Community
+@synthesize commonParameters, randomComments, commentsByDate, commentsByUserID, commentsByURL;
+
+#pragma mark -
+#pragma CommonParameters
+
+- (NSString *)communityCommonParametersOffSet
+{
+    return self->commonParameters.offSet;
+}
+
+- (void)setCommunityCommonParametersOffSet:(NSString *)offSet
+{
+    self->commonParameters.offSet = offSet;
+}
+
+- (NSString *)communityCommonParametersSort
+{
+    return self->commonParameters.sort;
+}
+
+- (void)setCommunityCommonParametersSort:(NSString *)sort
+{
+    self->commonParameters.sort = sort;
+}
+
+- (NSString *)communityCommonParametersFormat
+{
+    return self->commonParameters.format;
+}
+
+- (void)setCommunityCommonParametersFormat:(NSString *)format
+{
+    self->commonParameters.format = format;
+}
+
+- (NSString *)communityCommonParametersApiKey
+{
+    return self->commonParameters.apiKey;
+}
+
+- (void)setCommunityCommonParametersApiKey:(NSString *)apiKey
+{
+    self->commonParameters.apiKey = apiKey;
+}
+
+- (NSString *)communityCommonParametersForceReplies
+{
+    return self->commonParameters.forceReplies;
+}
+
+- (void)setCommunityCommonParametersForceReplies:(NSString *)forceReplies
+{
+    self->commonParameters.forceReplies = forceReplies;
+}
+
+#pragma mark -
+#pragma mark RandomComments
+
+- (NSString *)communityRandomCommentsApiKey
+{
+    return self->randomComments.apiKey;
+}
+
+- (void)setCommunityRandomCommentsApiKey:(NSString *)apiKey
+{
+    self->randomComments.apiKey = apiKey;
+}
+
+- (NSString *)communityRandomCommentsFormat
+{
+    return self->randomComments.format;
+}
+
+- (void)setCommunityRandomCommentsFormat:(NSString *)format
+{
+    self->randomComments.format = format;
+}
+
+#pragma mark -
+#pragma mark CommentsByDate
+
+- (NSString *)communityCommentsByDateApiKey
+{
+    return self->commentsByDate.apiKey;
+}
+
+- (void)setCommunityCommentsByDateApiKey:(NSString *)apiKey
+{
+    self->commentsByDate.apiKey = apiKey;
+}
+
+- (NSString *)communityCommentsByDateDate
+{
+    return self->commentsByDate.date;
+}
+
+- (void)setCommunityCommentsByDateDate:(NSString *)date
+{
+    self->commentsByDate.date = date;
+}
+
+- (NSString *)communityCommentsByDateFormat
+{
+    return self->commentsByDate.format;
+}
+
+- (void)setCommunityCommentsByDateFormat:(NSString *)format
+{
+    self->commentsByDate.format = format;
+}
+
+- (NSString *)communityCommentsByDateOffSet
+{
+    return self->commentsByDate.offSet;
+}
+
+- (void)setCommunityCommentsByDateOffSet:(NSString *)offSet
+{
+    self->commentsByDate.offSet = offSet;
+}
+
+#pragma mark -
+#pragma mark CommentsByUserID
+
+- (NSString *)communityCommentsByUserIdApiKey
+{
+    return self->commentsByUserID.apiKey;
+}
+
+- (void)setCommunityCommentsByUserIdApiKey:(NSString *)apiKey
+{
+    self->commentsByUserID.apiKey = apiKey;
+}
+
+- (NSString *)communityCommentsByUserIdFormat
+{
+    return self->commentsByUserID.format;
+}
+
+- (void)setCommunityCommentsByUserIdFormat:(NSString *)format
+{
+    self->commentsByUserID.format = format;
+}
+
+- (NSString *)communityCommentsByUserIdOffSet
+{
+    return self->commentsByUserID.offSet;
+}
+
+- (void)setCommunityCommentsByUserIdOffSet:(NSString *)offSet
+{
+    self->commentsByUserID.offSet = offSet;
+}
+
+- (NSString *)communityCommentsByUserIdSort
+{
+    return self->commentsByUserID.sort;
+}
+
+- (void)setCommunityCommentsByUserIdSort:(NSString *)sort
+{
+    self->commentsByUserID.sort = sort;
+}
+
+- (NSString *)communityCommentsByUserIdUserId
+{
+    return self->commentsByUserID.userId;
+}
+
+- (void)setCommunityCommentsByUserIdUserId:(NSString *)userId
+{
+    self->commentsByUserID.userId = userId;
+}
+
+#pragma mark -
+#pragma mark CommentsByURL
+
+- (NSString *)communityCommentsByURLApiKey
+{
+    return self->commentsByURL.apiKey;
+}
+
+- (void)setCommunityCommentsByURLApiKey:(NSString *)apiKey
+{
+    self->commentsByURL.apiKey = apiKey;
+}
+
+- (NSString *)communityCommentsByURLFormat
+{
+    return self->commentsByURL.format;
+}
+
+- (void)setCommunityCommentsByURLFormat:(NSString *)format
+{
+    self->commentsByURL.format = format;
+}
+
+- (NSString *)communityCommentsByURLMatchType
+{
+    return self->commentsByURL.matchType;
+}
+
+- (void)setCommunityCommentsByURLMatchType:(NSString *)matchType
+{
+    self->commentsByURL.matchType = matchType;
+}
+
+- (NSString *)communityCommentsByURLSort
+{
+    return self->commentsByURL.sort;
+}
+
+- (void)setCommunityCommentsByURLSort:(NSString *)sort
+{
+    self->commentsByURL.sort = sort;
+}
+
+- (NSString *)communityCommentsByURLUrlToMatch
+{
+    return self->commentsByURL.urlToMatch;
+}
+
+- (void)setCommunityCommentsByURLUrlToMatch:(NSString *)urlToMatch
+{
+    self->commentsByURL.urlToMatch = urlToMatch;
+}
+
+@end
+
 @implementation _CampaignFinance
 @synthesize candidateSearch, candidateDetails, candidateLeaders, stateCandidates, newCandidates, committeeSearch, committeeDetails, newCommittee, committeeContributions, committeeContributionsTo, committeeFilings, leadershipCommittee, electronicFilingsByDate, formTypes, filingsByType, presCandidateTotals, presCAndidateDetails, presStateAndZipTotals, presDonorInformation;
 

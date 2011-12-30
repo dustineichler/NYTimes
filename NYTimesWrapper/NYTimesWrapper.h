@@ -8,6 +8,138 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark -
+#pragma mark CommonParameters
+
+struct _CommonParameters {
+    NSString *offSet;
+    NSString *forceReplies;
+    NSString *sort;
+    NSString *format;
+    NSString *apiKey;
+};
+typedef struct _CommonParameters commonParameters;
+
+struct _RandomComments {
+    NSString *apiKey;
+    NSString *format;
+};
+typedef struct _RandomComments randomComments;
+
+struct _CommentsByDate {
+    NSString *date;
+    NSString *apiKey;
+    NSString *sort;
+    NSString *offSet;
+    NSString *format;
+};
+typedef struct _CommentsByDate commentsByDate;
+
+struct _CommentsByUserID {
+    NSString *userId;
+    NSString *apiKey;
+    NSString *offSet;
+    NSString *sort;
+    NSString *format;
+};
+typedef struct _CommentsByUserID commentsByUserID;
+
+struct _CommentsByURL {
+    NSString *matchType;
+    NSString *urlToMatch;
+    NSString *apiKey;
+    NSString *offSet;
+    NSString *sort;
+    NSString *format;
+};
+typedef struct _CommentsByURL commentsByURL;
+
+
+@interface _Community : NSObject {
+    struct _CommonParameters commonParameters;
+    struct _RandomComments randomComments;
+    struct _CommentsByDate commentsByDate;
+    struct _CommentsByUserID commentsByUserID;
+    struct _CommentsByURL commentsByURL;
+}
+
+@property struct _CommonParameters commonParameters;
+@property struct _RandomComments randomComments;
+@property struct _CommentsByDate commentsByDate;
+@property struct _CommentsByUserID commentsByUserID;
+@property struct _CommentsByURL commentsByURL;
+
+#pragma mark -
+#pragma mark CommonParameters
+
+- (NSString *)communityCommonParametersOffSet;
+- (void)setCommunityCommonParametersOffSet:(NSString *)offSet;
+- (NSString *)communityCommonParametersForceReplies;
+- (void)setCommunityCommonParametersForceReplies:(NSString *)forceReplies;
+- (NSString *)communityCommonParametersSort;
+- (void)setCommunityCommonParametersSort:(NSString *)sort;
+- (NSString *)communityCommonParametersFormat;
+- (void)setCommunityCommonParametersFormat:(NSString *)format;
+- (NSString *)communityCommonParametersApiKey;
+- (void)setCommunityCommonParametersApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark RandomComments
+
+- (NSString *)communityRandomCommentsApiKey;
+- (void)setCommunityRandomCommentsApiKey:(NSString *)apiKey;
+- (NSString *)communityRandomCommentsFormat;
+- (void)setCommunityRandomCommentsFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark CommentsByDate
+
+- (NSString *)communityCommentsByDateDate;
+- (void)setCommunityCommentsByDateDate:(NSString *)date;
+- (NSString *)communityCommentsByDateApiKey;
+- (void)setCommunityCommentsByDateApiKey:(NSString *)apiKey;
+- (NSString *)communityCommentsByDateSort;
+- (void)setCommunityCommentsByDateSort:(NSString *)sort;
+- (NSString *)communityCommentsByDateOffSet;
+- (void)setCommunityCommentsByDateOffSet:(NSString *)offSet;
+- (NSString *)communityCommentsByDateFormat;
+- (void)setCommunityCommentsByDateFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark CommentsByUserID
+
+- (NSString *)communityCommentsByUserIdUserId;
+- (void)setCommunityCommentsByUserIdUserId:(NSString *)userId;
+- (NSString *)communityCommentsByUserIdApiKey;
+- (void)setCommunityCommentsByUserIdApiKey:(NSString *)apiKey;
+- (NSString *)communityCommentsByUserIdOffSet;
+- (void)setCommunityCommentsByUserIdOffSet:(NSString *)offSet;
+- (NSString *)communityCommentsByUserIdSort;
+- (void)setCommunityCommentsByUserIdSort:(NSString *)sort;
+- (NSString *)communityCommentsByUserIdFormat;
+- (void)setCommunityCommentsByUserIdFormat:(NSString *)format;
+
+#pragma mark -
+#pragma mark CommentsByURL
+
+- (NSString *)communityCommentsByURLMatchType;
+- (void)setCommunityCommentsByURLMatchType:(NSString *)matchType;
+- (NSString *)communityCommentsByURLUrlToMatch;
+- (void)setCommunityCommentsByURLUrlToMatch:(NSString *)urlToMatch;
+- (NSString *)communityCommentsByURLApiKey;
+- (void)setCommunityCommentsByURLApiKey:(NSString *)apiKey;
+- (NSString *)communityCommentsByURLOffSet;
+- (void)setCommunityCommentsByURLOffSet:(NSString *)offSet;
+- (NSString *)communityCommentsByURLSort;
+- (void)setCommunityCommentsByURLSort:(NSString *)sort;
+- (NSString *)communityCommentsByURLFormat;
+- (void)setCommunityCommentsByURLFormat:(NSString *)format;
+
+@end
+
+#pragma mark -
+#pragma mark CampaignFinance
+
 struct _CandidateSearch {
     NSString *cycle;
     NSString *searchParameter;
@@ -147,9 +279,6 @@ struct _PresDonorInformation {
     NSString *format;
 };
 typedef struct _PresDonorInformation presDonorInformation;
-
-#pragma mark -
-#pragma mark CampaignFinance
 
 @interface _CampaignFinance : NSObject
 {
@@ -406,6 +535,9 @@ typedef struct _PresDonorInformation presDonorInformation;
 
 @end
 
+#pragma mark -
+#pragma mark NYTimesWrapper
+
 struct _ArticleStruct {
     NSString *format;
     NSString *query;
@@ -427,9 +559,6 @@ struct _BestSellerStruct {
     NSString *format;
 };
 typedef struct _BestSellerStruct bestSeller;
-
-#pragma mark -
-#pragma mark NYTimesWrapper
 
 @interface NYTimesWrapper : NSObject
 {    
