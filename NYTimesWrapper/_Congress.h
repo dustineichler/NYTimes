@@ -312,7 +312,7 @@ typedef struct _ChamberSchedule chamberSchedule;
 - (NSString *)currentMembersByStateAndDistrictFormat;
 - (void)setCurrentMembersByStateAndDistrictForamt:(NSString *)format;
 - (NSString *)currentMembersByStateAndDistrictApiKey;
-- (NSString *)setCurrentMembersByStateAndDistrictApiKey:(NSString *)apiKey;
+- (void)setCurrentMembersByStateAndDistrictApiKey:(NSString *)apiKey;
 
 #pragma mark -
 #pragma mark MembersLeavingOffice
@@ -389,6 +389,176 @@ typedef struct _ChamberSchedule chamberSchedule;
 - (void)setRollCallVotesFormat:(NSString *)format;
 - (NSString *)rollCallVotesApiKey;
 - (void)setRollCallVotesApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark VotesByType
+
+- (NSString *)votesByTypeCongressNumber;
+- (void)setVotesByTypeCongressNumber:(NSString *)congressNumber;
+- (NSString *)votesByTypeChamber;
+- (void)setVotesByTypeChamber:(NSString *)chamber;
+- (NSString *)votesByTypeVoteType;
+- (void)setVotesByTypeVoteType:(NSString *)voteType;
+- (NSString *)votesByTypeFormat;
+- (void)setVotesByTypeFormat:(NSString *)format;
+- (NSString *)votesByTypeApiKey;
+- (void)setVotesByTypeApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark VotesByDate
+
+- (NSString *)votesByDateChamber;
+- (void)setVotesByDateChamber:(NSString *)chamber;
+- (NSString *)votesByDateYearAndMonth;
+- (void)setVotesByDateYearAndMonth:(NSString *)yearAndMonth;
+- (NSString *)votesByDateRangeOfDates;
+- (void)setVotesByDateRangeOfDates:(NSString *)rangeOfDates;
+- (NSString *)votesByDateFormat;
+- (void)setVotesByDateFormat:(NSString *)format;
+- (NSString *)votesByDateApiKey;
+- (void)setVotesByDateApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark NominationVotes
+
+- (NSString *)nominationVotesCongressNumber;
+- (void)setNominationVotesCongressNumber:(NSString *)congressNumber;
+- (NSString *)nominationVotesFormat;
+- (void)setNominationVotesFormat:(NSString *)format;
+- (NSString *)nominationVotesApiKey;
+- (void)setNominationVotesApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark RecentBills
+
+- (NSString *)recentBillsCongressNumber;
+- (void)setRecentBillsCongressNumber:(NSString *)congressNumber;
+- (NSString *)recentBillsChamber;
+- (void)setRecentBillsChamber:(NSString *)chamber;
+- (NSString *)recentBillsType;
+- (void)setRecentBillsType:(NSString *)type;
+- (NSString *)recentBillsformat;
+- (void)setRecentBillsFormat:(NSString *)format;
+- (NSString *)recentBillsApiKey;
+- (void)setRecentBillsApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark BillsByMember
+
+- (NSString *)billsByMemberMemberId;
+- (void)setBillsByMemberMemberId:(NSString *)memberId;
+- (NSString *)billsByMemberType;
+- (void)setBillsByMemberType:(NSString *)type;
+- (NSString *)billsByMemberFormat;
+- (void)setBillsByMemberFormat:(NSString *)format;
+- (NSString *)billsByMemberApiKey;
+- (void)setBillsByMemberApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark BillDetails
+
+- (NSString *)billDetailsCongressNumber;
+- (void)setBillDetailsCongressNumber:(NSString *)congressNumber;
+- (NSString *)billDetailsBillId;
+- (void)setBillDetailsBillId:(NSString *)billId;
+- (NSString *)billDetailsFormat;
+- (void)setBillDetailsFormat:(NSString *)format;
+- (NSString *)billDetailsApiKey;
+- (void)setBillDetailsApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark BillAmendmentsAndRelatedBills
+
+- (NSString *)billAmendmentsAndRelatedBillsCongressNumber;
+- (void)setBillAmendmentsAndRelatedBillsCongressNumber:(NSString *)congressNumber;
+- (NSString *)billAmendmentsAndRelatedBillsBillId;
+- (void)setBillAmendmentsAndRelatedBillsBillId:(NSString *)billId;
+- (NSString *)billAmendmentsAndRelatedBillsResource;
+- (void)setBillAmendmentsAndRelatedBillsResource:(NSString *)resource;
+- (NSString *)billAmendmentsAndRelatedBillsFormat;
+- (void)setBillAmendmentsAndRelatedBillsFormat:(NSString *)format;
+- (NSString *)billAmendmentsAndRelatedBillsApiKey;
+- (void)setBillAmendmentsAndRelatedBillsApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark BillCosponsors
+
+- (NSString *)billCosponsorsCongressNumber;
+- (void)setBillCosponsorsCongressNumber:(NSString *)congressNumber;
+- (NSString *)billCosponsorsBillId;
+- (void)setBillCosponsorsBillId:(NSString *)billId;
+- (NSString *)billCosponsorsFormat;
+- (void)setBillCosponsorsFormat:(NSString *)format;
+- (NSString *)billCosponsorsApiKey;
+- (void)setBillCosponsorsApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark NomineeLists
+
+- (NSString *)nomineeListsCongressNumber;
+- (void)setNomineeListsCongressNumber:(NSString *)congressNumber;
+- (NSString *)nomineeListsNomineeCategory;
+- (void)setNomineeListsNomineeCategory:(NSString *)nomineeCategory;
+- (NSString *)nomineeListsFormat;
+- (void)setNomineeListsFormat:(NSString *)format;
+- (NSString *)nomineeListsApiKey;
+- (void)setNomineeListsApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark NomineeDetails
+
+- (NSString *)nomineeDetailsCongressNumber;
+- (void)setNomineeDetailsCongressNumber:(NSString *)congressNumber;
+- (NSString *)nomineeDetailsNomineeId;
+- (void)setNomineeDetailsNomineeId:(NSString *)nomineeId;
+- (NSString *)nomineeDetailsFormat;
+- (void)setNomineeDetailsFormat:(NSString *)format;
+- (NSString *)nomineeDetailsApiKey;
+- (void)setNomineeDetailsApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark NomineesByState
+
+- (NSString *)nomineesByStateCongressNumber;
+- (void)setNomineesByStateCongressNumber:(NSString *)congressNumber;
+- (NSString *)nomineesByStateSate;
+- (void)setNomineesByStateState:(NSString *)state;
+- (NSString *)nomineesByStateFormat;
+- (void)setNomineesByStateFormat:(NSString *)format;
+- (NSString *)nomineesByStateApiKey;
+- (void)setNomineesByStateApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark StatePartyCounts
+
+- (NSString *)statePartyCountsFormat;
+- (void)setStatePartyCountsFormat:(NSString *)format;
+- (NSString *)statePartyCountsApiKey;
+- (void)setStatePartyCountsApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark CommitteesAndCommitteeMembers
+
+- (NSString *)committeesAndCommitteeMembersCongressNumber;
+- (void)setCommitteesAndCommitteeMembersCongressNumber:(NSString *)congressNumber;
+- (NSString *)committeesAndCommitteeMembersChamber;
+- (void)setCommitteesAndCommitteeMembersChamber:(NSString *)chamber;
+- (NSString *)committeesAndCommitteeMembersCommitteeId;
+- (void)setCommitteesAndCommitteeMembersCommitteeId:(NSString *)committeeId;
+- (NSString *)committeesAndCommitteeMembersFormat;
+- (void)setCommitteesAndCommitteeMembersFormat:(NSString *)format;
+- (NSString *)committeesAndCommitteeMembersApiKey;
+- (void)setCommitteesAndCommitteeMembersApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark ChamberSchedule
+
+- (NSString *)chamberScheduleFormat;
+- (void)setChamberScheduleFormat:(NSString *)format;
+- (NSString *)chamberScheduleApiKey;
+- (void)setChamberScheduleApiKey:(NSString *)apiKey;
+
+
 
 
 
