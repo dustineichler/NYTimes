@@ -7,18 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "_Congress.h"
 
 #pragma mark -
 #pragma mark CommonParameters
 
-struct _CommonParameters {
+struct _RecentComments {
+    NSString *apiKey;
     NSString *offSet;
     NSString *forceReplies;
     NSString *sort;
     NSString *format;
-    NSString *apiKey;
 };
-typedef struct _CommonParameters commonParameters;
+typedef struct _RecentComments recentComments;
 
 struct _RandomComments {
     NSString *apiKey;
@@ -56,32 +57,32 @@ typedef struct _CommentsByURL commentsByURL;
 
 
 @interface _Community : NSObject {
-    struct _CommonParameters commonParameters;
+    struct _RecentComments recentComments;
     struct _RandomComments randomComments;
     struct _CommentsByDate commentsByDate;
     struct _CommentsByUserID commentsByUserID;
     struct _CommentsByURL commentsByURL;
 }
 
-@property struct _CommonParameters commonParameters;
+@property struct _RecentComments recentComments;
 @property struct _RandomComments randomComments;
 @property struct _CommentsByDate commentsByDate;
 @property struct _CommentsByUserID commentsByUserID;
 @property struct _CommentsByURL commentsByURL;
 
 #pragma mark -
-#pragma mark CommonParameters
+#pragma mark RecentComments
 
-- (NSString *)communityCommonParametersOffSet;
-- (void)setCommunityCommonParametersOffSet:(NSString *)offSet;
-- (NSString *)communityCommonParametersForceReplies;
-- (void)setCommunityCommonParametersForceReplies:(NSString *)forceReplies;
-- (NSString *)communityCommonParametersSort;
-- (void)setCommunityCommonParametersSort:(NSString *)sort;
-- (NSString *)communityCommonParametersFormat;
-- (void)setCommunityCommonParametersFormat:(NSString *)format;
-- (NSString *)communityCommonParametersApiKey;
-- (void)setCommunityCommonParametersApiKey:(NSString *)apiKey;
+- (NSString *)communityRecentCommentsOffSet;
+- (void)setCommunityRecentCommentsOffSet:(NSString *)offSet;
+- (NSString *)communityRecentCommentsForceReplies;
+- (void)setCommunityRecentCommentsForceReplies:(NSString *)forceReplies;
+- (NSString *)communityRecentCommentsSort;
+- (void)setCommunityRecentCommentsSort:(NSString *)sort;
+- (NSString *)communityRecentCommentsFormat;
+- (void)setCommunityRecentCommentsFormat:(NSString *)format;
+- (NSString *)communityRecentCommentsApiKey;
+- (void)setCommunityRecentCommentsApiKey:(NSString *)apiKey;
 
 #pragma mark -
 #pragma mark RandomComments
@@ -560,6 +561,8 @@ struct _BestSellerStruct {
 };
 typedef struct _BestSellerStruct bestSeller;
 
+@class _Congress;
+
 @interface NYTimesWrapper : NSObject
 {    
     NSString *apiKey;
@@ -567,12 +570,16 @@ typedef struct _BestSellerStruct bestSeller;
     struct _BestSellerStruct bestSeller;
     
     _CampaignFinance *campaignFinance;
+    _Community *community;
+    _Congress *congress;
 }
 
 @property struct _ArticleStruct article;
 @property struct _BestSellerStruct bestSeller;
 
 @property (nonatomic, retain) _CampaignFinance *campaignFinance;
+@property (nonatomic, retain) _Community *community;
+@property (nonatomic, retain) _Congress *congress;
 
 @property (nonatomic, retain) NSString *apiKey;
 

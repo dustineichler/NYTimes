@@ -9,59 +9,86 @@
 #import "NYTimesWrapper.h"
 
 @implementation _Community
-@synthesize commonParameters, randomComments, commentsByDate, commentsByUserID, commentsByURL;
+@synthesize recentComments, randomComments, commentsByDate, commentsByUserID, commentsByURL;
 
 #pragma mark -
-#pragma CommonParameters
+#pragma RecentComments
 
-- (NSString *)communityCommonParametersOffSet
+- (NSString *)communityRecentCommentsOffSet
 {
-    return self->commonParameters.offSet;
+    return self->recentComments.offSet;
 }
 
-- (void)setCommunityCommonParametersOffSet:(NSString *)offSet
+- (void)setCommunityRecentCommentsOffSet:(NSString *)offSet
 {
-    self->commonParameters.offSet = offSet;
+    NSInteger multipleOfTwentyFive = [offSet intValue];
+    
+    if (offSet && (multipleOfTwentyFive % 25 == 0))
+    {
+        self->recentComments.offSet = offSet;
+    }
 }
 
-- (NSString *)communityCommonParametersSort
+- (NSString *)communityRecentCommentsSort
 {
-    return self->commonParameters.sort;
+    return self->recentComments.sort;
 }
 
-- (void)setCommunityCommonParametersSort:(NSString *)sort
+- (void)setCommunityRecentCommentsSort:(NSString *)sort
 {
-    self->commonParameters.sort = sort;
+    if (sort == @"NEWEST"){
+        self->recentComments.sort = @"newest";
+    } else if (sort == @"OLDEST") {
+        self->recentComments.sort = @"oldest";
+    } else if (sort == @"RECOMMENDED") {
+        self->recentComments.sort = @"recommended";
+    } else if (sort == @"REPLIED") {
+        self->recentComments.sort = @"replied";
+    } else if (sort == @"EDITORS SELECTION") {
+        self->recentComments.sort = @"editors-selection";
+    }
 }
 
-- (NSString *)communityCommonParametersFormat
+- (NSString *)communityRecentCommentsFormat
 {
-    return self->commonParameters.format;
+    return self->recentComments.format;
 }
 
-- (void)setCommunityCommonParametersFormat:(NSString *)format
+- (void)setCommunityRecentCommentsFormat:(NSString *)format
 {
-    self->commonParameters.format = format;
+    if (format == @"JSON") {
+        self->recentComments.format = @"json";
+    } else if (format == @"XML") {
+        self->recentComments.format = @"xml";
+    }
 }
 
-- (NSString *)communityCommonParametersApiKey
+- (NSString *)communityRecentCommentsApiKey
 {
-    return self->commonParameters.apiKey;
+    return self->recentComments.apiKey;
 }
 
-- (void)setCommunityCommonParametersApiKey:(NSString *)apiKey
+- (void)setCommunityRecentCommentsApiKey:(NSString *)apiKey
 {
-    self->commonParameters.apiKey = apiKey;
+    if ([apiKey length] > 0)
+    {
+        self->recentComments.apiKey = apiKey;
+    }
 }
 
-- (NSString *)communityCommonParametersForceReplies
+- (NSString *)communityRecentCommentsForceReplies
 {
-    return self->commonParameters.forceReplies;
+    return self->recentComments.forceReplies;
 }
 
-- (void)setCommunityCommonParametersForceReplies:(NSString *)forceReplies
+- (void)setCommunityRecentCommentsForceReplies:(NSString *)forceReplies
 {
-    self->commonParameters.forceReplies = forceReplies;
+    if (forceReplies == @"YES")
+    {
+        self->recentComments.forceReplies = @"1";
+    } else if (forceReplies == @"NO") {
+        self->recentComments.forceReplies = @"0";
+    }
 }
 
 #pragma mark -
@@ -74,7 +101,10 @@
 
 - (void)setCommunityRandomCommentsApiKey:(NSString *)apiKey
 {
-    self->randomComments.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->randomComments.apiKey = apiKey;
+    }
 }
 
 - (NSString *)communityRandomCommentsFormat
@@ -84,7 +114,12 @@
 
 - (void)setCommunityRandomCommentsFormat:(NSString *)format
 {
-    self->randomComments.format = format;
+    if (format == @"JSON")
+    {
+        self->randomComments.format = @"json";
+    } else if (format == @"XML") {
+        self->randomComments.format = @"xml";
+    }
 }
 
 #pragma mark -
@@ -97,7 +132,10 @@
 
 - (void)setCommunityCommentsByDateApiKey:(NSString *)apiKey
 {
-    self->commentsByDate.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->commentsByDate.apiKey = apiKey;
+    }
 }
 
 - (NSString *)communityCommentsByDateDate
@@ -107,7 +145,17 @@
 
 - (void)setCommunityCommentsByDateDate:(NSString *)date
 {
-    self->commentsByDate.date = date;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMMdd"];
+    
+    NSDate *_date = [formatter dateFromString:date];
+    
+    NSString *result = [formatter stringFromDate:_date];
+    
+    if (result) 
+    {
+        self->commentsByDate.date = result;
+    }
 }
 
 - (NSString *)communityCommentsByDateFormat
@@ -117,7 +165,11 @@
 
 - (void)setCommunityCommentsByDateFormat:(NSString *)format
 {
-    self->commentsByDate.format = format;
+    if (format == @"JSON"){
+        self->commentsByDate.format = @"json";
+    } else if (format == @"XML") {
+        self->commentsByDate.format = @"xml";
+    }
 }
 
 - (NSString *)communityCommentsByDateOffSet
@@ -130,6 +182,26 @@
     self->commentsByDate.offSet = offSet;
 }
 
+- (NSString *)communityCommentsByDateSort
+{    
+    return self->commentsByDate.sort;
+}
+
+- (void)setCommunityCommentsByDateSort:(NSString *)sort
+{
+    if (sort == @"NEWEST"){
+        self->commentsByDate.sort = @"newest";
+    } else if (sort == @"OLDEST") {
+        self->commentsByDate.sort = @"oldest";
+    } else if (sort == @"RECOMMENDED") {
+        self->commentsByDate.sort = @"recommended";
+    } else if (sort == @"REPLIED") {
+        self->commentsByDate.sort = @"replied";
+    } else if (sort == @"EDITORS SELECTION") {
+        self->commentsByDate.sort = @"editors-selection";
+    }
+}
+
 #pragma mark -
 #pragma mark CommentsByUserID
 
@@ -140,7 +212,10 @@
 
 - (void)setCommunityCommentsByUserIdApiKey:(NSString *)apiKey
 {
-    self->commentsByUserID.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->commentsByUserID.apiKey = apiKey;
+    }
 }
 
 - (NSString *)communityCommentsByUserIdFormat
@@ -150,7 +225,11 @@
 
 - (void)setCommunityCommentsByUserIdFormat:(NSString *)format
 {
-    self->commentsByUserID.format = format;
+    if (format == @"JSON"){
+        self->commentsByUserID.format = @"json";
+    } else if (format == @"XML") {
+        self->commentsByUserID.format = @"xml";
+    }
 }
 
 - (NSString *)communityCommentsByUserIdOffSet
@@ -160,7 +239,12 @@
 
 - (void)setCommunityCommentsByUserIdOffSet:(NSString *)offSet
 {
-    self->commentsByUserID.offSet = offSet;
+    NSInteger multipleOfTwentyFive = [offSet intValue];
+    
+    if (offSet && (multipleOfTwentyFive % 25 == 0))
+    {
+        self->commentsByUserID.offSet = offSet;
+    }
 }
 
 - (NSString *)communityCommentsByUserIdSort
@@ -170,7 +254,17 @@
 
 - (void)setCommunityCommentsByUserIdSort:(NSString *)sort
 {
-    self->commentsByUserID.sort = sort;
+    if (sort == @"NEWEST"){
+        self->commentsByUserID.sort = @"newest";
+    } else if (sort == @"OLDEST") {
+        self->commentsByUserID.sort = @"oldest";
+    } else if (sort == @"RECOMMENDED") {
+        self->commentsByUserID.sort = @"recommended";
+    } else if (sort == @"REPLIED") {
+        self->commentsByUserID.sort = @"replied";
+    } else if (sort == @"EDITORS SELECTION") {
+        self->commentsByUserID.sort = @"editors-selection";
+    }
 }
 
 - (NSString *)communityCommentsByUserIdUserId
@@ -193,7 +287,10 @@
 
 - (void)setCommunityCommentsByURLApiKey:(NSString *)apiKey
 {
-    self->commentsByURL.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->commentsByURL.apiKey = apiKey;
+    }
 }
 
 - (NSString *)communityCommentsByURLFormat
@@ -203,7 +300,11 @@
 
 - (void)setCommunityCommentsByURLFormat:(NSString *)format
 {
-    self->commentsByURL.format = format;
+    if (format == @"JSON") {
+        self->commentsByURL.format = @"json";
+    } else if (format == @"XML") {
+        self->commentsByURL.format = @"xml";
+    }
 }
 
 - (NSString *)communityCommentsByURLMatchType
@@ -213,7 +314,11 @@
 
 - (void)setCommunityCommentsByURLMatchType:(NSString *)matchType
 {
-    self->commentsByURL.matchType = matchType;
+    if (matchType == @"EXACT MATCH") {
+        self->commentsByURL.matchType = @"exact-match";
+    } else if (matchType == @"CLOSET STEM MATCH") {
+        self->commentsByURL.matchType = @"closest-stem-match";
+    }
 }
 
 - (NSString *)communityCommentsByURLSort
@@ -223,7 +328,17 @@
 
 - (void)setCommunityCommentsByURLSort:(NSString *)sort
 {
-    self->commentsByURL.sort = sort;
+    if (sort == @"NEWEST"){
+        self->commentsByURL.sort = @"newest";
+    } else if (sort == @"OLDEST") {
+        self->commentsByURL.sort = @"oldest";
+    } else if (sort == @"RECOMMENDED") {
+        self->commentsByURL.sort = @"recommended";
+    } else if (sort == @"REPLIED") {
+        self->commentsByURL.sort = @"replied";
+    } else if (sort == @"EDITORS SELECTION") {
+        self->commentsByURL.sort = @"editors-selection";
+    }
 }
 
 - (NSString *)communityCommentsByURLUrlToMatch
@@ -233,7 +348,29 @@
 
 - (void)setCommunityCommentsByURLUrlToMatch:(NSString *)urlToMatch
 {
-    self->commentsByURL.urlToMatch = urlToMatch;
+    CFStringRef urlString = CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)urlToMatch,
+                                                                    NULL, (CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ",
+                                                                    kCFStringEncodingUTF8 );
+    
+    if ((NSString *)urlString && [(NSString *)urlString length] > 0)
+    {
+        self->commentsByURL.urlToMatch = [(NSString *)urlString autorelease];
+    }
+}
+
+- (NSString *)communityCommentsByURLOffSet
+{
+    return self->commentsByURL.offSet;
+}
+
+- (void)setCommunityCommentsByURLOffSet:(NSString *)offSet
+{
+    NSInteger multipleOfTwenty = [offSet intValue];
+    
+    if (offSet && (multipleOfTwenty % 25 == 0))
+    {
+        self->commentsByURL.offSet = offSet;
+    }
 }
 
 @end
@@ -1534,7 +1671,7 @@
 @end
 
 @implementation NYTimesWrapper
-@synthesize article, bestSeller, campaignFinance, apiKey;
+@synthesize article, bestSeller, campaignFinance, community, congress, apiKey;
 
 - (void)dealloc
 {
@@ -1551,6 +1688,7 @@
     }
     
     campaignFinance = [[_CampaignFinance alloc] init];
+    community = [[_Community alloc] init];
     
     NSParameterAssert(key != nil || [key length] == 0);
     

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F1F15A314AEB1BF0043AEED /* NYTimesCongress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F1F15A114AEB1BF0043AEED /* NYTimesCongress.h */; };
+		9F1F15A414AEB1BF0043AEED /* NYTimesCongress.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1F15A214AEB1BF0043AEED /* NYTimesCongress.m */; };
+		9F1F15A814AEB41C0043AEED /* _Congress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F1F15A614AEB41C0043AEED /* _Congress.h */; };
+		9F1F15A914AEB41C0043AEED /* _Congress.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1F15A714AEB41C0043AEED /* _Congress.m */; };
 		9F749C4D1489B016009E1372 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F749C4C1489B016009E1372 /* Foundation.framework */; };
 		9F749C531489B016009E1372 /* NYTimesWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F749C521489B016009E1372 /* NYTimesWrapper.m */; };
 		9F749C5B1489B016009E1372 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F749C5A1489B016009E1372 /* SenTestingKit.framework */; };
@@ -65,6 +69,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F1F15A114AEB1BF0043AEED /* NYTimesCongress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesCongress.h; sourceTree = "<group>"; };
+		9F1F15A214AEB1BF0043AEED /* NYTimesCongress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesCongress.m; sourceTree = "<group>"; };
+		9F1F15A614AEB41C0043AEED /* _Congress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Congress.h; sourceTree = "<group>"; };
+		9F1F15A714AEB41C0043AEED /* _Congress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Congress.m; sourceTree = "<group>"; };
 		9F749C491489B016009E1372 /* libNYTimesWrapper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNYTimesWrapper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F749C4C1489B016009E1372 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9F749C501489B016009E1372 /* NYTimesWrapper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NYTimesWrapper-Prefix.pch"; sourceTree = "<group>"; };
@@ -184,6 +192,10 @@
 				9FE48B9B148EFABE00CE008F /* NYTimesCampaignFinance.m */,
 				9FD7807614AD62C100435C35 /* NYTimesCommunity.h */,
 				9FD7807714AD62C100435C35 /* NYTimesCommunity.m */,
+				9F1F15A114AEB1BF0043AEED /* NYTimesCongress.h */,
+				9F1F15A214AEB1BF0043AEED /* NYTimesCongress.m */,
+				9F1F15A614AEB41C0043AEED /* _Congress.h */,
+				9F1F15A714AEB41C0043AEED /* _Congress.m */,
 				9FF8A020148ACE2600E470A6 /* Utilities */,
 				9F749C4F1489B016009E1372 /* Supporting Files */,
 			);
@@ -285,6 +297,8 @@
 				9FE48B95148D764200CE008F /* NYTimesBestSeller.h in Headers */,
 				9FE48B9C148EFABE00CE008F /* NYTimesCampaignFinance.h in Headers */,
 				9FD7807814AD62C100435C35 /* NYTimesCommunity.h in Headers */,
+				9F1F15A314AEB1BF0043AEED /* NYTimesCongress.h in Headers */,
+				9F1F15A814AEB41C0043AEED /* _Congress.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +420,8 @@
 				9FE48B96148D764200CE008F /* NYTimesBestSeller.m in Sources */,
 				9FE48B9D148EFABE00CE008F /* NYTimesCampaignFinance.m in Sources */,
 				9FD7807914AD62C100435C35 /* NYTimesCommunity.m in Sources */,
+				9F1F15A414AEB1BF0043AEED /* NYTimesCongress.m in Sources */,
+				9F1F15A914AEB41C0043AEED /* _Congress.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

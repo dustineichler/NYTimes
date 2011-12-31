@@ -1,14 +1,14 @@
 //
-//  NYTimesCommunity.h
+//  NYTimesCongress.h
 //  NYTimesWrapper
 //
-//  Created by Dustin Eichler on 12/29/11.
+//  Created by Dustin Eichler on 12/30/11.
 //  Copyright (c) 2011. All rights reserved.
 //
 
 #import "NYTimesWrapperBase.h"
 
-@interface NYTimesCommunity : NYTimesWrapperBase
+@interface NYTimesCongress : NYTimesWrapperBase
 {
     NSString *tag;
 }

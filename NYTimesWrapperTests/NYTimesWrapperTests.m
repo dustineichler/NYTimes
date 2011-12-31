@@ -458,6 +458,109 @@
     STAssertEqualObjects(@"json", presDonorInformationFormat, @"Should be valid format");
 }
 
+- (void)testCommunityRecentComments
+{
+    [articles.community setCommunityRecentCommentsApiKey:@"API-KEY"];
+    NSString *communityRecentCommentsApiKey = articles.community.communityRecentCommentsApiKey;
+    STAssertEqualObjects(@"API-KEY", communityRecentCommentsApiKey, @"Should be valid string");
+    
+    [articles.community setCommunityRecentCommentsOffSet:@"25"];
+    NSString *communityRecentCommentsOffSet = articles.community.communityRecentCommentsOffSet;
+    STAssertEqualObjects(@"25", communityRecentCommentsOffSet, @"Should be a multiple of 25");
+    
+    [articles.community setCommunityRecentCommentsForceReplies:@"YES"];
+    NSString *communityRecentCommentsForceReplies = articles.community.communityRecentCommentsForceReplies;
+    STAssertEqualObjects(@"1", communityRecentCommentsForceReplies, @"Should be a 1 (YES) or 0 (NO)");
+    
+    [articles.community setCommunityRecentCommentsSort:@"NEWEST"];
+    NSString *communityRecentCommentsSort = articles.community.communityRecentCommentsSort;
+    STAssertEqualObjects(@"newest", communityRecentCommentsSort, @"Should be (newest|oldest|recommended|replied|editors-selection");
+    
+    [articles.community setCommunityRecentCommentsFormat:@"JSON"];
+    NSString *communityRecentCommentsFormat = articles.community.communityRecentCommentsFormat;
+    STAssertEqualObjects(@"json", communityRecentCommentsFormat, @"Should be valid format");
+}
+
+- (void)testCommunityRandomComments
+{
+    [articles.community setCommunityRandomCommentsApiKey:@"API-KEY"];
+    NSString *communityRandomCommentsApiKey = articles.community.communityRandomCommentsApiKey;
+    STAssertEqualObjects(@"API-KEY", communityRandomCommentsApiKey, @"Should be valid string");
+    
+    [articles.community setCommunityRandomCommentsFormat:@"JSON"];
+    NSString *communityRandomCommentsFormat = articles.community.communityRandomCommentsFormat;
+    STAssertEqualObjects(@"json", communityRandomCommentsFormat, @"Should be valid format");
+}
+
+- (void)testCommunityCommentsByDate
+{
+    [articles.community setCommunityCommentsByDateApiKey:@"API-KEY"];
+    NSString *communityCommentsByDateApiKey = articles.community.communityCommentsByDateApiKey;
+    STAssertEqualObjects(@"API-KEY", communityCommentsByDateApiKey, @"Should be valid string");
+    
+    [articles.community setCommunityCommentsByDateFormat:@"JSON"];
+    NSString *communityCommentsByDateFormat = articles.community.communityCommentsByDateFormat;
+    STAssertEqualObjects(@"json", communityCommentsByDateFormat, @"Should be valid format");
+
+    [articles.community setCommunityCommentsByDateDate:@"20101130"];
+    NSString *communityCommentsByDateDate = articles.community.communityCommentsByDateDate;
+    STAssertEqualObjects(@"20101130", communityCommentsByDateDate, @"Should be valid date");
+    
+    [articles.community setCommunityCommentsByDateSort:@"REPLIED"];
+    NSString *communityCommentsByDateSort = articles.community.communityCommentsByDateSort;
+    STAssertEqualObjects(@"replied", communityCommentsByDateSort, @"Should be (newest|oldest|recommended|replied|editors-selection)");
+}
+
+- (void)testCommunityCommentsByUserID
+{
+    [articles.community setCommunityCommentsByUserIdApiKey:@"API-KEY"];
+    NSString *communityCommentsByUserIdApiKey = articles.community.communityCommentsByUserIdApiKey;
+    STAssertEqualObjects(@"API-KEY", communityCommentsByUserIdApiKey, @"Should be valid string");
+  
+    [articles.community setCommunityCommentsByUserIdUserId:@"56135867"];
+    NSString *communityCommentsByUserIdUserId = articles.community.communityCommentsByUserIdUserId;
+    STAssertEqualObjects(@"56135867", communityCommentsByUserIdUserId, @"Should be valid number e.g. 56135867");
+
+    [articles.community setCommunityCommentsByUserIdOffSet:@"25"];
+    NSString *communityCommentsByUserIdOffSet = articles.community.communityCommentsByUserIdOffSet;
+    STAssertEqualObjects(@"25", communityCommentsByUserIdOffSet, @"Should be multiple of 25");
+
+    [articles.community setCommunityCommentsByUserIdSort:@"REPLIED"];
+    NSString *communityCommentsByUserIdSort = articles.community.communityCommentsByUserIdSort;
+    STAssertEqualObjects(@"replied", communityCommentsByUserIdSort, @"Should be either (newest|oldest|recommended|replied|editors-selection)");
+
+    [articles.community setCommunityCommentsByUserIdFormat:@"JSON"];
+    NSString *communityCommentsByUserIdFormat = articles.community.communityCommentsByUserIdFormat;
+    STAssertEqualObjects(@"json", communityCommentsByUserIdFormat, @"Should be valid format");
+}
+
+- (void)testCommunityCommentsByURL
+{
+    [articles.community setCommunityCommentsByURLMatchType:@"EXACT MATCH"];
+    NSString *communityCommentsByURLMatchType = articles.community.communityCommentsByURLMatchType;
+    STAssertEqualObjects(@"exact-match", communityCommentsByURLMatchType, @"Should be either (exact-match|closest-stem-match)");
+    
+    [articles.community setCommunityCommentsByURLUrlToMatch:@"http://www.google.com"];
+    NSString *communityCommentsByURLUrlToMatch = articles.community.communityCommentsByURLUrlToMatch;
+    STAssertEqualObjects(@"http%3A%2F%2Fwww.google.com", communityCommentsByURLUrlToMatch, @"Should be encoded url");
+
+    [articles.community setCommunityCommentsByURLApiKey:@"API-KEY"];
+    NSString *communityCommentsByURLApiKey = articles.community.communityCommentsByURLApiKey;
+    STAssertEqualObjects(@"API-KEY", communityCommentsByURLApiKey, @"Should be valid API-KEY");
+
+    [articles.community setCommunityCommentsByURLOffSet:@"25"];
+    NSString *communityCommentsByURLOffSet = articles.community.communityCommentsByURLOffSet;
+    STAssertEqualObjects(@"25", communityCommentsByURLOffSet, @"Should be multiple of 25");
+
+    [articles.community setCommunityCommentsByURLSort:@"EDITORS SELECTION"];
+    NSString *communityCommentsByURLSort = articles.community.communityCommentsByURLSort;
+    STAssertEqualObjects(@"editors-selection", communityCommentsByURLSort, @"Should be either (newest|oldest|recommended|replied|editors-selection)");
+
+    [articles.community setCommunityCommentsByURLFormat:@"JSON"];
+    NSString *communityCommentsByURLFormat = articles.community.communityCommentsByURLFormat;
+    STAssertEqualObjects(@"json", communityCommentsByURLFormat, @"Should be valid format");
+}
+
 - (void)tearDown
 {
     [super tearDown];
