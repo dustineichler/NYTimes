@@ -730,7 +730,10 @@
 
 - (void)setMemberSponsorshipComparisonMemberId1:(NSString *)memberId1
 {
-    self->memberSponsorshipComparison.memberId1 = memberId1;
+    if (memberId1 && [memberId1 length] > 0)
+    {
+        self->memberSponsorshipComparison.memberId1 = memberId1;
+    }
 }
 
 - (NSString *)memberSponsorshipComparisonMemberId2
@@ -740,7 +743,10 @@
 
 - (void)setMemberSponsorshipComparisonMemberId2:(NSString *)memberId2
 {
-    self->memberSponsorshipComparison.memberId2 = memberId2;
+    if (memberId2 && [memberId2 length] > 0)
+    {
+        self->memberSponsorshipComparison.memberId2 = memberId2;
+    }
 }
 
 - (NSString *)memberSponsorshipComparisonCongressNumber
@@ -750,7 +756,21 @@
 
 - (void)setMemberSponsorshipComparisonCongressNumber:(NSString *)congressNumber
 {
-    self->memberSponsorshipComparison.congressNumber = congressNumber;
+    int cn = [congressNumber intValue];
+    
+    if ([self memberSponsorshipComparisonChamber] == @"house") {
+        if (cn >= 102 && cn <= 112)
+        {
+            self->memberSponsorshipComparison.congressNumber = congressNumber;
+        }
+    } else if ([self memberSponsorshipComparisonChamber] == @"senate") {
+        if (cn >= 101 && cn <= 112)
+        {
+            self->memberSponsorshipComparison.congressNumber = congressNumber;
+        }
+    } else {
+        NSLog(@"--Error: Chamber is not set! Assign value before setting CongressNumber");
+    }
 }
 
 - (NSString *)memberSponsorshipComparisonChamber
@@ -760,7 +780,11 @@
 
 - (void)setMemberSponsorshipComparisonChamber:(NSString *)chamber
 {
-    self->memberSponsorshipComparison.chamber = chamber;
+    if (chamber == @"HOUSE") {
+        self->memberSponsorshipComparison.chamber = @"house";
+    } else if (chamber == @"SENATE") {
+        self->memberSponsorshipComparison.chamber = @"senate";
+    }
 }
 
 - (NSString *)memberSponsorshipComparisonFormat
@@ -770,7 +794,11 @@
 
 - (void)setMemberSponsorshipComparisonFormat:(NSString *)format
 {
-    self->memberSponsorshipComparison.format = format;
+    if (format == @"XML") {
+        self->memberSponsorshipComparison.format = @"xml";
+    } else if (format == @"JSON") {
+        self->memberSponsorshipComparison.format = @"json";
+    }
 }
 
 - (NSString *)memberSponsorshipComparisonApiKey
@@ -780,7 +808,10 @@
 
 - (void)setMemberSponsorshipComparisonApiKey:(NSString *)apiKey
 {
-    self->memberSponsorshipComparison.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->memberSponsorshipComparison.apiKey = apiKey;
+    }
 }
 
 #pragma mark -
@@ -793,7 +824,10 @@
 
 - (void)setMemberFloorAppearancesMemberId:(NSString *)memberId
 {
-    self->memberFloorAppearances.memberId = memberId;
+    if (memberId && [memberId length] > 0)
+    {
+        self->memberFloorAppearances.memberId = memberId;
+    }
 }
 
 - (NSString *)memberFloorAppearancesFormat
@@ -803,7 +837,11 @@
 
 - (void)setMemberFloorAppearancesFormat:(NSString *)format
 {
-    self->memberFloorAppearances.format = format;
+    if (format == @"XML") {
+        self->memberFloorAppearances.format = @"xml";
+    } else if (format == @"JSON") {
+        self->memberFloorAppearances.format = @"json";
+    }
 }
 
 - (NSString *)memberFloorAppearancesApiKey
@@ -813,7 +851,10 @@
 
 - (void)setMemberFloorAppearancesApiKey:(NSString *)apiKey
 {
-    self->memberFloorAppearances.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->memberFloorAppearances.apiKey = apiKey;
+    }
 }
 
 #pragma mark -
@@ -826,7 +867,21 @@
 
 - (void)setRollCallVotesCongressNumber:(NSString *)congressNumber
 {
-    self->rollCallVotes.congressNumber = congressNumber;
+    int cn = [congressNumber intValue];
+    
+    if ([self rollCallVotesChamber] == @"house") {
+        if (cn >= 102 && cn <= 112)
+        {
+            self->rollCallVotes.congressNumber = congressNumber;
+        }
+    } else if ([self rollCallVotesChamber] == @"senate") {
+        if (cn >= 101 && cn <= 112)
+        {
+            self->rollCallVotes.congressNumber = congressNumber;
+        }
+    } else {
+        NSLog(@"--Error: Chamber is not set! Assign value before setting CongressNumber");
+    }
 }
 
 - (NSString *)rollCallVotesChamber
@@ -836,7 +891,11 @@
 
 - (void)setRollCallVotesChamber:(NSString *)chamber
 {
-    self->rollCallVotes.chamber = chamber;
+    if (chamber == @"HOUSE") {
+        self->rollCallVotes.chamber = @"house";
+    } else if (chamber == @"SENATE") {
+        self->rollCallVotes.chamber = @"senate";
+    }
 }
 
 - (NSString *)rollCallVotesSessionNumber
@@ -846,7 +905,11 @@
 
 - (void)setRollCallVotesSessionNumber:(NSString *)sessionNumber
 {
-    self->rollCallVotes.sessionNumber = sessionNumber;
+    if (sessionNumber == @"1" || sessionNumber == @"2") {
+        self->rollCallVotes.sessionNumber = sessionNumber;
+    } else {
+        NSLog(@"--Error: Spencial Session number?");
+    }
 }
 
 - (NSString *)rollCallVotesRollCallNumber
@@ -856,7 +919,10 @@
 
 - (void)setRollCallVotesRollCallNumber:(NSString *)rollCallNumber
 {
-    self->rollCallVotes.rollCallNumber = rollCallNumber;
+    if (rollCallNumber && [rollCallNumber length] > 0)
+    {
+        self->rollCallVotes.rollCallNumber = rollCallNumber;
+    }
 }
 
 - (NSString *)rollCallVotesFormat
@@ -866,7 +932,11 @@
 
 - (void)setRollCallVotesFormat:(NSString *)format
 {
-    self->rollCallVotes.format = format;
+    if (format == @"JSON") {
+        self->rollCallVotes.format = @"json";
+    } else if (format == @"XML") {
+        self->rollCallVotes.format = @"xml";
+    }
 }
 
 - (NSString *)rollCallVotesApiKey
@@ -889,7 +959,21 @@
 
 - (void)setVotesByTypeCongressNumber:(NSString *)congressNumber
 {
-    self->votesByType.congressNumber = congressNumber;
+    int cn = [congressNumber intValue];
+    
+    if ([self votesByTypeChamber] == @"house") {
+        if (cn >= 102 && cn <= 112)
+        {
+            self->votesByType.congressNumber = congressNumber;
+        }
+    } else if ([self votesByTypeChamber] == @"senate") {
+        if (cn >= 101 && cn <= 112)
+        {
+            self->votesByType.congressNumber = congressNumber;
+        }
+    } else {
+        NSLog(@"--Error: Chamber is not set! Assign value before setting CongressNumber");
+    }
 }
 
 - (NSString *)votesByTypeChamber
@@ -899,7 +983,11 @@
 
 - (void)setVotesByTypeChamber:(NSString *)chamber
 {
-    self->votesByType.chamber = chamber;
+    if (chamber == @"HOUSE") {
+        self->votesByType.chamber = @"house";
+    } else if (chamber == @"SENATE") {
+        self->votesByType.chamber = @"senate";
+    }
 }
 
 - (NSString *)votesByTypeVoteType
@@ -909,7 +997,15 @@
 
 - (void)setVotesByTypeVoteType:(NSString *)voteType
 {
-    self->votesByType.voteType = voteType;
+    if (voteType == @"MISSED VOTES") {
+        self->votesByType.voteType = @"missed_votes";
+    } else if (voteType == @"PARTY VOTES") {
+        self->votesByType.voteType = @"party_votes";        
+    } else if (voteType == @"LONENO") {
+        self->votesByType.voteType = @"loneno";
+    } else if (voteType == @"PERFECT") {
+        self->votesByType.voteType = @"perfect";
+    }
 }
 
 - (NSString *)votesByTypeFormat
@@ -919,7 +1015,11 @@
 
 - (void)setVotesByTypeFormat:(NSString *)format
 {
-    self->votesByType.format = format;
+    if (format == @"XML") {
+        self->votesByType.format = @"xml";
+    } else if (format == @"JSON") {
+        self->votesByType.format = @"json";
+    }
 }
 
 - (NSString *)votesByTypeApiKey
@@ -929,7 +1029,10 @@
 
 - (void)setVotesByTypeApiKey:(NSString *)apiKey
 {
-    self->votesByType.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->votesByType.apiKey = apiKey;
+    }
 }
 
 #pragma mark -
@@ -942,7 +1045,11 @@
 
 - (void)setVotesByDateChamber:(NSString *)chamber
 {
-    self->votesByDate.chamber = chamber;
+    if (chamber == @"HOUSE") {
+        self->votesByDate.chamber = @"house";
+    } else if (chamber == @"SENATE") {
+        self->votesByDate.chamber = @"senate";
+    }
 }
 
 - (NSString *)votesByDateYearAndMonth
@@ -952,7 +1059,17 @@
 
 - (void)setVotesByDateYearAndMonth:(NSString *)yearAndMonth
 {
-    self->votesByDate.yearAndMonth = yearAndMonth;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyyMM"];
+    
+    NSDate *_yearAndMonth = [formatter dateFromString:yearAndMonth];
+    
+    NSString *result = [formatter stringFromDate:_yearAndMonth];
+    
+    if (result)
+    {
+        self->votesByDate.yearAndMonth = result;
+    }
 }
 
 - (NSString *)votesByDateRangeOfDates
@@ -962,8 +1079,19 @@
 
 - (void)setVotesByDateRangeOfDates:(NSString *)rangeOfDates
 {
-    self->votesByDate.rangeOfDates = rangeOfDates;
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];    
+    [formatter setDateFormat:@"yyyy-MM-dd/yyyy-MM-dd"];
+    
+    NSDate *_date = [formatter dateFromString:rangeOfDates];
+    
+    NSString *result = [formatter stringFromDate:_date];
+    
+    if (result)
+    {
+        self->votesByDate.rangeOfDates = result;
+    }
 }
+
 - (NSString *)votesByDateFormat
 {
     return self->votesByDate.format;
@@ -971,7 +1099,11 @@
 
 - (void)setVotesByDateFormat:(NSString *)format
 {
-    self->votesByDate.format = format;
+    if (format == @"JSON") {
+        self->votesByDate.format = @"json";
+    } else if (format == @"XML") {
+        self->votesByDate.format = @"xml";
+    }
 }
 
 - (NSString *)votesByDateApiKey
@@ -981,7 +1113,10 @@
 
 - (void)setVotesByDateApiKey:(NSString *)apiKey
 {
-    self->votesByDate.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->votesByDate.apiKey = apiKey;
+    }
 }
 
 #pragma mark -
@@ -994,7 +1129,12 @@
 
 - (void)setNominationVotesCongressNumber:(NSString *)congressNumber
 {
-    self->nominationVotes.congressNumber = congressNumber;
+    int cn = [congressNumber intValue];
+    
+    if (cn >= 101 && cn <= 112)
+    {
+        self->nominationVotes.congressNumber = congressNumber;
+    }
 }
 
 - (NSString *)nominationVotesFormat
@@ -1004,7 +1144,11 @@
 
 - (void)setNominationVotesFormat:(NSString *)format
 {
-    self->nominationVotes.format = format;
+    if (format == @"XML") {
+        self->nominationVotes.format = @"xml";
+    } else if (format == @"JSON") {
+        self->nominationVotes.format = @"json";
+    }
 }
 
 - (NSString *)nominationVotesApiKey
@@ -1014,7 +1158,10 @@
 
 - (void)setNominationVotesApiKey:(NSString *)apiKey
 {
-    self->nominationVotes.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->nominationVotes.apiKey = apiKey;
+    }
 }
 
 #pragma mark -
@@ -1027,7 +1174,12 @@
 
 - (void)setRecentBillsCongressNumber:(NSString *)congressNumber
 {
-    self->recentBills.congressNumber = congressNumber;
+    int cn = [congressNumber intValue];
+    
+    if (cn >= 101 && cn <= 112)
+    {
+        self->recentBills.congressNumber = congressNumber;
+    }
 }
 
 - (NSString *)recentBillsChamber
@@ -1037,7 +1189,11 @@
 
 - (void)setRecentBillsChamber:(NSString *)chamber
 {
-    self->recentBills.chamber = chamber;
+    if (chamber == @"HOUSE") {
+        self->recentBills.chamber = @"house";
+    } else if (chamber == @"SENATE") {
+        self->recentBills.chamber = @"senate";
+    }
 }
 
 - (NSString *)recentBillsType
@@ -1047,7 +1203,15 @@
 
 - (void)setRecentBillsType:(NSString *)type
 {
-    self->recentBills.type = type;
+    if (type == @"INTRODUCED") {
+        self->recentBills.type = @"introduced";
+    } else if (type == @"UPDATED") {
+        self->recentBills.type = @"updated";
+    } else if (type == @"PASSED") {
+        self->recentBills.type = @"passed";
+    } else if (type == @"MAJOR") {
+        self->recentBills.type = @"major";
+    }
 }
 
 - (NSString *)recentBillsformat
@@ -1057,7 +1221,11 @@
 
 - (void)setRecentBillsFormat:(NSString *)format
 {
-    self->recentBills.format = format;
+    if (format == @"XML") {
+        self->recentBills.format = @"xml";
+    } else if (format == @"JSON") {
+        self->recentBills.format = @"json";
+    }
 }
 
 - (NSString *)recentBillsApiKey
@@ -1067,7 +1235,10 @@
 
 - (void)setRecentBillsApiKey:(NSString *)apiKey
 {
-    self->recentBills.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->recentBills.apiKey = apiKey;
+    }
 }
 
 #pragma mark -
@@ -1080,7 +1251,10 @@
 
 - (void)setBillsByMemberMemberId:(NSString *)memberId
 {
-    self->billsByMember.memberId = memberId;
+    if (memberId && [memberId  length] > 0)
+    {
+        self->billsByMember.memberId = [memberId lowercaseString];
+    }
 }
 
 - (NSString *)billsByMemberType
@@ -1090,7 +1264,11 @@
 
 - (void)setBillsByMemberType:(NSString *)type
 {
-    self->billsByMember.type = type;
+    if (type == @"INTRODUCED") {
+        self->billsByMember.type = @"introduced";
+    } else if (type == @"UPDATED") {
+        self->billsByMember.type = @"updated";
+    }
 }
 
 - (NSString *)billsByMemberFormat
@@ -1100,7 +1278,11 @@
 
 - (void)setBillsByMemberFormat:(NSString *)format
 {
-    self->billsByMember.format = format;
+    if (format == @"XML") {
+        self->billsByMember.format = @"xml";
+    } else if (format == @"JSON") {
+        self->billsByMember.format = @"json";
+    }
 }
 
 - (NSString *)billsByMemberApiKey
@@ -1123,7 +1305,12 @@
 
 - (void)setBillDetailsCongressNumber:(NSString *)congressNumber
 {
-    self->billDetails.congressNumber = congressNumber;
+    int cn = [congressNumber intValue];
+    
+    if (cn >= 105 && cn <= 112)
+    {
+        self->billDetails.congressNumber = congressNumber;
+    }
 }
 
 - (NSString *)billDetailsBillId
@@ -1133,7 +1320,10 @@
 
 - (void)setBillDetailsBillId:(NSString *)billId
 {
-    self->billDetails.billId = billId;
+    if (billId && [billId length] > 0)
+    {
+        self->billDetails.billId = [billId lowercaseString];
+    }
 }
 
 - (NSString *)billDetailsFormat
@@ -1143,7 +1333,11 @@
 
 - (void)setBillDetailsFormat:(NSString *)format
 {
-    self->billDetails.format = format;
+    if (format == @"XML") {
+        self->billDetails.format = @"xml";
+    } else if (format == @"JSON") {
+        self->billDetails.format = @"json";
+    }
 }
 
 - (NSString *)billDetailsApiKey
@@ -1153,7 +1347,10 @@
 
 - (void)setBillDetailsApiKey:(NSString *)apiKey
 {
-    self->billDetails.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->billDetails.apiKey = apiKey;
+    }
 }
 
 #pragma mark -
@@ -1166,7 +1363,12 @@
 
 - (void)setBillAmendmentsAndRelatedBillsCongressNumber:(NSString *)congressNumber
 {
-    self->billAmendmentsAndRelatedBills.congressNumber = congressNumber;
+    int cn = [congressNumber intValue];
+    
+    if (cn >= 105 && cn <= 112)
+    {
+        self->billAmendmentsAndRelatedBills.congressNumber = congressNumber;
+    }
 }
 
 - (NSString *)billAmendmentsAndRelatedBillsBillId
@@ -1176,7 +1378,10 @@
 
 - (void)setBillAmendmentsAndRelatedBillsBillId:(NSString *)billId
 {
-    self->billAmendmentsAndRelatedBills.billId = billId;
+    if (billId && [billId length] > 0)
+    {
+        self->billAmendmentsAndRelatedBills.billId = [billId lowercaseString];
+    }
 }
 
 - (NSString *)billAmendmentsAndRelatedBillsResource
@@ -1186,7 +1391,13 @@
 
 - (void)setBillAmendmentsAndRelatedBillsResource:(NSString *)resource
 {
-    self->billAmendmentsAndRelatedBills.resource = resource;
+    if (resource == @"SUBJECTS") {
+        self->billAmendmentsAndRelatedBills.resource = @"subjects";
+    } else if (resource == @"ADMENDMENTS") {
+        self->billAmendmentsAndRelatedBills.resource = @"amendments";
+    } else if (resource == @"RELATED") {
+        self->billAmendmentsAndRelatedBills.resource = @"related";
+    }
 }
 
 - (NSString *)billAmendmentsAndRelatedBillsFormat
@@ -1196,7 +1407,11 @@
 
 - (void)setBillAmendmentsAndRelatedBillsFormat:(NSString *)format
 {
-    self->billAmendmentsAndRelatedBills.format = format;
+    if (format == @"XML") {
+        self->billAmendmentsAndRelatedBills.format = @"xml";
+    } else if (format == @"JSON") {
+        self->billAmendmentsAndRelatedBills.format = @"json";
+    }
 }
 
 - (NSString *)billAmendmentsAndRelatedBillsApiKey
@@ -1206,7 +1421,10 @@
 
 - (void)setBillAmendmentsAndRelatedBillsApiKey:(NSString *)apiKey
 {
-    self->billAmendmentsAndRelatedBills.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->billAmendmentsAndRelatedBills.apiKey = apiKey;
+    }
 }
 
 #pragma mark -
@@ -1221,18 +1439,9 @@
 {
     int cn = [congressNumber intValue];
     
-    if ([self membersOfCongressChamber] == @"house") {
-        if (cn >= 102 && cn <= 112)
-        {
-            self->memberVoteComparison.congressNumber = congressNumber;
-        }
-    } else if ([self membersOfCongressChamber] == @"senate") {
-        if (cn >= 101 && cn <= 112)
-        {
-            self->memberVoteComparison.congressNumber = congressNumber;
-        }
-    } else {
-        NSLog(@"--Error: Chamber is not set! Assign value before setting CongressNumber");
+    if (cn >= 105 && cn <= 112)
+    {
+        self->billCosponsors.congressNumber = congressNumber;
     }
 }
 
@@ -1243,7 +1452,10 @@
 
 - (void)setBillCosponsorsBillId:(NSString *)billId
 {
-    self->billCosponsors.billId = billId;
+    if (billId && [billId length] > 0)
+    {
+        self->billCosponsors.billId = [billId lowercaseString];
+    }
 }
 
 - (NSString *)billCosponsorsFormat
@@ -1253,7 +1465,11 @@
 
 - (void)setBillCosponsorsFormat:(NSString *)format
 {
-    self->billCosponsors.format = format;
+    if (format == @"XML") {
+        self->billCosponsors.format = @"xml";
+    } else if (format == @"JSON") {
+        self->billCosponsors.format = @"json";
+    }
 }
 
 - (NSString *)billCosponsorsApiKey
@@ -1276,7 +1492,12 @@
 
 - (void)setNomineeListsCongressNumber:(NSString *)congressNumber
 {
-    self->nomineeLists.congressNumber = congressNumber;
+    int cn = [congressNumber intValue];
+    
+    if (cn >= 107 && cn <= 112)
+    {
+        self->nomineeLists.congressNumber = congressNumber;
+    }
 }
 
 - (NSString *)nomineeListsNomineeCategory
@@ -1286,7 +1507,15 @@
 
 - (void)setNomineeListsNomineeCategory:(NSString *)nomineeCategory
 {
-    self->nomineeLists.nomineeCategory = nomineeCategory;
+    if (nomineeCategory == @"RECEIVED") {
+        self->nomineeLists.nomineeCategory = @"received";
+    } else if (nomineeCategory == @"UPDATED") {
+        self->nomineeLists.nomineeCategory = @"updated";
+    } else if (nomineeCategory == @"CONFIRMED") {
+        self->nomineeLists.nomineeCategory = @"confirmed";    
+    } else if (nomineeCategory == @"WITHDRAWN") {
+        self->nomineeLists.nomineeCategory = @"withdrawn";
+    }
 }
 
 - (NSString *)nomineeListsFormat
@@ -1296,7 +1525,11 @@
 
 - (void)setNomineeListsFormat:(NSString *)format
 {
-    self->nomineeLists.format = format;
+    if (format == @"XML") {
+        self->nomineeLists.format = @"xml";
+    } else if (format == @"JSON") {
+        self->nomineeLists.format = @"json";
+    }
 }
 
 - (NSString *)nomineeListsApiKey
@@ -1306,7 +1539,10 @@
 
 - (void)setNomineeListsApiKey:(NSString *)apiKey
 {
-    self->nomineeLists.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->nomineeLists.apiKey = apiKey;
+    }
 }
 
 #pragma mark -
@@ -1319,7 +1555,12 @@
 
 - (void)setNomineeDetailsCongressNumber:(NSString *)congressNumber
 {
-    self->nomineeDetails.congressNumber = congressNumber;
+    int cn = [congressNumber intValue];
+    
+    if (cn >= 107 && cn <= 112)
+    {
+        self->nomineeDetails.congressNumber = congressNumber;
+    }
 }
 
 - (NSString *)nomineeDetailsNomineeId
@@ -1329,7 +1570,10 @@
 
 - (void)setNomineeDetailsNomineeId:(NSString *)nomineeId
 {
-    self->nomineeDetails.nomineeId = nomineeId;
+    if (nomineeId && [nomineeId length] > 0)
+    {
+        self->nomineeDetails.nomineeId = nomineeId;
+    }
 }
 
 - (NSString *)nomineeDetailsFormat
@@ -1339,7 +1583,11 @@
 
 - (void)setNomineeDetailsFormat:(NSString *)format
 {
-    self->nomineeDetails.format = format;
+    if (format == @"XML") {
+        self->nomineeDetails.format = @"xml";
+    } else if (format == @"JSON") {
+        self->nomineeDetails.format = @"json";
+    }
 }
 
 - (NSString *)nomineeDetailsApiKey
@@ -1349,7 +1597,10 @@
 
 - (void)setNomineeDetailsApiKey:(NSString *)apiKey
 {
-    self->nomineeDetails.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->nomineeDetails.apiKey = apiKey;
+    }
 }
 
 #pragma mark -
@@ -1362,7 +1613,12 @@
 
 - (void)setNomineesByStateCongressNumber:(NSString *)congressNumber
 {
-    self->nomineesByState.congresNumber = congressNumber;
+    int cn = [congressNumber intValue];
+    
+    if (cn >= 107 && cn <= 112)
+    {
+        self->nomineesByState.congresNumber = congressNumber;
+    }
 }
 
 - (NSString *)nomineesByStateState
@@ -1372,7 +1628,113 @@
 
 - (void)setNomineesByStateState:(NSString *)state
 {
-    self->nomineesByState.state = state;
+    if (state == @"AK"){
+        self->nomineesByState.state = state;
+    } else if (state == @"AZ"){
+        self->nomineesByState.state = state;
+    } else if (state == @"CT"){
+        self->nomineesByState.state = state;
+    } else if (state == @"FL"){
+        self->nomineesByState.state = state;
+    } else if (state == @"HI"){
+        self->nomineesByState.state = state;
+    } else if (state == @"IL"){
+        self->nomineesByState.state = state;
+    } else if (state == @"KY"){
+        self->nomineesByState.state = state;
+    } else if (state == @"MD"){
+        self->nomineesByState.state = state;
+    } else if (state == @"MN"){
+        self->nomineesByState.state = state;
+    } else if (state == @"MT"){
+        self->nomineesByState.state = state;
+    } else if (state == @"NE"){
+        self->nomineesByState.state = state;
+    } else if (state == @"NM"){
+        self->nomineesByState.state = state;
+    } else if (state == @"OH"){
+        self->nomineesByState.state = state;
+    } else if (state == @"PA"){
+        self->nomineesByState.state = state;
+    } else if (state == @"SC"){
+        self->nomineesByState.state = state;
+    } else if (state == @"TX"){
+        self->nomineesByState.state = state;
+    } else if (state == @"VI"){
+        self->nomineesByState.state = state;
+    } else if (state == @"WI"){
+        self->nomineesByState.state = state;
+    } else if (state == @"AL"){
+        self->nomineesByState.state = state;
+    } else if (state == @"CA"){
+        self->nomineesByState.state = state;
+    } else if (state == @"DC"){
+        self->nomineesByState.state = state;
+    } else if (state == @"GA"){
+        self->nomineesByState.state = state;
+    } else if (state == @"IA"){
+        self->nomineesByState.state = state;
+    } else if (state == @"IN"){
+        self->nomineesByState.state = state;
+    } else if (state == @"LA"){
+        self->nomineesByState.state = state;
+    } else if (state == @"ME"){
+        self->nomineesByState.state = state;
+    } else if (state == @"MO"){
+        self->nomineesByState.state = state;
+    } else if (state == @"NC"){
+        self->nomineesByState.state = state;
+    } else if (state == @"NH"){
+        self->nomineesByState.state = state;
+    } else if (state == @"NV"){
+        self->nomineesByState.state = state;
+    } else if (state == @"OK"){
+        self->nomineesByState.state = state;
+    } else if (state == @"PR"){
+        self->nomineesByState.state = state;
+    } else if (state == @"SD"){
+        self->nomineesByState.state = state;
+    } else if (state == @"UT"){
+        self->nomineesByState.state = state;
+    } else if (state == @"WV"){
+        self->nomineesByState.state = state;
+    } else if (state == @"AR"){
+        self->nomineesByState.state = state;
+    } else if (state == @"CO"){
+        self->nomineesByState.state = state;
+    } else if (state == @"DE"){
+        self->nomineesByState.state = state;
+    } else if (state == @"GU"){
+        self->nomineesByState.state = state;
+    } else if (state == @"ID"){
+        self->nomineesByState.state = state;
+    } else if (state == @"KS"){
+        self->nomineesByState.state = state;
+    } else if (state == @"MA"){
+        self->nomineesByState.state = state;
+    } else if (state == @"MI"){
+        self->nomineesByState.state = state;
+    } else if (state == @"MS"){
+        self->nomineesByState.state = state;
+    } else if (state == @"ND"){
+        self->nomineesByState.state = state;
+    } else if (state == @"NJ"){
+        self->nomineesByState.state = state;
+    } else if (state == @"NY"){
+        self->nomineesByState.state = state;
+    } else if (state == @"OR"){
+        self->nomineesByState.state = state;
+    } else if (state == @"RI"){
+        self->nomineesByState.state = state;
+    } else if (state == @"TN"){
+        self->nomineesByState.state = state;
+    } else if (state == @"VA"){
+        self->nomineesByState.state = state;
+    } else if (state == @"WA"){
+        self->nomineesByState.state = state;
+    } else if (state == @"WY"){
+        self->nomineesByState.state = state;
+    }
 }
 
 - (NSString *)nomineesByStateFormat
@@ -1382,7 +1744,11 @@
 
 - (void)setNomineesByStateFormat:(NSString *)format
 {
-    self->nomineesByState.format = format;
+    if (format == @"XML") {
+        self->nomineesByState.format = @"xml";
+    } else if (format == @"JSON") {
+        self->nomineesByState.format = @"json";
+    }
 }
 
 - (NSString *)nomineesByStateApiKey
@@ -1392,7 +1758,10 @@
 
 - (void)setNomineesByStateApiKey:(NSString *)apiKey
 {
-    self->nomineesByState.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->nomineesByState.apiKey = apiKey;
+    }
 }
 
 #pragma mark -
@@ -1405,7 +1774,11 @@
 
 - (void)setStatePartyCountsFormat:(NSString *)format
 {
-    self->statePartyCounts.format = format;
+    if (format == @"XML") {
+        self->statePartyCounts.format = @"xml";
+    } else if (format == @"JSON") {
+        self->statePartyCounts.format = @"json";
+    }
 }
 
 - (NSString *)statePartyCountsApiKey
@@ -1415,7 +1788,10 @@
 
 - (void)setStatePartyCountsApiKey:(NSString *)apiKey
 {
-    self->statePartyCounts.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->statePartyCounts.apiKey = apiKey;
+    }
 }
 
 #pragma mark -
@@ -1428,7 +1804,12 @@
 
 - (void)setCommitteesAndCommitteeMembersCongressNumber:(NSString *)congressNumber
 {
-    self->committeesAndCommitteeMembers.congressNumber = congressNumber;
+    int cn = [congressNumber intValue];
+    
+    if (cn >= 107 && cn <= 112)
+    {
+        self->committeesAndCommitteeMembers.congressNumber = congressNumber;
+    }
 }
 
 - (NSString *)committeesAndCommitteeMembersChamber
@@ -1438,7 +1819,11 @@
 
 - (void)setCommitteesAndCommitteeMembersChamber:(NSString *)chamber
 {
-    self->committeesAndCommitteeMembers.chamber = chamber;
+    if (chamber == @"HOUSE") {
+        self->committeesAndCommitteeMembers.chamber = @"house";
+    } else if (chamber == @"SENATE") {
+        self->committeesAndCommitteeMembers.chamber = @"senate";
+    }
 }
 
 - (NSString *)committeesAndCommitteeMembersCommitteeId
@@ -1448,7 +1833,10 @@
 
 - (void)setCommitteesAndCommitteeMembersCommitteeId:(NSString *)committeeId
 {
-    self->committeesAndCommitteeMembers.committeeId = committeeId;
+    if (committeeId && [committeeId length] > 0)
+    {
+        self->committeesAndCommitteeMembers.committeeId = [committeeId lowercaseString];
+    }
 }
 
 - (NSString *)committeesAndCommitteeMembersFormat
@@ -1458,7 +1846,11 @@
 
 - (void)setCommitteesAndCommitteeMembersFormat:(NSString *)format
 {
-    self->committeesAndCommitteeMembers.format = format;
+    if (format == @"XML") {
+        self->committeesAndCommitteeMembers.format = @"xml";
+    } else if (format == @"JSON") {
+        self->committeesAndCommitteeMembers.format = @"json";
+    }
 }
 
 - (NSString *)committeesAndCommitteeMembersApiKey
@@ -1481,7 +1873,11 @@
 
 - (void)setChamberScheduleFormat:(NSString *)format
 {
-    self->chamberSchedule.format = format;
+    if (format == @"XML") {
+        self->chamberSchedule.format = @"xml";
+    } else if (format == @"JSON") {
+        self->chamberSchedule.format = @"json";
+    }
 }
 
 - (NSString *)chamberScheduleApiKey
@@ -1491,7 +1887,10 @@
 
 - (void)setChamberScheduleApiKey:(NSString *)apiKey
 {
-    self->chamberSchedule.apiKey = apiKey;
+    if (apiKey && [apiKey length] > 0)
+    {
+        self->chamberSchedule.apiKey = apiKey;
+    }
 }
 
 @end
