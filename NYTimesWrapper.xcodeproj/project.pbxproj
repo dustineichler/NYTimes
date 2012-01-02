@@ -19,6 +19,7 @@
 		9F749C611489B016009E1372 /* libNYTimesWrapper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F749C491489B016009E1372 /* libNYTimesWrapper.a */; };
 		9F749C671489B016009E1372 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F749C651489B016009E1372 /* InfoPlist.strings */; };
 		9F749C6A1489B016009E1372 /* NYTimesWrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F749C691489B016009E1372 /* NYTimesWrapperTests.m */; };
+		9F7F3F7E14B14D9D00CAA54E /* _CongressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7F3F7D14B14D9D00CAA54E /* _CongressTests.m */; };
 		9F99BA98148BF2A100F2AC6F /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F99BA7F148BF2A100F2AC6F /* NSObject+SBJson.h */; };
 		9F99BA99148BF2A100F2AC6F /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99BA80148BF2A100F2AC6F /* NSObject+SBJson.m */; };
 		9F99BA9A148BF2A100F2AC6F /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F99BA81148BF2A100F2AC6F /* SBJson.h */; };
@@ -85,6 +86,8 @@
 		9F749C661489B016009E1372 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F749C681489B016009E1372 /* NYTimesWrapperTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NYTimesWrapperTests.h; sourceTree = "<group>"; };
 		9F749C691489B016009E1372 /* NYTimesWrapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NYTimesWrapperTests.m; sourceTree = "<group>"; };
+		9F7F3F7C14B14D9D00CAA54E /* _CongressTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CongressTests.h; sourceTree = "<group>"; };
+		9F7F3F7D14B14D9D00CAA54E /* _CongressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _CongressTests.m; sourceTree = "<group>"; };
 		9F99BA7F148BF2A100F2AC6F /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		9F99BA80148BF2A100F2AC6F /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		9F99BA81148BF2A100F2AC6F /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 			children = (
 				9F749C681489B016009E1372 /* NYTimesWrapperTests.h */,
 				9F749C691489B016009E1372 /* NYTimesWrapperTests.m */,
+				9F7F3F7C14B14D9D00CAA54E /* _CongressTests.h */,
+				9F7F3F7D14B14D9D00CAA54E /* _CongressTests.m */,
 				9F749C631489B016009E1372 /* Supporting Files */,
 			);
 			path = NYTimesWrapperTests;
@@ -430,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F749C6A1489B016009E1372 /* NYTimesWrapperTests.m in Sources */,
+				9F7F3F7E14B14D9D00CAA54E /* _CongressTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

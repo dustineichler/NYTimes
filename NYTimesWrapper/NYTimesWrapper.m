@@ -1677,6 +1677,7 @@
 {
     [super release];
     [campaignFinance release];
+    [community release];
 }
 
 - (id)initWithAPIKey:(NSString *)key
@@ -1688,7 +1689,8 @@
     }
     
     campaignFinance = [[_CampaignFinance alloc] init];
-    community = [[_Community alloc] init];
+    community = [[_Community alloc] init]; // TODO: DWE: Why is this here?
+    congress = [[_Congress alloc] init];
     
     NSParameterAssert(key != nil || [key length] == 0);
     

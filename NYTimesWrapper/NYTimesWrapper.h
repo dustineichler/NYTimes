@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "_Congress.h"
 
 #pragma mark -
 #pragma mark CommonParameters
@@ -561,6 +560,7 @@ struct _BestSellerStruct {
 };
 typedef struct _BestSellerStruct bestSeller;
 
+#import "_Congress.h"
 @class _Congress;
 
 @interface NYTimesWrapper : NSObject

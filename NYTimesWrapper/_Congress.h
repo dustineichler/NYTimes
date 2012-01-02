@@ -287,10 +287,11 @@ typedef struct _ChamberSchedule chamberSchedule;
 #pragma mark MemberBiosAndRoles
 
 - (NSString *)memberBiosAndRolesMemberId;
-- (void)memberBiosAndRolesMemberId:(NSString *)memberId;
+- (void)setMemberBiosAndRolesMemberId:(NSString *)memberId;
 - (NSString *)memberBiosAndRolesFormat;
-- (void)memberBiosAndRolesFormat:(NSString *)format;
-- (NSString *)memberBiosAndRolesApiKey:(NSString *)apiKey;
+- (void)setMemberBiosAndRolesFormat:(NSString *)format;
+- (NSString *)memberBiosAndRolesApiKey;
+- (void)setMemberBiosAndRolesApiKey:(NSString *)apiKey;
 
 #pragma mark -
 #pragma mark NewMembers
@@ -322,7 +323,7 @@ typedef struct _ChamberSchedule chamberSchedule;
 - (NSString *)membersLeavingOfficeChamber;
 - (void)setMembersLeavingOfficeChamber:(NSString *)chamber;
 - (NSString *)membersLeavingOfficeFormat;
-- (void)membersLeavingOfficeFormat:(NSString *)format;
+- (void)setMembersLeavingOfficeFormat:(NSString *)format;
 - (NSString *)membersLeavingOfficeApiKey;
 - (void)setMembersLeavingOfficeApiKey:(NSString *)apiKey;
 
@@ -330,11 +331,27 @@ typedef struct _ChamberSchedule chamberSchedule;
 #pragma mark MemberVotePositions
 
 - (NSString *)memberVotePositionsMemberId;
-- (void)memberVotePositionsMemberId:(NSString *)memberId;
+- (void)setMemberVotePositionsMemberId:(NSString *)memberId;
 - (NSString *)memberVotePositionsFormat;
 - (void)setMemberVotePositionsFormat:(NSString *)format;
 - (NSString *)memberVotePositionsApiKey;
 - (void)setMemberVotePositionsApiKey:(NSString *)apiKey;
+
+#pragma mark -
+#pragma mark MemberVoteComparison
+
+- (NSString *)memberVoteComparisonFirstMemberId;
+- (void)setMemberVoteComparisonFirstMemberId:(NSString *)firstMemberId;
+- (NSString *)memberVoteComparisonSecondMemberId;
+- (void)setMemberVoteComparisonSecondMemberId:(NSString *)secondMemberId;
+- (NSString *)memberVoteComparisonCongressNumber;
+- (void)setMemberVoteComparisonCongressNumber:(NSString *)congressNumber;
+- (NSString *)memberVoteComparisonChamber;
+- (void)setMemberVoteComparisonChamber:(NSString *)chamber;
+- (NSString *)memberVoteComparisonFormat;
+- (void)setMemberVoteComparisonFormat:(NSString *)format;
+- (NSString *)memberVoteComparisonApiKey;
+- (void)setMemberVoteComparisonApiKey:(NSString *)apiKey;
 
 #pragma mark -
 #pragma mark BillsCosponsoredByAMember
@@ -344,7 +361,7 @@ typedef struct _ChamberSchedule chamberSchedule;
 - (NSString *)billsCosponsoredByAMemberType;
 - (void)setBillsCosponsoredByAMemberType:(NSString *)type;
 - (NSString *)billsCosponsoredByAMemberFormat;
-- (void)setBillsCosponsoredByAMemberFormat:(NSString *)fomart;
+- (void)setBillsCosponsoredByAMemberFormat:(NSString *)format;
 - (NSString *)billsCosponsoredByAMemberApiKey;
 - (void)setBillsCosponsoredByAMemberApiKey:(NSString *)apiKey;
 
@@ -521,7 +538,7 @@ typedef struct _ChamberSchedule chamberSchedule;
 
 - (NSString *)nomineesByStateCongressNumber;
 - (void)setNomineesByStateCongressNumber:(NSString *)congressNumber;
-- (NSString *)nomineesByStateSate;
+- (NSString *)nomineesByStateState;
 - (void)setNomineesByStateState:(NSString *)state;
 - (NSString *)nomineesByStateFormat;
 - (void)setNomineesByStateFormat:(NSString *)format;
@@ -557,9 +574,5 @@ typedef struct _ChamberSchedule chamberSchedule;
 - (void)setChamberScheduleFormat:(NSString *)format;
 - (NSString *)chamberScheduleApiKey;
 - (void)setChamberScheduleApiKey:(NSString *)apiKey;
-
-
-
-
 
 @end
