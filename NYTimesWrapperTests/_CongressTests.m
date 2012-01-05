@@ -331,7 +331,7 @@
     STAssertEqualObjects(@"updated", recentBillsType, @"Should be (introduced|updated|passed|major)");
     
     [articles.congress setRecentBillsFormat:@"JSON"];
-    NSString *recentBillsformat = articles.congress.recentBillsformat;
+    NSString *recentBillsformat = articles.congress.recentBillsFormat;
     STAssertEqualObjects(@"json", recentBillsformat, @"Should be either XML or JSON");
     
     [articles.congress setRecentBillsApiKey:@"API-KEY"];
