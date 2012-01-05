@@ -1214,7 +1214,7 @@
     }
 }
 
-- (NSString *)recentBillsformat
+- (NSString *)recentBillsFormat
 {
     return self->recentBills.format;
 }
@@ -1891,6 +1891,16 @@
     {
         self->chamberSchedule.apiKey = apiKey;
     }
+}
+
+- (NSString *)chamberScheduleChamber
+{
+    return self->chamberSchedule.chamber;
+}
+
+- (void)setChamberScheduleChamber:(NSString *)chamber
+{
+    self->chamberSchedule.chamber = chamber;
 }
 
 @end

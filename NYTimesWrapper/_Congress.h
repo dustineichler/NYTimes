@@ -211,6 +211,7 @@ typedef struct _CommitteesAndCommitteeMembers committeesAndCommitteeMembers;
 struct _ChamberSchedule {
     NSString *format;
     NSString *apiKey;
+    NSString *chamber;
 };
 typedef struct _ChamberSchedule chamberSchedule;
 
@@ -454,7 +455,7 @@ typedef struct _ChamberSchedule chamberSchedule;
 - (void)setRecentBillsChamber:(NSString *)chamber;
 - (NSString *)recentBillsType;
 - (void)setRecentBillsType:(NSString *)type;
-- (NSString *)recentBillsformat;
+- (NSString *)recentBillsFormat;
 - (void)setRecentBillsFormat:(NSString *)format;
 - (NSString *)recentBillsApiKey;
 - (void)setRecentBillsApiKey:(NSString *)apiKey;
@@ -574,5 +575,7 @@ typedef struct _ChamberSchedule chamberSchedule;
 - (void)setChamberScheduleFormat:(NSString *)format;
 - (NSString *)chamberScheduleApiKey;
 - (void)setChamberScheduleApiKey:(NSString *)apiKey;
+- (NSString *)chamberScheduleChamber;
+- (void)setChamberScheduleChamber:(NSString *)chamber;
 
 @end
