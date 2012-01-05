@@ -16,6 +16,11 @@
 		9F73916314B532450033A1DA /* _Districts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F73916114B532450033A1DA /* _Districts.h */; };
 		9F73916414B532450033A1DA /* _Districts.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F73916214B532450033A1DA /* _Districts.m */; };
 		9F73916714B544EF0033A1DA /* _DistrictsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F73916614B544EF0033A1DA /* _DistrictsTests.m */; };
+		9F73916A14B54B350033A1DA /* NYTimesEventListings.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F73916814B54B350033A1DA /* NYTimesEventListings.h */; };
+		9F73916B14B54B350033A1DA /* NYTimesEventListings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F73916914B54B350033A1DA /* NYTimesEventListings.m */; };
+		9F73916E14B54C340033A1DA /* _EventListings.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F73916C14B54C340033A1DA /* _EventListings.h */; };
+		9F73916F14B54C340033A1DA /* _EventListings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F73916D14B54C340033A1DA /* _EventListings.m */; };
+		9F73917214B55C4E0033A1DA /* _EventListingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F73917114B55C4E0033A1DA /* _EventListingsTests.m */; };
 		9F749C4D1489B016009E1372 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F749C4C1489B016009E1372 /* Foundation.framework */; };
 		9F749C531489B016009E1372 /* NYTimesWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F749C521489B016009E1372 /* NYTimesWrapper.m */; };
 		9F749C5B1489B016009E1372 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F749C5A1489B016009E1372 /* SenTestingKit.framework */; };
@@ -85,6 +90,12 @@
 		9F73916214B532450033A1DA /* _Districts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Districts.m; sourceTree = "<group>"; };
 		9F73916514B544EF0033A1DA /* _DistrictsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DistrictsTests.h; sourceTree = "<group>"; };
 		9F73916614B544EF0033A1DA /* _DistrictsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DistrictsTests.m; sourceTree = "<group>"; };
+		9F73916814B54B350033A1DA /* NYTimesEventListings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesEventListings.h; sourceTree = "<group>"; };
+		9F73916914B54B350033A1DA /* NYTimesEventListings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesEventListings.m; sourceTree = "<group>"; };
+		9F73916C14B54C340033A1DA /* _EventListings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _EventListings.h; sourceTree = "<group>"; };
+		9F73916D14B54C340033A1DA /* _EventListings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _EventListings.m; sourceTree = "<group>"; };
+		9F73917014B55C4E0033A1DA /* _EventListingsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _EventListingsTests.h; sourceTree = "<group>"; };
+		9F73917114B55C4E0033A1DA /* _EventListingsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _EventListingsTests.m; sourceTree = "<group>"; };
 		9F749C491489B016009E1372 /* libNYTimesWrapper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNYTimesWrapper.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F749C4C1489B016009E1372 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9F749C501489B016009E1372 /* NYTimesWrapper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NYTimesWrapper-Prefix.pch"; sourceTree = "<group>"; };
@@ -210,6 +221,10 @@
 				9F1F15A214AEB1BF0043AEED /* NYTimesCongress.m */,
 				9F73915C14B52FD20033A1DA /* NYTimesDistricts.h */,
 				9F73915D14B52FD20033A1DA /* NYTimesDistricts.m */,
+				9F73916814B54B350033A1DA /* NYTimesEventListings.h */,
+				9F73916914B54B350033A1DA /* NYTimesEventListings.m */,
+				9F73916C14B54C340033A1DA /* _EventListings.h */,
+				9F73916D14B54C340033A1DA /* _EventListings.m */,
 				9F73916114B532450033A1DA /* _Districts.h */,
 				9F73916214B532450033A1DA /* _Districts.m */,
 				9F1F15A614AEB41C0043AEED /* _Congress.h */,
@@ -237,6 +252,8 @@
 				9F7F3F7D14B14D9D00CAA54E /* _CongressTests.m */,
 				9F73916514B544EF0033A1DA /* _DistrictsTests.h */,
 				9F73916614B544EF0033A1DA /* _DistrictsTests.m */,
+				9F73917014B55C4E0033A1DA /* _EventListingsTests.h */,
+				9F73917114B55C4E0033A1DA /* _EventListingsTests.m */,
 				9F749C631489B016009E1372 /* Supporting Files */,
 			);
 			path = NYTimesWrapperTests;
@@ -323,6 +340,8 @@
 				9F1F15A814AEB41C0043AEED /* _Congress.h in Headers */,
 				9F73915E14B52FD20033A1DA /* NYTimesDistricts.h in Headers */,
 				9F73916314B532450033A1DA /* _Districts.h in Headers */,
+				9F73916A14B54B350033A1DA /* NYTimesEventListings.h in Headers */,
+				9F73916E14B54C340033A1DA /* _EventListings.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +467,8 @@
 				9F1F15A914AEB41C0043AEED /* _Congress.m in Sources */,
 				9F73915F14B52FD20033A1DA /* NYTimesDistricts.m in Sources */,
 				9F73916414B532450033A1DA /* _Districts.m in Sources */,
+				9F73916B14B54B350033A1DA /* NYTimesEventListings.m in Sources */,
+				9F73916F14B54C340033A1DA /* _EventListings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +479,7 @@
 				9F749C6A1489B016009E1372 /* NYTimesWrapperTests.m in Sources */,
 				9F7F3F7E14B14D9D00CAA54E /* _CongressTests.m in Sources */,
 				9F73916714B544EF0033A1DA /* _DistrictsTests.m in Sources */,
+				9F73917214B55C4E0033A1DA /* _EventListingsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

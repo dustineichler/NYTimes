@@ -1671,7 +1671,7 @@
 @end
 
 @implementation NYTimesWrapper
-@synthesize article, bestSeller, campaignFinance, community, congress, districts, apiKey;
+@synthesize article, bestSeller, campaignFinance, community, congress, districts, eventListings, apiKey;
 
 - (void)dealloc
 {
@@ -1693,6 +1693,7 @@
     community = [[_Community alloc] init]; // TODO: DWE: Why is this here?
     congress = [[_Congress alloc] init];
     districts = [[_Districts alloc] init];
+    eventListings = [[_EventListings alloc] init];
     
     NSParameterAssert(key != nil || [key length] == 0);
     

@@ -562,9 +562,11 @@ typedef struct _BestSellerStruct bestSeller;
 
 #import "_Congress.h"
 #import "_Districts.h"
+#import "_EventListings.h"
 
 @class _Congress;
 @class _Districts;
+@class _EventListings;
 
 @interface NYTimesWrapper : NSObject
 {    
@@ -576,6 +578,7 @@ typedef struct _BestSellerStruct bestSeller;
     _Community *community;
     _Congress *congress;
     _Districts *districts;
+    _EventListings *eventListings;
 }
 
 @property struct _ArticleStruct article;
@@ -585,6 +588,7 @@ typedef struct _BestSellerStruct bestSeller;
 @property (nonatomic, retain) _Community *community;
 @property (nonatomic, retain) _Congress *congress;
 @property (nonatomic, retain) _Districts *districts;
+@property (nonatomic, retain) _EventListings *eventListings;
 
 @property (nonatomic, retain) NSString *apiKey;
 
