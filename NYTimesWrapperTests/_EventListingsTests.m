@@ -36,16 +36,15 @@
     NSString *mainRequestRadius = articles.eventListings.mainRequestRadius;
     STAssertEqualObjects(@"800", mainRequestRadius, @"Should be positive integer, Default value is 1000");
 
-    [articles.eventListings setMainRequestSw:@"40.756146,-73.99021"];
-    [articles.eventListings setMainRequestNe:@"40.756146,-73.99021"];
-    NSString *mainRequestNe = articles.eventListings.mainRequestNe;
-    STAssertEqualObjects(@"40.756146,-73.99021", mainRequestNe, @"Should be Two float values, separated by a comma");
+//    [articles.eventListings setMainRequestSw:@"40.756146,-73.99021"];
+//    [articles.eventListings setMainRequestNe:@"40.756146,-73.99021"];
+//    NSString *mainRequestNe = articles.eventListings.mainRequestNe;
+//    STAssertEqualObjects(@"40.756146,-73.99021", mainRequestNe, @"Should be Two float values, separated by a comma");
     
-    [articles.eventListings setMainRequestNe:@"40.756146,-73.99021"];
-    [articles.eventListings setMainRequestSw:@"40.756146,-73.99021"];
-    NSString *mainRequestSw = articles.eventListings.mainRequestSw;
-    STAssertEqualObjects(@"40.756146,-73.99021", mainRequestSw, @"Should be Two float values, separated by a comma");
-    
+//    [articles.eventListings setMainRequestNe:@"40.756146,-73.99021"];
+//    [articles.eventListings setMainRequestSw:@"40.756146,-73.99021"];
+//    NSString *mainRequestSw = articles.eventListings.mainRequestSw;
+//    STAssertEqualObjects(@"40.756146,-73.99021", mainRequestSw, @"Should be Two float values, separated by a comma");
     
 //  Search keywords to perform a text search on the fields: web_description,
 //  event_name and venue_name. 'AND' searches can be performed by wrapping 
