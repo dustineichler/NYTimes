@@ -16,6 +16,11 @@
 		9F29439814B7D2C4007BB5C0 /* _MostPopular.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F29439614B7D2C4007BB5C0 /* _MostPopular.h */; };
 		9F29439914B7D2C4007BB5C0 /* _MostPopular.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F29439714B7D2C4007BB5C0 /* _MostPopular.m */; };
 		9F29439C14B7D2D9007BB5C0 /* _MostPopularTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F29439B14B7D2D9007BB5C0 /* _MostPopularTests.m */; };
+		9F2943A314B7EF20007BB5C0 /* NYTimesMovieReviews.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2943A114B7EF20007BB5C0 /* NYTimesMovieReviews.h */; };
+		9F2943A414B7EF20007BB5C0 /* NYTimesMovieReviews.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943A214B7EF20007BB5C0 /* NYTimesMovieReviews.m */; };
+		9F2943A714B7EF4C007BB5C0 /* _MovieReviews.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2943A514B7EF4C007BB5C0 /* _MovieReviews.h */; };
+		9F2943A814B7EF4C007BB5C0 /* _MovieReviews.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943A614B7EF4C007BB5C0 /* _MovieReviews.m */; };
+		9F2943AB14B7EF6A007BB5C0 /* _MovieReviewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943AA14B7EF69007BB5C0 /* _MovieReviewsTests.m */; };
 		9F73915E14B52FD20033A1DA /* NYTimesDistricts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F73915C14B52FD20033A1DA /* NYTimesDistricts.h */; };
 		9F73915F14B52FD20033A1DA /* NYTimesDistricts.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F73915D14B52FD20033A1DA /* NYTimesDistricts.m */; };
 		9F73916314B532450033A1DA /* _Districts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F73916114B532450033A1DA /* _Districts.h */; };
@@ -95,6 +100,12 @@
 		9F29439714B7D2C4007BB5C0 /* _MostPopular.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MostPopular.m; sourceTree = "<group>"; };
 		9F29439A14B7D2D9007BB5C0 /* _MostPopularTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MostPopularTests.h; sourceTree = "<group>"; };
 		9F29439B14B7D2D9007BB5C0 /* _MostPopularTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MostPopularTests.m; sourceTree = "<group>"; };
+		9F2943A114B7EF20007BB5C0 /* NYTimesMovieReviews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesMovieReviews.h; sourceTree = "<group>"; };
+		9F2943A214B7EF20007BB5C0 /* NYTimesMovieReviews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesMovieReviews.m; sourceTree = "<group>"; };
+		9F2943A514B7EF4C007BB5C0 /* _MovieReviews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MovieReviews.h; sourceTree = "<group>"; };
+		9F2943A614B7EF4C007BB5C0 /* _MovieReviews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MovieReviews.m; sourceTree = "<group>"; };
+		9F2943A914B7EF69007BB5C0 /* _MovieReviewsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MovieReviewsTests.h; sourceTree = "<group>"; };
+		9F2943AA14B7EF69007BB5C0 /* _MovieReviewsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MovieReviewsTests.m; sourceTree = "<group>"; };
 		9F73915C14B52FD20033A1DA /* NYTimesDistricts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesDistricts.h; sourceTree = "<group>"; };
 		9F73915D14B52FD20033A1DA /* NYTimesDistricts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesDistricts.m; sourceTree = "<group>"; };
 		9F73916114B532450033A1DA /* _Districts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Districts.h; sourceTree = "<group>"; };
@@ -236,6 +247,10 @@
 				9F73916914B54B350033A1DA /* NYTimesEventListings.m */,
 				9F29439114B7D2AE007BB5C0 /* NYTimesMostPopular.h */,
 				9F29439214B7D2AE007BB5C0 /* NYTimesMostPopular.m */,
+				9F2943A114B7EF20007BB5C0 /* NYTimesMovieReviews.h */,
+				9F2943A214B7EF20007BB5C0 /* NYTimesMovieReviews.m */,
+				9F2943A514B7EF4C007BB5C0 /* _MovieReviews.h */,
+				9F2943A614B7EF4C007BB5C0 /* _MovieReviews.m */,
 				9F29439614B7D2C4007BB5C0 /* _MostPopular.h */,
 				9F29439714B7D2C4007BB5C0 /* _MostPopular.m */,
 				9F73916C14B54C340033A1DA /* _EventListings.h */,
@@ -271,6 +286,8 @@
 				9F73917114B55C4E0033A1DA /* _EventListingsTests.m */,
 				9F29439A14B7D2D9007BB5C0 /* _MostPopularTests.h */,
 				9F29439B14B7D2D9007BB5C0 /* _MostPopularTests.m */,
+				9F2943A914B7EF69007BB5C0 /* _MovieReviewsTests.h */,
+				9F2943AA14B7EF69007BB5C0 /* _MovieReviewsTests.m */,
 				9F749C631489B016009E1372 /* Supporting Files */,
 			);
 			path = NYTimesWrapperTests;
@@ -361,6 +378,8 @@
 				9F73916E14B54C340033A1DA /* _EventListings.h in Headers */,
 				9F29439314B7D2AE007BB5C0 /* NYTimesMostPopular.h in Headers */,
 				9F29439814B7D2C4007BB5C0 /* _MostPopular.h in Headers */,
+				9F2943A314B7EF20007BB5C0 /* NYTimesMovieReviews.h in Headers */,
+				9F2943A714B7EF4C007BB5C0 /* _MovieReviews.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +509,8 @@
 				9F73916F14B54C340033A1DA /* _EventListings.m in Sources */,
 				9F29439414B7D2AE007BB5C0 /* NYTimesMostPopular.m in Sources */,
 				9F29439914B7D2C4007BB5C0 /* _MostPopular.m in Sources */,
+				9F2943A414B7EF20007BB5C0 /* NYTimesMovieReviews.m in Sources */,
+				9F2943A814B7EF4C007BB5C0 /* _MovieReviews.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +523,7 @@
 				9F73916714B544EF0033A1DA /* _DistrictsTests.m in Sources */,
 				9F73917214B55C4E0033A1DA /* _EventListingsTests.m in Sources */,
 				9F29439C14B7D2D9007BB5C0 /* _MostPopularTests.m in Sources */,
+				9F2943AB14B7EF6A007BB5C0 /* _MovieReviewsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -564,6 +564,7 @@ typedef struct _BestSellerStruct bestSeller;
 #import "_Districts.h"
 #import "_EventListings.h"
 #import "_MostPopular.h"
+#import "_MovieReviews.h"
 
 @class _Congress;
 @class _Districts;
@@ -582,6 +583,7 @@ typedef struct _BestSellerStruct bestSeller;
     _Districts *districts;
     _EventListings *eventListings;
     _MostPopular *mostPopular;
+    _MovieReviews *movieReviews;
 }
 
 @property struct _ArticleStruct article;
@@ -593,6 +595,7 @@ typedef struct _BestSellerStruct bestSeller;
 @property (nonatomic, retain) _Districts *districts;
 @property (nonatomic, retain) _EventListings *eventListings;
 @property (nonatomic, retain) _MostPopular *mostPopular;
+@property (nonatomic, retain) _MovieReviews *movieReviews;
 
 @property (nonatomic, retain) NSString *apiKey;
 
