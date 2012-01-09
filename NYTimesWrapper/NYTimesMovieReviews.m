@@ -27,8 +27,6 @@
 {
     NSMutableString *params = [NSMutableString stringWithFormat:@"%@", @""];
     
-    // Code goes here...
-    
     if (obj.movieReviews.reviewsByKeyWordApiKey)
     {
         if (obj.movieReviews.reviewsByKeyWordFormat)
@@ -114,8 +112,6 @@
             [params appendFormat:@"&api-key=%@", obj.movieReviews.reviewsAndNYTCriticsPicksApiKey];
         }
     }
-    
-    // reviews/reviewer/{reviewer-name}[.response_format]?[optional-param1=value1]&[...]&api-key={your-API-key}
     
     if (obj.movieReviews.reviewsByReviewerApiKey && obj.movieReviews.reviewsByReviewerReviewerName)
     {

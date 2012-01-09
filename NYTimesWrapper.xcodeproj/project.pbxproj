@@ -21,6 +21,11 @@
 		9F2943A714B7EF4C007BB5C0 /* _MovieReviews.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2943A514B7EF4C007BB5C0 /* _MovieReviews.h */; };
 		9F2943A814B7EF4C007BB5C0 /* _MovieReviews.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943A614B7EF4C007BB5C0 /* _MovieReviews.m */; };
 		9F2943AB14B7EF6A007BB5C0 /* _MovieReviewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943AA14B7EF69007BB5C0 /* _MovieReviewsTests.m */; };
+		9F2943AE14BA85F2007BB5C0 /* NYTimesRealEstate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2943AC14BA85F2007BB5C0 /* NYTimesRealEstate.h */; };
+		9F2943AF14BA85F2007BB5C0 /* NYTimesRealEstate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943AD14BA85F2007BB5C0 /* NYTimesRealEstate.m */; };
+		9F2943B214BA861D007BB5C0 /* _RealEstate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2943B014BA861D007BB5C0 /* _RealEstate.h */; };
+		9F2943B314BA861D007BB5C0 /* _RealEstate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943B114BA861D007BB5C0 /* _RealEstate.m */; };
+		9F2943B614BA8648007BB5C0 /* _RealEstateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943B514BA8648007BB5C0 /* _RealEstateTests.m */; };
 		9F73915E14B52FD20033A1DA /* NYTimesDistricts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F73915C14B52FD20033A1DA /* NYTimesDistricts.h */; };
 		9F73915F14B52FD20033A1DA /* NYTimesDistricts.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F73915D14B52FD20033A1DA /* NYTimesDistricts.m */; };
 		9F73916314B532450033A1DA /* _Districts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F73916114B532450033A1DA /* _Districts.h */; };
@@ -106,6 +111,12 @@
 		9F2943A614B7EF4C007BB5C0 /* _MovieReviews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MovieReviews.m; sourceTree = "<group>"; };
 		9F2943A914B7EF69007BB5C0 /* _MovieReviewsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MovieReviewsTests.h; sourceTree = "<group>"; };
 		9F2943AA14B7EF69007BB5C0 /* _MovieReviewsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MovieReviewsTests.m; sourceTree = "<group>"; };
+		9F2943AC14BA85F2007BB5C0 /* NYTimesRealEstate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesRealEstate.h; sourceTree = "<group>"; };
+		9F2943AD14BA85F2007BB5C0 /* NYTimesRealEstate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesRealEstate.m; sourceTree = "<group>"; };
+		9F2943B014BA861D007BB5C0 /* _RealEstate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RealEstate.h; sourceTree = "<group>"; };
+		9F2943B114BA861D007BB5C0 /* _RealEstate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RealEstate.m; sourceTree = "<group>"; };
+		9F2943B414BA8648007BB5C0 /* _RealEstateTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RealEstateTests.h; sourceTree = "<group>"; };
+		9F2943B514BA8648007BB5C0 /* _RealEstateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RealEstateTests.m; sourceTree = "<group>"; };
 		9F73915C14B52FD20033A1DA /* NYTimesDistricts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesDistricts.h; sourceTree = "<group>"; };
 		9F73915D14B52FD20033A1DA /* NYTimesDistricts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesDistricts.m; sourceTree = "<group>"; };
 		9F73916114B532450033A1DA /* _Districts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Districts.h; sourceTree = "<group>"; };
@@ -249,6 +260,10 @@
 				9F29439214B7D2AE007BB5C0 /* NYTimesMostPopular.m */,
 				9F2943A114B7EF20007BB5C0 /* NYTimesMovieReviews.h */,
 				9F2943A214B7EF20007BB5C0 /* NYTimesMovieReviews.m */,
+				9F2943AC14BA85F2007BB5C0 /* NYTimesRealEstate.h */,
+				9F2943AD14BA85F2007BB5C0 /* NYTimesRealEstate.m */,
+				9F2943B014BA861D007BB5C0 /* _RealEstate.h */,
+				9F2943B114BA861D007BB5C0 /* _RealEstate.m */,
 				9F2943A514B7EF4C007BB5C0 /* _MovieReviews.h */,
 				9F2943A614B7EF4C007BB5C0 /* _MovieReviews.m */,
 				9F29439614B7D2C4007BB5C0 /* _MostPopular.h */,
@@ -288,6 +303,8 @@
 				9F29439B14B7D2D9007BB5C0 /* _MostPopularTests.m */,
 				9F2943A914B7EF69007BB5C0 /* _MovieReviewsTests.h */,
 				9F2943AA14B7EF69007BB5C0 /* _MovieReviewsTests.m */,
+				9F2943B414BA8648007BB5C0 /* _RealEstateTests.h */,
+				9F2943B514BA8648007BB5C0 /* _RealEstateTests.m */,
 				9F749C631489B016009E1372 /* Supporting Files */,
 			);
 			path = NYTimesWrapperTests;
@@ -380,6 +397,8 @@
 				9F29439814B7D2C4007BB5C0 /* _MostPopular.h in Headers */,
 				9F2943A314B7EF20007BB5C0 /* NYTimesMovieReviews.h in Headers */,
 				9F2943A714B7EF4C007BB5C0 /* _MovieReviews.h in Headers */,
+				9F2943AE14BA85F2007BB5C0 /* NYTimesRealEstate.h in Headers */,
+				9F2943B214BA861D007BB5C0 /* _RealEstate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +530,8 @@
 				9F29439914B7D2C4007BB5C0 /* _MostPopular.m in Sources */,
 				9F2943A414B7EF20007BB5C0 /* NYTimesMovieReviews.m in Sources */,
 				9F2943A814B7EF4C007BB5C0 /* _MovieReviews.m in Sources */,
+				9F2943AF14BA85F2007BB5C0 /* NYTimesRealEstate.m in Sources */,
+				9F2943B314BA861D007BB5C0 /* _RealEstate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +545,7 @@
 				9F73917214B55C4E0033A1DA /* _EventListingsTests.m in Sources */,
 				9F29439C14B7D2D9007BB5C0 /* _MostPopularTests.m in Sources */,
 				9F2943AB14B7EF6A007BB5C0 /* _MovieReviewsTests.m in Sources */,
+				9F2943B614BA8648007BB5C0 /* _RealEstateTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
