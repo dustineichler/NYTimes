@@ -17,7 +17,7 @@ Conceived at NYTimes HackDay 2011. Related article. http://open.blogs.nytimes.co
 
 To use.
 
-<code>
+<pre>
   NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:ARTICLE_API_KEY];
   
   /**
@@ -45,7 +45,7 @@ To use.
                        }failure:^(NSData *data, NSError *error){
                            NSLog(@"Errors %@", error);
                        } tag:@"tag"];
-</code>
+</pre>
 
 <pre>
   NYTimesWrapper *bestSellers = [[NYTimesWrapper alloc] initWithKey:@"BESTSELLER-API-KEY"];
