@@ -566,12 +566,14 @@ typedef struct _BestSellerStruct bestSeller;
 #import "_MostPopular.h"
 #import "_MovieReviews.h"
 #import "_RealEstate.h"
+#import "_Semantic.h"
 
 @class _Congress;
 @class _Districts;
 @class _EventListings;
 @class _MostPopular;
 @class _RealEstate;
+@class _Semantic;
 
 @interface NYTimesWrapper : NSObject
 {    
@@ -587,6 +589,7 @@ typedef struct _BestSellerStruct bestSeller;
     _MostPopular *mostPopular;
     _MovieReviews *movieReviews;
     _RealEstate *realEstate;
+    _Semantic *semantic;
 }
 
 @property struct _ArticleStruct article;
@@ -600,6 +603,7 @@ typedef struct _BestSellerStruct bestSeller;
 @property (nonatomic, retain) _MostPopular *mostPopular;
 @property (nonatomic, retain) _MovieReviews *movieReviews;
 @property (nonatomic, retain) _RealEstate *realEstate;
+@property (nonatomic, retain) _Semantic *semantic;
 
 @property (nonatomic, retain) NSString *apiKey;
 
