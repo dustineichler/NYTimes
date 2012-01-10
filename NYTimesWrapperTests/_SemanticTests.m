@@ -28,6 +28,7 @@
     NSString *nameConceptName = articles.semantic.nameConceptName;
     STAssertEqualObjects(@"baseball", nameConceptName, @"Should be valid string");
     
+//  TODO: DWE: This test(s) isn't passing
 //    [articles.semantic setNameFields:@"pages, ticker_symbol"];
 //    NSString *nameFields = articles.semantic.nameFields;
 //    STAssertEqualObjects(@"pages, ticker_symbol", nameFields, @"Should be ALL or (pages, ticker_symbol, links, taxonomy, combinations, geocodes, article_list, scope_notes, search_api_query)");

@@ -31,6 +31,11 @@
 		9F2943BD14BBAAD7007BB5C0 /* _Semantic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2943BB14BBAAD6007BB5C0 /* _Semantic.h */; };
 		9F2943BE14BBAAD7007BB5C0 /* _Semantic.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943BC14BBAAD7007BB5C0 /* _Semantic.m */; };
 		9F2943C114BBAC15007BB5C0 /* _SemanticTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943C014BBAC15007BB5C0 /* _SemanticTests.m */; };
+		9F2943C414BBCDCA007BB5C0 /* NYTimesNewsWire.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2943C214BBCDCA007BB5C0 /* NYTimesNewsWire.h */; };
+		9F2943C514BBCDCA007BB5C0 /* NYTimesNewsWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943C314BBCDCA007BB5C0 /* NYTimesNewsWire.m */; };
+		9F2943C814BBCDFA007BB5C0 /* _NewsWire.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2943C614BBCDFA007BB5C0 /* _NewsWire.h */; };
+		9F2943C914BBCDFA007BB5C0 /* _NewsWire.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943C714BBCDFA007BB5C0 /* _NewsWire.m */; };
+		9F2943CC14BBCE24007BB5C0 /* _NewsWireTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2943CB14BBCE24007BB5C0 /* _NewsWireTests.m */; };
 		9F73915E14B52FD20033A1DA /* NYTimesDistricts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F73915C14B52FD20033A1DA /* NYTimesDistricts.h */; };
 		9F73915F14B52FD20033A1DA /* NYTimesDistricts.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F73915D14B52FD20033A1DA /* NYTimesDistricts.m */; };
 		9F73916314B532450033A1DA /* _Districts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F73916114B532450033A1DA /* _Districts.h */; };
@@ -128,6 +133,12 @@
 		9F2943BC14BBAAD7007BB5C0 /* _Semantic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Semantic.m; sourceTree = "<group>"; };
 		9F2943BF14BBAC15007BB5C0 /* _SemanticTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SemanticTests.h; sourceTree = "<group>"; };
 		9F2943C014BBAC15007BB5C0 /* _SemanticTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SemanticTests.m; sourceTree = "<group>"; };
+		9F2943C214BBCDCA007BB5C0 /* NYTimesNewsWire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesNewsWire.h; sourceTree = "<group>"; };
+		9F2943C314BBCDCA007BB5C0 /* NYTimesNewsWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesNewsWire.m; sourceTree = "<group>"; };
+		9F2943C614BBCDFA007BB5C0 /* _NewsWire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _NewsWire.h; sourceTree = "<group>"; };
+		9F2943C714BBCDFA007BB5C0 /* _NewsWire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _NewsWire.m; sourceTree = "<group>"; };
+		9F2943CA14BBCE24007BB5C0 /* _NewsWireTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _NewsWireTests.h; sourceTree = "<group>"; };
+		9F2943CB14BBCE24007BB5C0 /* _NewsWireTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _NewsWireTests.m; sourceTree = "<group>"; };
 		9F73915C14B52FD20033A1DA /* NYTimesDistricts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesDistricts.h; sourceTree = "<group>"; };
 		9F73915D14B52FD20033A1DA /* NYTimesDistricts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesDistricts.m; sourceTree = "<group>"; };
 		9F73916114B532450033A1DA /* _Districts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Districts.h; sourceTree = "<group>"; };
@@ -275,6 +286,10 @@
 				9F2943AD14BA85F2007BB5C0 /* NYTimesRealEstate.m */,
 				9F2943B714BBAABA007BB5C0 /* NYTimesSemantic.h */,
 				9F2943B814BBAABB007BB5C0 /* NYTimesSemantic.m */,
+				9F2943C214BBCDCA007BB5C0 /* NYTimesNewsWire.h */,
+				9F2943C314BBCDCA007BB5C0 /* NYTimesNewsWire.m */,
+				9F2943C614BBCDFA007BB5C0 /* _NewsWire.h */,
+				9F2943C714BBCDFA007BB5C0 /* _NewsWire.m */,
 				9F2943BB14BBAAD6007BB5C0 /* _Semantic.h */,
 				9F2943BC14BBAAD7007BB5C0 /* _Semantic.m */,
 				9F2943B014BA861D007BB5C0 /* _RealEstate.h */,
@@ -322,6 +337,8 @@
 				9F2943B514BA8648007BB5C0 /* _RealEstateTests.m */,
 				9F2943BF14BBAC15007BB5C0 /* _SemanticTests.h */,
 				9F2943C014BBAC15007BB5C0 /* _SemanticTests.m */,
+				9F2943CA14BBCE24007BB5C0 /* _NewsWireTests.h */,
+				9F2943CB14BBCE24007BB5C0 /* _NewsWireTests.m */,
 				9F749C631489B016009E1372 /* Supporting Files */,
 			);
 			path = NYTimesWrapperTests;
@@ -418,6 +435,8 @@
 				9F2943B214BA861D007BB5C0 /* _RealEstate.h in Headers */,
 				9F2943B914BBAABB007BB5C0 /* NYTimesSemantic.h in Headers */,
 				9F2943BD14BBAAD7007BB5C0 /* _Semantic.h in Headers */,
+				9F2943C414BBCDCA007BB5C0 /* NYTimesNewsWire.h in Headers */,
+				9F2943C814BBCDFA007BB5C0 /* _NewsWire.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +572,8 @@
 				9F2943B314BA861D007BB5C0 /* _RealEstate.m in Sources */,
 				9F2943BA14BBAABB007BB5C0 /* NYTimesSemantic.m in Sources */,
 				9F2943BE14BBAAD7007BB5C0 /* _Semantic.m in Sources */,
+				9F2943C514BBCDCA007BB5C0 /* NYTimesNewsWire.m in Sources */,
+				9F2943C914BBCDFA007BB5C0 /* _NewsWire.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +589,7 @@
 				9F2943AB14B7EF6A007BB5C0 /* _MovieReviewsTests.m in Sources */,
 				9F2943B614BA8648007BB5C0 /* _RealEstateTests.m in Sources */,
 				9F2943C114BBAC15007BB5C0 /* _SemanticTests.m in Sources */,
+				9F2943CC14BBCE24007BB5C0 /* _NewsWireTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
