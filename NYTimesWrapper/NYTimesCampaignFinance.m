@@ -508,8 +508,6 @@
     
     baseURL = [NSString stringWithFormat:@"%@%@", presidentialDonorInformation, params16];
     
-    [obj release];
-    
     return baseURL;
 }
 

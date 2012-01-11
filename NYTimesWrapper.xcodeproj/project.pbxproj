@@ -163,7 +163,7 @@
 		9F749C661489B016009E1372 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F749C681489B016009E1372 /* NYTimesWrapperTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NYTimesWrapperTests.h; sourceTree = "<group>"; };
 		9F749C691489B016009E1372 /* NYTimesWrapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NYTimesWrapperTests.m; sourceTree = "<group>"; };
-		9F7F3F7C14B14D9D00CAA54E /* _CongressTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CongressTests.h; sourceTree = "<group>"; };
+		9F7F3F7C14B14D9D00CAA54E /* _CongressTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _CongressTests.h; path = NYTimesWrapperTests/_CongressTests.h; sourceTree = SOURCE_ROOT; };
 		9F7F3F7D14B14D9D00CAA54E /* _CongressTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _CongressTests.m; sourceTree = "<group>"; };
 		9F99BA7F148BF2A100F2AC6F /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		9F99BA80148BF2A100F2AC6F /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };

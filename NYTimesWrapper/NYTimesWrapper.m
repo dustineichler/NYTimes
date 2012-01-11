@@ -465,10 +465,9 @@
 
 - (void)setCandidateSearchFormat:(NSString *)format
 {
-    if (format == @"json")
-    {
-        self->candidateSearch.format = format;
-    } else {
+    if (format == @"JSON") {
+        self->candidateSearch.format = @"json";
+    } else if (format == @"XML") {
         self->candidateSearch.format = @"xml";
     }
 }
@@ -1712,10 +1711,9 @@
 
 - (void)setFormat:(NSString *)string
 {
-    if (string == @"xml")
-    {
-        self->article.format = string;
-    } else {
+    if (string == @"XML") {
+        self->article.format = @"xml";
+    } else if (string == @"JSON") {
         self->article.format = @"json";
     }
 }
@@ -1769,14 +1767,20 @@
     }
 }
 
+// TODO: DWE: Needs to check 1. if Facets is required and two if the right Field is set.
+// List: abstract, author, body, byline, classifiers_facet, column_facet, comments, date, day_of_week_facet, dbpedia_resource, dbpedia_resource_url, des_facet, desk_facet, facet_terms, fee, geo_facet, lead_paragraph, material_type_facet, multimedia, nytd_byline, nytd_des_facet, nytd_geo_facet, nytd_lead_paragraph, nytd_org_facet, nytd_per_facet, nytd_section_facet, nytd_title, nytd_works_mentioned_facet, org_facet, page_facet, per_facet, publication_day, publication_month, publication_year, related_multimedia, section_page_facet, small_image, small_image_url, small_image_height, small_image_width, source_facet, text, title, tokens, url, word_count, works_mentioned_facet
+
 - (NSString *)fields
 {
+    
     return self->article.fields;
 }
 
 - (void)setOffset:(NSString *)offset
 {
-    if (offset)
+    int _offset = [offset intValue];
+    
+    if (_offset > 0)
     {
         self->article.offset = offset;
     }
@@ -1789,9 +1793,13 @@
 
 - (void)setRank:(NSString *)rank
 {
-    if (rank)
+    if (rank == @"NEWEST")
     {
-        self->article.rank = rank;
+        self->article.rank = @"newest";
+    } else if (rank == @"OLDEST") {
+        self->article.rank = @"oldest";
+    } else if (rank == @"CLOSEST") {
+        self->article.rank = @"closest";
     }
 }
 
@@ -1843,6 +1851,7 @@
 #pragma mark -
 #pragma Best Sellers Methods
 
+// TODO: DWE: Get Best-Seller List Names. See Documentation and Requests.
 - (void)setListName:(NSString *)listName
 {    
     NSArray *_fields = [listName componentsSeparatedByString:@" "];
@@ -1944,13 +1953,10 @@
 
 - (void)setBestSellerFormat:(NSString *)format
 {
-    if (format == @"xml")
-    {
-        self->bestSeller.format = format;
-    } else if (format == @"json") {
-        self->bestSeller.format = format;
-    } else {
-        self->bestSeller.format = nil;    
+    if (format == @"XML") {
+        self->bestSeller.format = @"xml";
+    } else if (format == @"JSON") {
+        self->bestSeller.format = @"json";
     }
 }
 
