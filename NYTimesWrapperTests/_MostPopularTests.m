@@ -7,6 +7,7 @@
 //
 
 #import "_MostPopularTests.h"
+#import "NYTimesMostPopular.h"
 #import <UIKit/UIKit.h>
 
 @implementation _MostPopularTests
@@ -49,4 +50,36 @@
     NSString *baseApiKey = articles.mostPopular.baseApiKey;
     STAssertEqualObjects(@"API-KEY", baseApiKey, @"Should be alphanumeric string");
 }
+
+- (void)testMostPopularConnection
+{
+    /**
+        Main Request
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.mostPopular setBaseResourceType:@"MOSTEMAILED"];
+    [nytimes.mostPopular setBaseSection:@"ALL SECTIONS"];
+    [nytimes.mostPopular setBaseTimePeriod:@"7"];
+    [nytimes.mostPopular setBaseResourceType:@"MOSTSHARED"];
+    [nytimes.mostPopular setBaseShareTypes:@"DIGG"];
+    [nytimes.mostPopular setBaseOffSet:@"40"];
+    [nytimes.mostPopular setBaseFormat:@"JSON"];
+    [nytimes.mostPopular setBaseApiKey:@"API-KEY"];
+    
+    [NYTimesMostPopular asyncRequest:nytimes
+                             success:^(NSData *data, NSURLResponse *response){
+                                 NSLog(@"Results %@", data);
+                             }failure:^(NSData *data, NSError *error){
+                                 NSLog(@"Errors %@", error);
+                             }tag:@"mostpopular main request"];
+}
+
 @end

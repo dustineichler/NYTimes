@@ -7,6 +7,7 @@
 //
 
 #import "_MovieReviewsTests.h"
+#import "NYTimesMovieReviews.h"
 #import <UIKit/UIKit.h>
 
 @implementation _MovieReviewsTests
@@ -65,6 +66,41 @@
     STAssertEqualObjects(@"API-KEY", reviewsByKeyWordApiKey, @"Should be alphanumeric string");
 }
 
+- (void)testMovieReviewsByKeywordConnection
+{
+    /**
+        Main Request
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    
+    [nytimes.movieReviews setReviewsByKeyWordQuery:@"28 days later"];
+    [nytimes.movieReviews setReviewsByKeyWordCriticsPick:@"YES"];    
+    [nytimes.movieReviews setReviewsByKeyWordThousandBest:@"YES"];
+    [nytimes.movieReviews setReviewsByKeyWordDvd:@"NO"];
+    [nytimes.movieReviews setReviewsByKeyWordReviewer:@"Manohla Dargis"];
+    [nytimes.movieReviews setReviewsByKeyWordPublicationDate:@"2012-01-02"];
+    [nytimes.movieReviews setReviewsByKeyWordOpeningDate:@"2012-01-02"];
+    [nytimes.movieReviews setReviewsByKeyWordOffSet:@"40"];
+    [nytimes.movieReviews setReviewsByKeyWordOrder:@"BY TITLE"];
+    [nytimes.movieReviews setReviewsByKeyWordFormat:@"JSON"];
+    [nytimes.movieReviews setReviewsByKeyWordApiKey:@"API-KEY"];
+    
+    [NYTimesMovieReviews asyncRequest:nytimes
+                              success:^(NSData *data, NSURLResponse *response){
+                                  NSLog(@"Results %@", data);
+                              }failure:^(NSData *data, NSError *error){
+                                  NSLog(@"Errors %@", error);
+                              }tag:@"moviereviews by keywords"];
+}
+
 - (void)testMovieReviewsReviewsAndNYTCriticsPicks
 {
     [articles.movieReviews setReviewsAndNYTCriticsPicksResourceType:@"DVD PICKS"];
@@ -86,6 +122,35 @@
     [articles.movieReviews setReviewsAndNYTCriticsPicksApiKey:@"API-KEY"];
     NSString *reviewsAndNYTCriticsPicksApiKey = articles.movieReviews.reviewsAndNYTCriticsPicksApiKey;
     STAssertEqualObjects(@"API-KEY", reviewsAndNYTCriticsPicksApiKey, @"Should be alphanumeric string");
+}
+
+- (void)testMovieReviewsReviewsAndNYTCriticsPicksConnection
+{
+    /**
+        Main Request
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    
+    [nytimes.movieReviews setReviewsAndNYTCriticsPicksResourceType:@"DVD PICKS"];
+    [nytimes.movieReviews setReviewsAndNYTCriticsPicksOffSet:@"40"];
+    [nytimes.movieReviews setReviewsAndNYTCriticsPicksOrder:@"BY TITLE"];
+    [nytimes.movieReviews setReviewsAndNYTCriticsPicksFormat:@"JSON"];
+    [nytimes.movieReviews setReviewsAndNYTCriticsPicksApiKey:@"API-KEY"];
+    
+    [NYTimesMovieReviews asyncRequest:nytimes
+                              success:^(NSData *data, NSURLResponse *response){
+                                  NSLog(@"Results %@", data);
+                              }failure:^(NSData *data, NSError *error){
+                                  NSLog(@"Errors %@", error);
+                              }tag:@"moviereviews reviews and nytimes critics picks"];
 }
 
 - (void)testMovieReviewsReviewsByReviewers
@@ -115,6 +180,36 @@
     STAssertEqualObjects(@"API-KEY", reviewsByReviewerApiKey, @"Should be alphanumeric string");
 }
 
+- (void)testMovieReviewsReviewsByReviewersConnection
+{
+    /**
+        Main Request
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    
+    [nytimes.movieReviews setReviewsByReviewerCriticsPick:@"YES"];
+    [nytimes.movieReviews setReviewsByReviewerReviewerName:@"Manohla Dargis"];
+    [nytimes.movieReviews setReviewsByReviewerOffSet:@"40"];
+    [nytimes.movieReviews setReviewsByReviewerOrder:@"BY TITLE"];
+    [nytimes.movieReviews setReviewsByReviewerFormat:@"JSON"];
+    [nytimes.movieReviews setReviewsByReviewerApiKey:@"API-KEY"];
+
+    [NYTimesMovieReviews asyncRequest:nytimes
+                              success:^(NSData *data, NSURLResponse *response){
+                                  NSLog(@"Results %@", data);
+                              }failure:^(NSData *data, NSError *error){
+                                  NSLog(@"Errors %@", error);
+                              }tag:@"moviereviews reviews by reviewers"];
+}
+
 - (void)testMovieReviewsReviewerDetails
 {
     [articles.movieReviews setReviewerDetailsResourceType:@"FULL TIME"];
@@ -129,5 +224,32 @@
     NSString *reviewerDetailsApiKey = articles.movieReviews.reviewerDetailsApiKey;
     STAssertEqualObjects(@"API-KEY", reviewerDetailsApiKey, @"Should be alphanumeric string"); 
 }
+
+- (void)testMovieReviewsReviewerDetailsConnection
+{
+    /**
+        Main Request
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.movieReviews setReviewerDetailsResourceType:@"FULL TIME"];
+    [nytimes.movieReviews setReviewerDetailsFormat:@"JSON"];
+    [nytimes.movieReviews setReviewerDetailsApiKey:@"API-KEY"];
+    
+    [NYTimesMovieReviews asyncRequest:nytimes
+                              success:^(NSData *data, NSURLResponse *response){
+                                  NSLog(@"Results %@", data);
+                              }failure:^(NSData *data, NSError *error){
+                                  NSLog(@"Errors %@", error);
+                              }tag:@"moviereviews reviews by reviewers"];
+}
+
 
 @end

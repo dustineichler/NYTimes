@@ -7,7 +7,7 @@
 //
 
 #import "_DistrictsTests.h"
-
+#import "NYTimesDistricts.h"
 #import <UIKit/UIKit.h>
 
 @implementation _DistrictsTests
@@ -36,6 +36,33 @@
     [articles.districts setMainRequestFormat:@"JSON"];
     NSString *mainRequestFormat = articles.districts.mainRequestFormat;
     STAssertEqualObjects(@"json", mainRequestFormat, @"Should be either XML or JSON");
+}
+
+- (void)testMainRequestConnection
+{
+    /**
+        Main Request
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.districts setMainRequestApiKey:@"API-KEY"];
+    [nytimes.districts setMainRequestLat:@"LAT-NUMBER"];
+    [nytimes.districts setMainRequestLng:@"LNG-NUMBER"];
+    [nytimes.districts setMainRequestFormat:@"JSON"];
+    
+    [NYTimesDistricts asyncRequest:nytimes
+                           success:^(NSData *data, NSURLResponse *response){
+                               NSLog(@"Results %@", data);
+                           }failure:^(NSData *data, NSError *error){
+                               NSLog(@"Errors %@", error);
+                           }tag:@"districts main request"];
 }
 
 @end

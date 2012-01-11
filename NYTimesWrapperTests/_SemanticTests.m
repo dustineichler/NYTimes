@@ -7,6 +7,7 @@
 //
 
 #import "_SemanticTests.h"
+#import "NYTimesSemantic.h"
 #import <UIKit/UIKit.h>
 
 @implementation _SemanticTests
@@ -46,6 +47,31 @@
     STAssertEqualObjects(@"API-KEY", nameApiKey, @"Should be alphanumeric string");
 }
 
+- (void)testSemanticNameConnection
+{
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.semantic setNameConceptType:@"nytd_geo"];
+    [nytimes.semantic setNameConceptName:@"Baseball"];
+    [nytimes.semantic setNameFields:@"pages, ticker_symbol"];
+    [nytimes.semantic setNameOffSet:@"10"];
+    [nytimes.semantic setNameFormat:@"JSON"];
+    [nytimes.semantic setNameApiKey:@"API-KEY"];
+    
+    [NYTimesSemantic asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"semantic"];
+}
+
 - (void)testSematicUri
 {
     [articles.semantic setUriConceptUri:@"http://www.google.com"];
@@ -67,6 +93,30 @@
     [articles.semantic setUriApiKey:@"API-KEY"];
     NSString *uriApiKey = articles.semantic.uriApiKey;
     STAssertEqualObjects(@"API-KEY", uriApiKey, @"Should be alphnumeric string");
+}
+
+- (void)testSemanticUriConnection
+{
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.semantic setUriConceptUri:@"http://www.google.com"];
+    [nytimes.semantic setUriFields:@"ALL"];
+    [nytimes.semantic setUriOffSet:@"20"];
+    [nytimes.semantic setUriFormat:@"JSON"];
+    [nytimes.semantic setUriApiKey:@"API-KEY"];
+    
+    [NYTimesSemantic asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"semantic"];
 }
 
 - (void)testSemanticSemanticArticle
@@ -92,6 +142,30 @@
     STAssertEqualObjects(@"API-KEY", semanticArticleApiKey, @"Should be alphanumeric string");
 }
 
+- (void)testSemanticSemanticArticleConnection
+{
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.semantic setSemanticArticleArticleUri:@"http://www.google.com"];
+    [nytimes.semantic setSemanticArticleFields:@"ALL"];
+    [nytimes.semantic setSemanticArticleOffSet:@"20"];
+    [nytimes.semantic setSemanticArticleFormat:@"JSON"];
+    [nytimes.semantic setSemanticArticleApiKey:@"API-KEY"];
+    
+    [NYTimesSemantic asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"semantic"];
+}
+
 - (void)testSemanticSearch
 {
     [articles.semantic setSearchQuery:@"SEARCH-TERM"];
@@ -115,18 +189,28 @@
     STAssertEqualObjects(@"API-KEY", searchApiKey, @"Should be alphnumeric string");
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+- (void)testSemanticSearchConnection
+{
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.semantic setSearchQuery:@"SEARCH-TERM"];
+    [nytimes.semantic setSearchFields:@"ALL"];
+    [nytimes.semantic setSearchOffSet:@"20"];
+    [nytimes.semantic setSearchFormat:@"JSON"];
+    [nytimes.semantic setSearchApiKey:@"API-KEY"];
+    
+    [NYTimesSemantic asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"semantic"];
+}
 
 @end

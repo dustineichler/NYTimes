@@ -7,6 +7,7 @@
 //
 
 #import "_EventListingsTests.h"
+#import "NYTimesEventListings.h"
 #import <UIKit/UIKit.h>
 
 @implementation _EventListingsTests
@@ -77,6 +78,42 @@
     [articles.eventListings setMainRequestOffSet:@"20"];
     NSString *mainRequestOffSet = articles.eventListings.mainRequestOffSet;
     STAssertEqualObjects(@"20", mainRequestOffSet, @"Should be positive integer, Default value is 20");
+}
+
+- (void)testMainRequestConnection
+{
+    /**
+        Main Request
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    
+    [nytimes.eventListings setMainRequestApiKey:@"API-KEY"];
+    [nytimes.eventListings setMainRequestFormat:@"JSON"];
+    [nytimes.eventListings setMainRequestLl:@"40.756146,-73.99021"];
+    [nytimes.eventListings setMAinRequestRadius:@"800"];
+    [nytimes.eventListings setMainRequestNe:@"40.756146,-73.99021"];
+    [nytimes.eventListings setMainRequestSw:@"40.756146,-73.99021"];
+    [nytimes.eventListings setMAinRequestQuery:@"category=Theater"];
+    [nytimes.eventListings setMAinRequestDateRange:@"2011-12-01:2012-01-02"];
+    [nytimes.eventListings setMainRequestFacets:@"1"];
+    [nytimes.eventListings setMainRequestSort:@"ASC"];
+    [nytimes.eventListings setMainRequestLimit:@"10"];
+    [nytimes.eventListings setMainRequestOffSet:@"20"];
+    
+    [NYTimesEventListings asyncRequest:nytimes
+                               success:^(NSData *data, NSURLResponse *response){
+                                   NSLog(@"Results %@", data);
+                               }failure:^(NSData *data, NSError *error){
+                                   NSLog(@"Errors %@", error);
+                               }tag:@"eventlistings main request"];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "_NewsWireTests.h"
+#import "NYTimesNewsWire.h"
 #import <UIKit/UIKit.h>
 
 @implementation _NewsWireTests
@@ -50,6 +51,32 @@
     STAssertEqualObjects(@"API-KEY", recentNewsApiKey, @"Should be alphanumeric string");
 }
 
+- (void)testNewsWireRecentNewsConnection
+{
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.newsWire setRecentNewsSource:@"NYT"];
+    [nytimes.newsWire setRecentNewsSection:@"ALL"];
+    [nytimes.newsWire setRecentNewsTimePeriod:@"55"];
+    [nytimes.newsWire setRecentNewsLimit:@"15"];
+    [nytimes.newsWire setRecentNewsOffSet:@"20"];
+    [nytimes.newsWire setRecentNewsFormat:@"JSON"];
+    [nytimes.newsWire setRecentNewsApiKey:@"API-KEY"];
+    
+    [NYTimesNewsWire asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"newswire"];
+}
+
 #pragma mark -
 #pragma mark SpecificNewsItems
 
@@ -66,6 +93,28 @@
     [articles.newsWire setSpecificNewsItemsApiKey:@"API-KEY"];
     NSString *specificNewsItemsApiKey = articles.newsWire.specificNewsItemsApiKey;
     STAssertEqualObjects(@"API-KEY", specificNewsItemsApiKey, @"Should be alphanumeric string");
+}
+
+- (void)testNewsWireSpecificNewsItemsConnection
+{
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.newsWire setSpecificNewsItemsUrl:@"http://www.nytimes.com"];
+    [nytimes.newsWire setSpecificNewsItemsFormat:@"JSON"];
+    [nytimes.newsWire setSpecificNewsItemsApiKey:@"API-KEY"];\
+    
+    [NYTimesNewsWire asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"newswire"];
 }
 
 @end

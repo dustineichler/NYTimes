@@ -7,6 +7,7 @@
 //
 
 #import "_RealEstateTests.h"
+#import "NYTimesRealEstate.h"
 #import <UIKit/UIKit.h>
 
 @implementation _RealEstateTests
@@ -57,19 +58,37 @@
     STAssertEqualObjects(@"json", listingsPercentilesFormat, @"Should be either JSON or XML");
 }
 
-//struct _ListingsCounts {
-//    NSString *dateRange;
-//    NSString *geoExtentLevel;
-//    NSString *geoExtentValue;
-//    NSString *geoSummaryLevel;
-//    NSString *bedrooms;
-//    NSString *buildingBuiltYear;
-//    NSString *buildingTypeId;
-//    NSString *loft;
-//    NSString *format;
-//    NSString *apiKey;
-//};
-//typedef struct _ListingsCounts listingsCounts;
+- (void)testRealEstateListingsByPercentileConnection
+{
+    /**
+        Main Request
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.realEstate setListingsPercentilesDateRange:@"2012-01-02"];
+    [nytimes.realEstate setListingsPercentilesGeoExtentLevel:@"BOROUGH"];
+    [nytimes.realEstate setListingsPercentilesGeoExtentValue:@"NYC-Borough"];
+    [nytimes.realEstate setListingsPercentilesGeoSummaryLevel:@"ZIP"];
+    [nytimes.realEstate setListingsPercentilesLoft:@"YES"];
+    [nytimes.realEstate setListingsPercentilesBedrooms:@"3"];
+    [nytimes.realEstate setListingsPercentilesBuildingTypeId:@"Condo"];
+    [nytimes.realEstate setListingsPercentilesBuildingBuiltYear:@"1999"];
+    [nytimes.realEstate setListingsPercentilesFormat:@"JSON"];
+    
+    [NYTimesRealEstate asyncRequest:nytimes
+                            success:^(NSData *data, NSURLResponse *response){
+                                NSLog(@"Results %@", data);
+                            }failure:^(NSData *data, NSError *error){
+                                NSLog(@"Errors %@", error);
+                            }tag:@"realestate listings percentiles"];
+}
 
 - (void)testRealEstateListingsCounts
 {
@@ -114,6 +133,39 @@
     STAssertEqualObjects(@"API-KEY", listingsCountsApiKey, @"Should be alphanumeric string");
 }
 
+- (void)testRealEstateListingsCountsConnectio
+{
+    /**
+     Main Request
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.realEstate setListingsCountsDateRange:@"2012-01-02"];
+    [nytimes.realEstate setListingsCountsGeoExtentLevel:@"BOROUGH"];    
+    [nytimes.realEstate setListingsCountsGeoExtentValue:@"NYC-Borough"];
+    [nytimes.realEstate setListingsCountsGeoSummaryLevel:@"ZIP"];
+    [nytimes.realEstate setListingsCountsBedrooms:@"2"];
+    [nytimes.realEstate setListingsCountsBuildingBuiltYear:@"1999"];
+    [nytimes.realEstate setListingsCountsBuildingTypeId:@"34"];
+    [nytimes.realEstate setListingsCountsLoft:@"NO"];
+    [nytimes.realEstate setListingsCountsFormat:@"JSON"];
+    [nytimes.realEstate setListingsCountsApiKey:@"API-KEY"];
+    
+    [NYTimesRealEstate asyncRequest:nytimes
+                            success:^(NSData *data, NSURLResponse *response){
+                                NSLog(@"Results %@", data);
+                            }failure:^(NSData *data, NSError *error){
+                                NSLog(@"Errors %@", error);
+                            }tag:@"realestate listings counts"];
+}
+
 - (void)testRealEstateSalesPercentiles
 {
     [articles.realEstate setSalesPercentilesGeoExtentLevel:@"ZIP"];
@@ -143,6 +195,36 @@
     [articles.realEstate setSalesPercentilesApiKey:@"API-KEY"];
     NSString *salesPercentilesApiKey = articles.realEstate.salesPercentilesApiKey;
     STAssertEqualObjects(@"API-KEY", salesPercentilesApiKey, @"Should be alphanumeric string");
+}
+
+- (void)testRealEstateSalesPercentilesConnection
+{
+    /**
+        Main Request
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.realEstate setSalesPercentilesGeoExtentLevel:@"ZIP"];    
+    [nytimes.realEstate setSalesPercentilesGeoExtentValue:@"zip"];
+    [nytimes.realEstate setSalesPercentilesPercentileValue:@"3"];
+    [nytimes.realEstate setSalesPercentilesBuildingTypeId:@"30"];
+    [nytimes.realEstate setSalesPercentilesDateRange:@"1999-01-02"];
+    [nytimes.realEstate setSalesPercentilesFormat:@"JSON"];
+    [nytimes.realEstate setSalesPercentilesApiKey:@"API-KEY"];
+    
+    [NYTimesRealEstate asyncRequest:nytimes
+                            success:^(NSData *data, NSURLResponse *response){
+                                NSLog(@"Results %@", data);
+                            }failure:^(NSData *data, NSError *error){
+                                NSLog(@"Errors %@", error);
+                            }tag:@"realestate sales percentiles"];
 }
 
 #pragma mark -
@@ -183,20 +265,31 @@
     STAssertEqualObjects(@"API-KEY", salesCountsApiKey, @"Should be alphanumeric string");
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- (void)testRealEstateSalesCountsConnection
+{
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.realEstate setSalesCountsDateRange:@"1999-01-02"];
+    [nytimes.realEstate setSalesCountsGeoExtentLevel:@"NEIGHBORHOOD"];
+    [nytimes.realEstate setSalesCountGeoExtentValue:@"neighborhood"];
+    [nytimes.realEstate setSalesCountsGeoSummaryLevel:@"ZIP"];
+    [nytimes.realEstate setSalesCountsBuildingBuiltYear:@"1999"];
+    [nytimes.realEstate setSalesCountsBuildingTypeId:@"30"];
+    [nytimes.realEstate setSalesCountsFormat:@"JSON"];
+    [nytimes.realEstate setSalesCountsApiKey:@"API-KEY"];
+    
+    [NYTimesRealEstate asyncRequest:nytimes
+                            success:^(NSData *data, NSURLResponse *response){
+                                NSLog(@"Results %@", data);
+                            }failure:^(NSData *data, NSError *error){
+                                NSLog(@"Errors %@", error);
+                            }tag:@"realestate sales percentiles"];
+}
 
 @end
