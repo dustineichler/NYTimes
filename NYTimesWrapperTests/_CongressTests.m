@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "_CongressTests.h"
+#import "NYTimesCongress.h"
 
 @implementation _CongressTests
 @synthesize articles;
@@ -47,6 +48,38 @@
     STAssertEqualObjects(@"API-KEY", membersOfCongressApiKey, @"Should be valid string");
 }
 
+- (void)testMembersOfCongressConnection
+{
+    /** 
+        Members of Congress
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+
+    /**
+     Optional
+     */
+    
+    [nytimes.congress setMembersOfCongressChamber:@"SENATE"];
+    [nytimes.congress setMembersOfCongressCongressNumber:@"102"];    
+    [nytimes.congress setMembersOfCongressChamber:@"HOUSE"];
+    [nytimes.congress setMembersOfCongressState:@"CA"];
+    [nytimes.congress setMembersOfCongressChamber:@"HOUSE"];
+    [nytimes.congress setMembersOfCongressDistrict:@"DISTRICT-NUMBER"];
+    [nytimes.congress setMembersOfCongressFormat:@"JSON"];
+    [nytimes.congress setMembersOfCongressApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress members of congress"];
+}
+
 - (void)testMemberBiosAndRoles
 {
     [articles.congress setMemberBiosAndRolesMemberId:@"Member-ID-Foo"];
@@ -62,6 +95,33 @@
     STAssertEqualObjects(@"API-KEY", memberBiosAndRolesApiKey, @"Should be valid Alphanumeric API KEY");
 }
 
+- (void)testMemberBiosAndRolesConnection
+{
+    /** 
+        Member Bios and Roles
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    
+    [nytimes.congress setMemberBiosAndRolesMemberId:@"Member-ID-Foo"];
+    [nytimes.congress setMemberBiosAndRolesFormat:@"JSON"];
+    [nytimes.congress setMemberBiosAndRolesApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress member bios and roles"];
+}
+
 - (void)testNewMembers
 {
     [articles.congress setNewMembersFormat:@"JSON"];
@@ -71,6 +131,32 @@
     [articles.congress setNewMembersApiKey:@"API-KEY"];
     NSString *newMembersApiKey = articles.congress.newMembersApiKey;
     STAssertEqualObjects(@"API-KEY", newMembersApiKey, @"Should be valid Alphanumeric API KEY");
+}
+
+- (void)testNewMembersConnection
+{
+    /**
+        New Members
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    
+    [nytimes.congress setNewMembersFormat:@"JSON"];
+    [nytimes.congress setNewMembersApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress new members"];
 }
 
 - (void)testCurrentMembersByStateAndDistrict
@@ -97,6 +183,35 @@
     STAssertEqualObjects(@"API-KEY", currentMembersByStateAndDistrictApiKey, @"Should be alphanumeric string");
 }
 
+- (void)testCurrentMembersByStateAndDistrictConnection
+{
+    /**
+        Current Members By State and District
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    
+    [nytimes.congress setCurrentMembersByStateAndDistrictState:@"NJ"];
+    [nytimes.congress setCurrentMembersByStateAndDistrictChamber:@"HOUSE"];
+    [nytimes.congress setCurrentMembersByStateAndDistrictDistrict:@"DISTRICT-NUMBER"];
+    [nytimes.congress setCurrentMembersByStateAndDistrictForamt:@"JSON"];
+    [nytimes.congress setCurrentMembersByStateAndDistrictApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress current members by state and district"];
+}
+
 - (void)testMembersLeavingOffice
 {
     [articles.congress setMembersLeavingOfficeCongressNumber:@"111"];
@@ -116,6 +231,34 @@
     STAssertEqualObjects(@"API-KEY", membersLeavingOfficeApiKey, @"Should be valid alphanumeric string");
 }
 
+- (void)testMembersLeavingOfficeConnection
+{
+    /**
+        Members Leaving Office
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    
+    [nytimes.congress setMembersLeavingOfficeCongressNumber:@"111"];
+    [nytimes.congress setMembersLeavingOfficeChamber:@"SENATE"];
+    [nytimes.congress setMembersLeavingOfficeFormat:@"JSON"];
+    [nytimes.congress setMembersLeavingOfficeApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress members leaving office"];
+}
+
 - (void)setMemberVotePositions
 {
     [articles.congress setMemberVotePositionsApiKey:@"API-KEY"];
@@ -129,6 +272,32 @@
     [articles.congress setMemberVotePositionsFormat:@"JSON"];
     NSString *memberVotePositionsFormat = articles.congress.memberVotePositionsFormat;
     STAssertEqualObjects(@"json", memberVotePositionsFormat, @"Should be either XML or JSON");
+}
+
+- (void)testMemberVotePositionsConnection
+{
+    /**
+        Member Vote Positions
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setMemberVotePositionsApiKey:@"API-KEY"];
+    [nytimes.congress setMemberVotePositionsMemberId:@"MemberId"];
+    [nytimes.congress setMemberVotePositionsFormat:@"JSON"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress member vote positions"];
 }
 
 - (void)testMemberVoteComparison
@@ -159,6 +328,36 @@
     STAssertEqualObjects(@"API-KEY", memberVoteComparisonApiKey, @"Should be valid alphanumeric string");
 }
 
+- (void)testMemberVoteComparisonConnection
+{
+    /**
+        Member Vote Comparison
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setMemberVoteComparisonFirstMemberId:@"FirstId"];
+    [nytimes.congress setMemberVoteComparisonSecondMemberId:@"SecondId"];
+    [nytimes.congress setMemberVoteComparisonChamber:@"HOUSE"];
+    [nytimes.congress setMemberVoteComparisonCongressNumber:@"105"];
+    [nytimes.congress setMemberVoteComparisonChamber:@"HOUSE"];
+    [nytimes.congress setMemberVoteComparisonFormat:@"JSON"];
+    [nytimes.congress setMemberVoteComparisonApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress member vote comparison"];
+}
+
 - (void)testBillsCosponsoredByAMember
 {
     [articles.congress setBillsCosponsoredByAMemberMemberId:@"MEMBER-ID"];
@@ -176,6 +375,33 @@
     [articles.congress setBillsCosponsoredByAMemberApiKey:@"API-KEY"];
     NSString *billsCosponsoredByAMemberApiKey = articles.congress.billsCosponsoredByAMemberApiKey;
     STAssertEqualObjects(@"API-KEY", billsCosponsoredByAMemberApiKey, @"Should be alphanumeric string");
+}
+
+- (void)testBillsCosponsoredByAMemberConnection
+{
+    /**
+        Bills Cosponsored By A Member
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setBillsCosponsoredByAMemberMemberId:@"MEMBER-ID"];
+    [nytimes.congress setBillsCosponsoredByAMemberType:@"COSPONSORED"];
+    [nytimes.congress setBillsCosponsoredByAMemberFormat:@"JSON"];
+    [nytimes.congress setBillsCosponsoredByAMemberApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress bills cosponsored by a member"];
 }
 
 #pragma mark -
@@ -209,6 +435,36 @@
     STAssertEqualObjects(@"API-KEY", memberSponsorshipComparisonApiKey, @"Should be alphanumeric string");
 }
 
+- (void)testMemberSponsorshipComparisonConnection
+{
+    /**
+        Member Sponsorship Comparison
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setMemberSponsorshipComparisonMemberId2:@"MemberId12"];
+    [nytimes.congress setMemberSponsorshipComparisonMemberId1:@"MemberId11"];
+    [nytimes.congress setMemberSponsorshipComparisonChamber:@"SENATE"];
+    [nytimes.congress setMemberSponsorshipComparisonCongressNumber:@"112"];
+    [nytimes.congress setMemberSponsorshipComparisonChamber:@"HOUSE"];
+    [nytimes.congress setMemberSponsorshipComparisonFormat:@"JSON"];
+    [nytimes.congress setMemberSponsorshipComparisonApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress member sponsorship comparison"];
+}
+
 #pragma mark -
 #pragma mark MemberFloorAppearances
 
@@ -225,6 +481,32 @@
     [articles.congress setMemberFloorAppearancesApiKey:@"API-KEY"];
     NSString *memberFloorAppearancesApiKey = articles.congress.memberFloorAppearancesApiKey;
     STAssertEqualObjects(@"API-KEY", memberFloorAppearancesApiKey, @"Should be valid alphanumeric string");
+}
+
+- (void)testMemberFloorAppearancesConnection
+{
+    /**
+        Member Floor Appearances
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setMemberFloorAppearancesMemberId:@"MemberId1"];
+    [nytimes.congress setMemberFloorAppearancesFormat:@"JSON"];
+    [nytimes.congress setMemberFloorAppearancesApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress member floor appearances"];
 }
 
 #pragma mark -
@@ -254,6 +536,34 @@
     STAssertEqualObjects(@"json", rollCallVotesFormat, @"Should be alphanumeric string");
 }
 
+- (void)testRollCallVotesConnection
+{
+    /**
+        Roll Call Votes
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setRollCallVotesChamber:@"HOUSE"];
+    [nytimes.congress setRollCallVotesCongressNumber:@"105"];
+    [nytimes.congress setRollCallVotesSessionNumber:@"2"];
+    [nytimes.congress setRollCallVotesRollCallNumber:@"14"];
+    [nytimes.congress setRollCallVotesFormat:@"JSON"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress roll call votes"];
+}
+
 - (void)testVotesByType
 {
     [articles.congress setVotesByTypeChamber:@"HOUSE"];
@@ -275,6 +585,34 @@
     [articles.congress setVotesByTypeApiKey:@"API-KEY"];
     NSString *votesByTypeApiKey = articles.congress.votesByTypeApiKey;
     STAssertEqualObjects(@"API-KEY", votesByTypeApiKey, @"Should be alphanumeric string");
+}
+
+- (void)testVotesByTypeConnection
+{
+    /**
+        Votes By Type
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setVotesByTypeChamber:@"HOUSE"];
+    [nytimes.congress setVotesByTypeCongressNumber:@"112"];
+    [nytimes.congress setVotesByTypeVoteType:@"MISSED VOTES"];
+    [nytimes.congress setVotesByTypeFormat:@"JSON"];
+    [nytimes.congress setVotesByTypeApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress votes by type"];
 }
 
 - (void)testVotesByDate
@@ -301,6 +639,34 @@
     STAssertEqualObjects(@"API-KEY", votesByDateApiKey, @"Should be alphanumeric string");
 }
 
+- (void)testVotesByDateConnection
+{
+    /**
+        Votes By Date
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setVotesByDateChamber:@"HOUSE"];
+    [nytimes.congress setVotesByDateYearAndMonth:@"201111"];
+    [nytimes.congress setVotesByDateRangeOfDates:@"2010-01-01/2010-02-01"];
+    [nytimes.congress setVotesByDateFormat:@"JSON"];
+    [nytimes.congress setVotesByDateApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress votes by date"];
+}
+
 - (void)testNominationVotes
 {
     [articles.congress setNominationVotesCongressNumber:@"105"];
@@ -314,6 +680,32 @@
     [articles.congress setNominationVotesApiKey:@"API-KEY"];
     NSString *nominationVotesApiKey = articles.congress.nominationVotesApiKey;
     STAssertEqualObjects(@"API-KEY", nominationVotesApiKey, @"Should be alphanumeric string");
+}
+
+- (void)testNominationVotesConnection
+{
+    /**
+        Nomination Votes
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setNominationVotesCongressNumber:@"105"];
+    [nytimes.congress setNominationVotesFormat:@"JSON"];
+    [nytimes.congress setNominationVotesApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress nomination votes"];
 }
 
 - (void)testRecentBills
@@ -339,6 +731,34 @@
     STAssertEqualObjects(@"API-KEY", recentBillsApiKey, @"Should be valid alphanumeric string");
 }
 
+- (void)testRecentBillsConnection
+{
+    /**
+        Recent Bills
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setRecentBillsChamber:@"HOUSE"];
+    [nytimes.congress setRecentBillsCongressNumber:@"112"];
+    [nytimes.congress setRecentBillsType:@"UPDATED"];
+    [nytimes.congress setRecentBillsFormat:@"JSON"];
+    [nytimes.congress setRecentBillsApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress recent bills"];
+}
+
 - (void)testBillsByMember
 {
     [articles.congress setBillsByMemberType:@"INTRODUCED"];
@@ -356,6 +776,33 @@
     [articles.congress setBillsByMemberApiKey:@"API-KEY"];
     NSString *billsByMemberApiKey = articles.congress.billsByMemberApiKey;
     STAssertEqualObjects(@"API-KEY", billsByMemberApiKey, @"Should be alphanumeric string");
+}
+
+- (void)testBillsByMemberConnection
+{
+    /**
+        Bills By Member
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setBillsByMemberType:@"INTRODUCED"];
+    [nytimes.congress setBillsByMemberMemberId:@"MemberId"];
+    [nytimes.congress setBillsByMemberFormat:@"JSON"];
+    [nytimes.congress setBillsByMemberApiKey:@"API-KEY"];
+
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress bills by member"];
 }
 
 - (void)testBillDetails
@@ -377,7 +824,34 @@
     STAssertEqualObjects(@"API-KEY", billDetailsApiKey, @"Should be alphanumeric string");
 }
 
-- (void)testBillAmendMentsAndRelatedBills
+- (void)testBillDetailsConnection
+{
+    /**
+        Bill Details
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setBillDetailsCongressNumber:@"112"];
+    [nytimes.congress setBillDetailsBillId:@"BillId"];
+    [nytimes.congress setBillDetailsFormat:@"JSON"];
+    [nytimes.congress setBillDetailsApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress bill details"];
+}
+
+- (void)testBillAmendmentsAndRelatedBills
 {
     [articles.congress setBillAmendmentsAndRelatedBillsCongressNumber:@"112"];
     NSString *billAmendmentsAndRelatedBillsCongressNumber = articles.congress.billAmendmentsAndRelatedBillsCongressNumber;
@@ -400,6 +874,34 @@
     STAssertEqualObjects(@"API-KEY", billAmendmentsAndRelatedBillsApiKey, @"Should be alphanumeric string");
 }
 
+- (void)testBillAmendmentsAndRelatedBillsConnection
+{
+    /**
+        Bill Amendments And Related Bills
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setBillAmendmentsAndRelatedBillsCongressNumber:@"112"];
+    [nytimes.congress setBillAmendmentsAndRelatedBillsBillId:@"BillId1"];
+    [nytimes.congress setBillAmendmentsAndRelatedBillsResource:@"SUBJECTS"];
+    [nytimes.congress setBillAmendmentsAndRelatedBillsFormat:@"JSON"];
+    [nytimes.congress setBillAmendmentsAndRelatedBillsApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress bill amendments and related bills"];
+}
+
 - (void)testBillConsponsors
 {
     [articles.congress setBillCosponsorsCongressNumber:@"112"];
@@ -417,6 +919,33 @@
     [articles.congress setBillCosponsorsApiKey:@"API-KEY"];
     NSString *billCosponsorsApiKey = articles.congress.billCosponsorsApiKey;
     STAssertEqualObjects(@"API-KEY", billCosponsorsApiKey, @"Should be alphanumeric string");
+}
+
+- (void)testBillCosponsorsConnection
+{
+    /**
+        Bill Cosponsors
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setBillCosponsorsCongressNumber:@"112"];
+    [nytimes.congress setBillCosponsorsBillId:@"BillId9"];
+    [nytimes.congress setBillCosponsorsFormat:@"JSON"];
+    [nytimes.congress setBillCosponsorsApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress bill cosponsors"];
 }
 
 - (void)testNomineeLists
@@ -438,6 +967,33 @@
     STAssertEqualObjects(@"API-KEY", nomineeListsApiKey, @"Should be alphanumeric string");
 }
 
+- (void)testNomineeListsConnection
+{
+    /**
+        Nominee Lists
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setNomineeListsCongressNumber:@"112"];
+    [nytimes.congress setNomineeListsNomineeCategory:@"RECEIVED"];
+    [nytimes.congress setNomineeListsFormat:@"JSON"];
+    [nytimes.congress setNomineeListsApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress nominee lists"];
+}
+
 - (void)testNomineeDetails
 {
     [articles.congress setNomineeDetailsCongressNumber:@"112"];
@@ -455,6 +1011,33 @@
     [articles.congress setNomineeDetailsApiKey:@"API-KEY"];
     NSString *nomineeDetailsApiKey = articles.congress.nomineeDetailsApiKey;
     STAssertEqualObjects(@"API-KEY", nomineeDetailsApiKey, @"Should be alphanumeric string");
+}
+
+- (void)testNomineeDetailsConnection
+{
+    /**
+        Nominee Details
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setNomineeDetailsCongressNumber:@"112"];
+    [nytimes.congress setNomineeDetailsNomineeId:@"NomineeId44"];
+    [nytimes.congress setNomineeDetailsFormat:@"JSON"];
+    [nytimes.congress setNomineeDetailsApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress nominee details"];
 }
 
 - (void)testNomineesByState
@@ -476,10 +1059,32 @@
     STAssertEqualObjects(@"API-KEY", nomineesByStateApiKey, @"Should be alphanumeric string");
 }
 
-//struct _StatePartyCounts {
-//    NSString *format;
-//    NSString *apiKey;
-//};
+- (void)testNomineesByStateConnection
+{
+    /**
+        Nominees By State
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setNomineesByStateCongressNumber:@"107"];
+    [nytimes.congress setNomineesByStateState:@"CA"];
+    [nytimes.congress setNomineesByStateFormat:@"JSON"];
+    [nytimes.congress setNomineesByStateApiKey:@"API-KEY"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress nominees by state"];
+}
 
 - (void)testStatePartyCounts
 {
@@ -490,6 +1095,31 @@
     [articles.congress setStatePartyCountsFormat:@"JSON"];
     NSString *statePartyCountsFormat = articles.congress.statePartyCountsFormat;
     STAssertEqualObjects(@"json", statePartyCountsFormat, @"Should be either XML or JSON");
+}
+
+- (void)testStatePartyCountsConnection
+{
+    /**
+        State Party Counts
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setStatePartyCountsApiKey:@"API-KEY"];
+    [nytimes.congress setStatePartyCountsFormat:@"JSON"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress state party counts"];
 }
 
 - (void)testCommitteesAndCommitteeMembers
@@ -511,6 +1141,33 @@
     STAssertEqualObjects(@"json", committeesAndCommitteeMembersFormat, @"Should be either XML or JSON");
 }
 
+- (void)testCommitteesAndCommitteeMembersConnection
+{
+    /**
+        Committees And Committee Members
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setCommitteesAndCommitteeMembersChamber:@"HOUSE"];
+    [nytimes.congress setCommitteesAndCommitteeMembersCongressNumber:@"111"];
+    [nytimes.congress setCommitteesAndCommitteeMembersCommitteeId:@"CommiteeId99"];
+    [nytimes.congress setCommitteesAndCommitteeMembersFormat:@"JSON"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress committees and committee members"];
+}
+
 - (void)testChamberSchedule
 {
     [articles.congress setChamberScheduleApiKey:@"API-KEY"];
@@ -522,6 +1179,30 @@
     STAssertEqualObjects(@"json", chamberScheduleFormat, @"Should be either XML or JSON");
 }
 
+- (void)testChamberScheduleConnection
+{
+    /**
+        Chamber Schedule
+     */
+    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
+    /**
+     Required
+     */
+    
+    /**
+     Optional
+     */
+    [nytimes.congress setChamberScheduleApiKey:@"API-KEY"];
+    [nytimes.congress setChamberScheduleFormat:@"JSON"];
+    
+    [NYTimesCongress asyncRequest:nytimes
+                          success:^(NSData *data, NSURLResponse *response){
+                              NSLog(@"Results %@", data);
+                          }failure:^(NSData *data, NSError *error){
+                              NSLog(@"Errors %@", error);
+                          }tag:@"congress chamber schedule"];
+}
 
 
 @end
