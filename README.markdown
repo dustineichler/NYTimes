@@ -47,7 +47,7 @@ Conceived at NYTimes HackDay 2011. Related article. http://open.blogs.nytimes.co
 
 ### NYTimes BestSeller API
 
-<pre>
+``` objective-c
   NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:ARTICLE_API_KEY];
   /**
    Required
@@ -67,7 +67,7 @@ Conceived at NYTimes HackDay 2011. Related article. http://open.blogs.nytimes.co
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"bestsellers"];
-</pre>
+```
 
 ### NYTimes Campaign Finance API
 
