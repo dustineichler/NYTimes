@@ -31,8 +31,6 @@
 + (NSString *)buildURLwithObj:(NYTimesWrapper *)obj
 { 
     NSMutableString *params = [NSMutableString stringWithFormat:@"%@", @""];
-    
-    NSString *baseURL = [NSString stringWithFormat:SERVER_URL@"%@", params];
 
     // MembersOfCongress
     
@@ -370,8 +368,7 @@
     
     // Votes by Date
     
-    if (obj.congress.votesByDateChamber 
-        && (obj.congress.votesByDateYearAndMonth || obj.congress.votesByDateRangeOfDates)
+    if (obj.congress.votesByDateChamber && (obj.congress.votesByDateYearAndMonth || obj.congress.votesByDateRangeOfDates)
         && obj.congress.votesByDateApiKey)
     {
         if (obj.congress.votesByDateChamber)
@@ -386,7 +383,12 @@
         
         if (obj.congress.votesByDateRangeOfDates)
         {
-            [params appendFormat:@".%@?", obj.congress.votesByDateRangeOfDates];
+            [params appendFormat:@"%@", obj.congress.votesByDateRangeOfDates];
+        }
+        
+        if (obj.congress.votesByDateFormat)
+        {
+            [params appendFormat:@".%@?", obj.congress.votesByDateFormat];
         }
         
         if (obj.congress.votesByDateApiKey)
@@ -569,7 +571,7 @@
         
         if (obj.congress.nomineeListsFormat)
         {
-            [params appendFormat:@".%@?", obj.congress.nomineeListsNomineeCategory];
+            [params appendFormat:@".%@?", obj.congress.nomineeListsFormat];
         }
         
         if (obj.congress.nomineeListsFormat)
@@ -619,7 +621,7 @@
         
         if (obj.congress.nomineesByStateFormat)
         {
-            [params appendFormat:@".%@?", obj.congress.nomineesByStateState];
+            [params appendFormat:@".%@?", obj.congress.nomineesByStateFormat];
         }
         
         if (obj.congress.nomineesByStateApiKey)
@@ -692,6 +694,6 @@
         }
     }
     
-    return baseURL;
+    return [NSString stringWithFormat:@"%@%@", SERVER_URL, params];
 }
 @end

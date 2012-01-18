@@ -58,8 +58,8 @@
     /**
      Required
      */
-    [nytimes.congress setMembersOfCongressCongressNumber:@"102"];
     [nytimes.congress setMembersOfCongressChamber:@"SENATE"];
+    [nytimes.congress setMembersOfCongressCongressNumber:@"102"];
     [nytimes.congress setMembersOfCongressApiKey:@"API-KEY"];
     /**
      Optional
@@ -70,7 +70,29 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"congress/102/"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger chamber = [string rangeOfString:@"senate/"].location == NSNotFound;
+                              NSString *_chamber = [NSString stringWithFormat:@"%@", chamber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _chamber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger congressState = [string rangeOfString:@"state"].location == NSNotFound;
+                              NSString *_congressState = [NSString stringWithFormat:@"%@", congressState ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressState, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"members.json?"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress members of congress"];
@@ -110,7 +132,21 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger memberId = [string rangeOfString:@"members/"].location == NSNotFound;
+                              NSString *_memberId = [NSString stringWithFormat:@"%@", memberId ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _memberId, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress member bios and roles"];
@@ -145,7 +181,17 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"members/new"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress new members"];
@@ -196,7 +242,29 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger chamber = [string rangeOfString:@"members/"].location == NSNotFound;
+                              NSString *_chamber = [NSString stringWithFormat:@"%@", chamber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _chamber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger state = [string rangeOfString:@"NJ/"].location == NSNotFound;
+                              NSString *_state = [NSString stringWithFormat:@"%@", state ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _state, @"Should be either YES found or NO not found");
+                              
+                              NSInteger districtNumber = [string rangeOfString:@"NJ/"].location == NSNotFound;
+                              NSString *_districtNumber = [NSString stringWithFormat:@"%@", districtNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _districtNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"/current.json?"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress current members by state and district"];
@@ -241,7 +309,25 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"111/"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger chamber = [string rangeOfString:@"senate/members/"].location == NSNotFound;
+                              NSString *_chamber = [NSString stringWithFormat:@"%@", chamber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _chamber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"leaving.json?"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress members leaving office"];
@@ -281,7 +367,21 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger memberId = [string rangeOfString:@"members/"].location == NSNotFound;
+                              NSString *_memberId = [NSString stringWithFormat:@"%@", memberId ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _memberId, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"votes.json?"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress member vote positions"];
@@ -327,8 +427,8 @@
      */
     [nytimes.congress setMemberVoteComparisonFirstMemberId:@"FirstId"];
     [nytimes.congress setMemberVoteComparisonSecondMemberId:@"SecondId"];
-    [nytimes.congress setMemberVoteComparisonCongressNumber:@"105"];
     [nytimes.congress setMemberVoteComparisonChamber:@"HOUSE"];
+    [nytimes.congress setMemberVoteComparisonCongressNumber:@"105"];
     [nytimes.congress setMemberVoteComparisonApiKey:@"API-KEY"];
     /**
      Optional
@@ -337,7 +437,33 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger memberId = [string rangeOfString:@"members/firstid/"].location == NSNotFound;
+                              NSString *_memberId = [NSString stringWithFormat:@"%@", memberId ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _memberId, @"Should be either YES found or NO not found");
+                              
+                              NSInteger memberId2 = [string rangeOfString:@"votes/secondid"].location == NSNotFound;
+                              NSString *_memberId2 = [NSString stringWithFormat:@"%@", memberId2 ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _memberId2, @"Should be either YES found or NO not found");
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"105"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger chamber = [string rangeOfString:@"house"].location == NSNotFound;
+                              NSString *_chamber = [NSString stringWithFormat:@"%@", chamber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _chamber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress member vote comparison"];
@@ -382,7 +508,25 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger memberId = [string rangeOfString:@"members/member-id/"].location == NSNotFound;
+                              NSString *_memberId = [NSString stringWithFormat:@"%@", memberId ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _memberId, @"Should be either YES found or NO not found");
+                              
+                              NSInteger memberType = [string rangeOfString:@"bills/cosponsored"].location == NSNotFound;
+                              NSString *_memberType = [NSString stringWithFormat:@"%@", memberType ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _memberType, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress bills cosponsored by a member"];
@@ -441,7 +585,33 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger memberId = [string rangeOfString:@"members/MemberId11/"].location == NSNotFound;
+                              NSString *_memberId = [NSString stringWithFormat:@"%@", memberId ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _memberId, @"Should be either YES found or NO not found");
+                              
+                              NSInteger memberId2 = [string rangeOfString:@"bills/MemberId12/"].location == NSNotFound;
+                              NSString *_memberId2 = [NSString stringWithFormat:@"%@", memberId2 ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _memberId2, @"Should be either YES found or NO not found");
+                              
+                              NSInteger chamber = [string rangeOfString:@"senate"].location == NSNotFound;
+                              NSString *_chamber = [NSString stringWithFormat:@"%@", chamber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _chamber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"112"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress member sponsorship comparison"];
@@ -484,7 +654,21 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger memberId = [string rangeOfString:@"members/MemberId1/"].location == NSNotFound;
+                              NSString *_memberId = [NSString stringWithFormat:@"%@", memberId ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _memberId, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress member floor appearances"];
@@ -527,8 +711,8 @@
     /**
      Required
      */
-    [nytimes.congress setRollCallVotesCongressNumber:@"105"];
     [nytimes.congress setRollCallVotesChamber:@"HOUSE"];
+    [nytimes.congress setRollCallVotesCongressNumber:@"105"];
     [nytimes.congress setRollCallVotesSessionNumber:@"2"];
     [nytimes.congress setRollCallVotesRollCallNumber:@"14"];
     [nytimes.congress setRollCallVotesApiKey:@"API-KEY"];
@@ -539,7 +723,33 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+  
+                              NSInteger congressNumber = [string rangeOfString:@"105/"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger chamber = [string rangeOfString:@"house/"].location == NSNotFound;
+                              NSString *_chamber = [NSString stringWithFormat:@"%@", chamber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _chamber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger session = [string rangeOfString:@"sessions/2/"].location == NSNotFound;
+                              NSString *_session = [NSString stringWithFormat:@"%@", session ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _session, @"Should be either YES found or NO not found");
+                              
+                              NSInteger rollcall = [string rangeOfString:@"votes/14"].location == NSNotFound;
+                              NSString *_rollcall = [NSString stringWithFormat:@"%@", rollcall ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _rollcall, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress roll call votes"];
@@ -578,8 +788,8 @@
     /**
      Required
      */
-    [nytimes.congress setVotesByTypeCongressNumber:@"112"];
     [nytimes.congress setVotesByTypeChamber:@"HOUSE"];
+    [nytimes.congress setVotesByTypeCongressNumber:@"112"];
     [nytimes.congress setVotesByTypeVoteType:@"MISSED VOTES"];
     [nytimes.congress setVotesByTypeApiKey:@"API-KEY"];
     /**
@@ -589,7 +799,29 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger chamber = [string rangeOfString:@"house"].location == NSNotFound;
+                              NSString *_chamber = [NSString stringWithFormat:@"%@", chamber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _chamber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"112"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger voteType = [string rangeOfString:@"votes/"].location == NSNotFound;
+                              NSString *_voteType = [NSString stringWithFormat:@"%@", voteType ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _voteType, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress votes by type"];
@@ -631,7 +863,7 @@
      */
     [nytimes.congress setVotesByDateChamber:@"HOUSE"];
     [nytimes.congress setVotesByDateYearAndMonth:@"201111"];
-    [nytimes.congress setVotesByDateRangeOfDates:@"2010-01-01/2010-02-01"];
+    //[nytimes.congress setVotesByDateRangeOfDates:@"2010-01-01/2010-02-01TTTT"];
     [nytimes.congress setVotesByDateApiKey:@"API-KEY"];
     /**
      Optional
@@ -640,7 +872,29 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger chamber = [string rangeOfString:@"house"].location == NSNotFound;
+                              NSString *_chamber = [NSString stringWithFormat:@"%@", chamber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _chamber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger date = [string rangeOfString:@"201111"].location == NSNotFound;
+                              NSString *_date = [NSString stringWithFormat:@"%@", date ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _date, @"Should be either YES found or NO not found");
+                              
+//                              NSInteger range = [string rangeOfString:@"2010-01-01/2010-02-01"].location == NSNotFound;
+//                              NSString *_range = [NSString stringWithFormat:@"%@", range ? @"NO" : @"YES"]; 
+//                              STAssertEqualObjects(@"YES", _range, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress votes by date"];
@@ -680,7 +934,21 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"105"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress nomination votes"];
@@ -719,8 +987,8 @@
     /**
         Required
      */
-    [nytimes.congress setRecentBillsCongressNumber:@"112"];
     [nytimes.congress setRecentBillsChamber:@"HOUSE"];
+    [nytimes.congress setRecentBillsCongressNumber:@"112"];
     [nytimes.congress setRecentBillsType:@"UPDATED"];
     [nytimes.congress setRecentBillsApiKey:@"API-KEY"];
     /**
@@ -730,7 +998,29 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"112"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger chamber = [string rangeOfString:@"house"].location == NSNotFound;
+                              NSString *_chamber = [NSString stringWithFormat:@"%@", chamber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _chamber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger billsType = [string rangeOfString:@"updated"].location == NSNotFound;
+                              NSString *_billsType = [NSString stringWithFormat:@"%@", billsType ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _billsType, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress recent bills"];
@@ -775,7 +1065,25 @@
 
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger memberType = [string rangeOfString:@"bills/introduced"].location == NSNotFound;
+                              NSString *_memberType = [NSString stringWithFormat:@"%@", memberType ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _memberType, @"Should be either YES found or NO not found");
+                              
+                              NSInteger memberId = [string rangeOfString:@"members/memberid"].location == NSNotFound;
+                              NSString *_memberId = [NSString stringWithFormat:@"%@", memberId ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _memberId, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress bills by member"];
@@ -820,7 +1128,25 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"112"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger billId = [string rangeOfString:@"bills/billid"].location == NSNotFound;
+                              NSString *_billId = [NSString stringWithFormat:@"%@", billId ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _billId, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress bill details"];
@@ -870,7 +1196,29 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"112"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger billId = [string rangeOfString:@"bills/billid1"].location == NSNotFound;
+                              NSString *_billId = [NSString stringWithFormat:@"%@", billId ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _billId, @"Should be either YES found or NO not found");
+                              
+                              NSInteger resource = [string rangeOfString:@"subjects"].location == NSNotFound;
+                              NSString *_resource = [NSString stringWithFormat:@"%@", resource ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _resource, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress bill amendments and related bills"];
@@ -915,7 +1263,25 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"112"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger billId = [string rangeOfString:@"bills/billid9"].location == NSNotFound;
+                              NSString *_billId = [NSString stringWithFormat:@"%@", billId ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _billId, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress bill cosponsors"];
@@ -960,7 +1326,25 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"112"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger category = [string rangeOfString:@"nominees/received"].location == NSNotFound;
+                              NSString *_category = [NSString stringWithFormat:@"%@", category ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _category, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress nominee lists"];
@@ -1005,7 +1389,25 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"112"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger nomineeId = [string rangeOfString:@"nominees/NomineeId44"].location == NSNotFound;
+                              NSString *_nomineeId = [NSString stringWithFormat:@"%@", nomineeId ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _nomineeId, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress nominee details"];
@@ -1050,7 +1452,25 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"107"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger state = [string rangeOfString:@"CA"].location == NSNotFound;
+                              NSString *_state = [NSString stringWithFormat:@"%@", state ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _state, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress nominees by state"];
@@ -1085,7 +1505,17 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress state party counts"];
@@ -1131,7 +1561,29 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger chambers = [string rangeOfString:@"house"].location == NSNotFound;
+                              NSString *_chambers = [NSString stringWithFormat:@"%@", chambers ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _chambers, @"Should be either YES found or NO not found");
+                              
+                              NSInteger congressNumber = [string rangeOfString:@"111"].location == NSNotFound;
+                              NSString *_congressNumber = [NSString stringWithFormat:@"%@", congressNumber ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _congressNumber, @"Should be either YES found or NO not found");
+                              
+                              NSInteger committeeId = [string rangeOfString:@"committees/commiteeid99"].location == NSNotFound;
+                              NSString *_committeeId = [NSString stringWithFormat:@"%@", committeeId ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _committeeId, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress committees and committee members"];
@@ -1166,7 +1618,17 @@
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"congress chamber schedule"];

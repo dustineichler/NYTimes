@@ -1438,7 +1438,6 @@
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance pres. donor information"];
-    
 }
 
 - (void)tearDown

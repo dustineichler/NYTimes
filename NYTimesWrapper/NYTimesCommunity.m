@@ -79,8 +79,6 @@
     
     // CommentsByDate
     
-    //by-date/{date}[.response-format]?[offset=int]&api-key={your-API-key}
-    
     if (obj.community.communityCommentsByDateApiKey && obj.community.communityCommentsByDateFormat && obj.community.communityCommentsByDateDate)
     {
         if (obj.community.communityCommentsByDateDate)
@@ -159,8 +157,6 @@
         }
     }
     
-    NSString *baseURL = [NSString stringWithFormat:SERVER_URL@"%@", params];
-    
-    return baseURL;
+    return [NSString stringWithFormat:@"%@%@", SERVER_URL, params];
 }
 @end
