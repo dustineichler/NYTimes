@@ -420,12 +420,7 @@
 
 - (NSString *)candidateSearchLastName
 {
-    if (self->candidateSearch.lastName)
-    {
-        return self->candidateSearch.lastName;
-    } else {
-        return nil;
-    }
+    return self->candidateSearch.lastName;
 }
 
 - (void)setCandidateSearchLastName:(NSString *)lastName
@@ -519,12 +514,9 @@
 
 - (void)setCandidateDetailsFormat:(NSString *)format
 {
-    if (format == @"JSON")
-    {
-        self->candidateDetails.format = format;
+    if (format == @"JSON") {
+        self->candidateDetails.format = @"json";
     } else if (format == @"XML") {
-        self->candidateDetails.format = @"xml";
-    } else {
         self->candidateDetails.format = @"xml";
     }
 }
@@ -591,10 +583,9 @@
 
 - (void)setCandidateLeadersFormat:(NSString *)format
 {    
-    if (format)
-    {
-        self->candidateLeaders.format = format;
-    } else {
+    if (format == @"JSON") {
+        self->candidateLeaders.format = @"json";
+    } else if (format == @"XML") {
         self->candidateLeaders.format = @"xml";
     } 
 }
@@ -762,10 +753,9 @@
 // TODO: DUPE
 - (void)setStateCandidatesFormat:(NSString *)format
 {
-    if (format)
-    {
-        self->stateCandidates.format = format;
-    } else {
+    if (format == @"JSON") {
+        self->stateCandidates.format = @"json";
+    } else if (format == @"XML") {
         self->stateCandidates.format = @"xml";
     } 
 }
@@ -890,7 +880,7 @@
 
 - (void)setCommitteeDetailsCommitteeId:(NSString *)committeeId
 {
-    if (committeeId)
+    if (committeeId && [committeeId length] > 0)
     {
         self->committeeDetails.committeeId = committeeId;
     }
@@ -1593,8 +1583,7 @@
 
 - (void)setPresDonorInformationSearchParameter:(NSString *)searchParameter
 {
-    if (searchParameter == @"LNAME") 
-    {
+    if (searchParameter == @"LNAME") {
         self->presDonorInformation.searchParameter = @"lname";
     } else if (searchParameter == @"ZIP") {
         self->presDonorInformation.searchParameter = @"zip";
@@ -1687,7 +1676,7 @@
     {
         return nil;
     }
-    
+
     campaignFinance = [[_CampaignFinance alloc] init];
     community = [[_Community alloc] init]; // TODO: DWE: Why is this here?
     congress = [[_Congress alloc] init];
@@ -1876,7 +1865,7 @@
     NSDate *_date = [formatter dateFromString:date];
     
     NSString *result = [formatter stringFromDate:_date];
-    
+
     if (result)
     {
         self->bestSeller.date = result;

@@ -33,27 +33,8 @@
     NSMutableString *params = [NSMutableString stringWithFormat:@"%@", @""];
     
     if (obj.date)
-    {        
-        NSError *error = NULL;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(([0-9]{4})([0-9]{2})([0-9]{2}))"
-                                                                               options:NSRegularExpressionCaseInsensitive
-                                                                                 error:&error];
-        
-        NSUInteger numberOfMatches = [regex numberOfMatchesInString:obj.date
-                                                            options:0
-                                                              range:NSMakeRange(0, [obj.date length])];
-        
-        if (error)
-        {
-            NSLog(@"Regex %@", error);
-        }
-        
-        if (numberOfMatches > 0)
-        {
-            [params appendFormat:@"%@/", obj.date];
-        }
-    } else {
-        [params appendString:@"/"];
+    {                
+        [params appendFormat:@"%@/", obj.date];
     }
     
     if (obj.listName)

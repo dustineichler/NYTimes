@@ -76,7 +76,7 @@
     /**
      Required
      */
-    
+    [nytimes.movieReviews setReviewsByKeyWordApiKey:@"API-KEY"];
     /**
      Optional
      */
@@ -91,7 +91,6 @@
     [nytimes.movieReviews setReviewsByKeyWordOffSet:@"40"];
     [nytimes.movieReviews setReviewsByKeyWordOrder:@"BY TITLE"];
     [nytimes.movieReviews setReviewsByKeyWordFormat:@"JSON"];
-    [nytimes.movieReviews setReviewsByKeyWordApiKey:@"API-KEY"];
     
     [NYTimesMovieReviews asyncRequest:nytimes
                               success:^(NSData *data, NSURLResponse *response){
@@ -134,7 +133,7 @@
     /**
      Required
      */
-    
+    [nytimes.movieReviews setReviewsAndNYTCriticsPicksApiKey:@"API-KEY"];
     /**
      Optional
      */
@@ -143,7 +142,6 @@
     [nytimes.movieReviews setReviewsAndNYTCriticsPicksOffSet:@"40"];
     [nytimes.movieReviews setReviewsAndNYTCriticsPicksOrder:@"BY TITLE"];
     [nytimes.movieReviews setReviewsAndNYTCriticsPicksFormat:@"JSON"];
-    [nytimes.movieReviews setReviewsAndNYTCriticsPicksApiKey:@"API-KEY"];
     
     [NYTimesMovieReviews asyncRequest:nytimes
                               success:^(NSData *data, NSURLResponse *response){
@@ -190,7 +188,7 @@
     /**
      Required
      */
-    
+    [nytimes.movieReviews setReviewsByReviewerApiKey:@"API-KEY"];
     /**
      Optional
      */
@@ -200,7 +198,6 @@
     [nytimes.movieReviews setReviewsByReviewerOffSet:@"40"];
     [nytimes.movieReviews setReviewsByReviewerOrder:@"BY TITLE"];
     [nytimes.movieReviews setReviewsByReviewerFormat:@"JSON"];
-    [nytimes.movieReviews setReviewsByReviewerApiKey:@"API-KEY"];
 
     [NYTimesMovieReviews asyncRequest:nytimes
                               success:^(NSData *data, NSURLResponse *response){
@@ -235,13 +232,12 @@
     /**
      Required
      */
-    
+    [nytimes.movieReviews setReviewerDetailsApiKey:@"API-KEY"];
     /**
      Optional
      */
     [nytimes.movieReviews setReviewerDetailsResourceType:@"FULL TIME"];
     [nytimes.movieReviews setReviewerDetailsFormat:@"JSON"];
-    [nytimes.movieReviews setReviewerDetailsApiKey:@"API-KEY"];
     
     [NYTimesMovieReviews asyncRequest:nytimes
                               success:^(NSData *data, NSURLResponse *response){

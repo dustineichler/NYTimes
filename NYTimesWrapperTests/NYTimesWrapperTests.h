@@ -11,6 +11,7 @@
 #import "NYTimesArticle.h"
 #import "NYTimesBestSeller.h"
 #import "NYTimesCampaignFinance.h"
+#import <OCMock/OCMock.h>
 
 @interface NYTimesWrapperTests : SenTestCase
 {

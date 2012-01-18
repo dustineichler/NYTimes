@@ -110,7 +110,7 @@
             [params appendFormat:@"offset=%@&", obj.offset];
         }
         
-        if (obj.rank == @"Newest" || obj.rank == @"Oldest" || obj.rank == @"Closest")
+        if (obj.rank)
         {
             [params appendFormat:@"rank=%@&", obj.rank];
         }

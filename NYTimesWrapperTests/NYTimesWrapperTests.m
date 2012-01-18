@@ -17,6 +17,14 @@
 #define BEST_SELLER_SERVER_URL @"http://api.nytimes.com/svc/books/v2/lists/"
 #define CAMPAIGN_FINANCE_SERVER_URL @"BLANK"
 
+//@interface ConnectionDelegate : NSObject { }
+//- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
+//@end
+//
+//@implementation ConnectionDelegate
+//- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{}
+//@end
+
 @implementation NYTimesWrapperTests
 @synthesize articles, bestSellers, campaignFinance, globalURL, receivedData;
 
@@ -24,6 +32,15 @@
 {
     [super setUp];
     articles = [[NYTimesWrapper alloc] initWithAPIKey:ARTICLE_API_KEY];
+}
+
+- (void)testOCMock
+{
+//    id mock = [OCMockObject mockForClass:[ConnectionDelegate class]];    
+//    NSURL *url = [NSURL URLWithString:@"http://www.google.com"];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:mock startImmediately:NO];
+//    [[mock expect] connection:connection didReceiveResponse:OCMOCK_ANY];
 }
 
 // TODO: DWE: This needs to be moved into its own Articles Class, not NYTimesWrapper
@@ -52,6 +69,71 @@
     
     [articles setFormat:@"JSON"];
     STAssertEqualObjects(@"json", articles.format, @"Should Equal JSON");
+}
+
+- (void)testNYTimesArticlesConnection
+{    
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:ARTICLE_API_KEY];
+    /**
+     Required
+     */
+    [nytimes setQuery:@"Hackday"];
+    [nytimes setApiKey:ARTICLE_API_KEY];
+    /**
+     Optional
+     */
+    [nytimes setStartDate:@"20110102"];
+    [nytimes setEndDate:@"20110202"];
+    [nytimes setFacets:@"Facet1, Facet2, Facet3"];
+    [nytimes setFields:@"Fields1, Fields2, Fields3"];
+    [nytimes setOffset:@"1"];
+    [nytimes setRank:@"OLDEST"];
+    [nytimes setFormat:@"JSON"];
+    
+    [NYTimesArticle asyncRequest:nytimes 
+                         success:^(NSData *data, NSURLResponse *response){
+
+                             NSString *string = [response.URL absoluteString];
+                             
+                             NSInteger queryRange = [string rangeOfString:@"query"].location == NSNotFound;
+                             NSString *_query = [NSString stringWithFormat:@"%@", queryRange ? @"NO" : @"YES"]; 
+                             STAssertEqualObjects(@"YES", _query, @"Should be either YES found or NO not found");
+                             
+                             NSInteger apiKeyRange = [string rangeOfString:@"api-key"].location == NSNotFound;
+                             NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKeyRange ? @"NO" : @"YES"]; 
+                             STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                             
+                             NSInteger startDateRange = [string rangeOfString:@"begin_date"].location == NSNotFound;
+                             NSString *_startDateRange = [NSString stringWithFormat:@"%@", startDateRange ? @"NO" : @"YES"]; 
+                             STAssertEqualObjects(@"YES", _startDateRange, @"Should be either YES found or NO not found");
+                             
+                             NSInteger endDateRange = [string rangeOfString:@"end_date"].location == NSNotFound;
+                             NSString *_endDateRange = [NSString stringWithFormat:@"%@", endDateRange ? @"NO" : @"YES"]; 
+                             STAssertEqualObjects(@"YES", _endDateRange, @"Should be either YES found or NO not found");
+                             
+                             NSInteger facetsRange = [string rangeOfString:@"facets"].location == NSNotFound;
+                             NSString *_facetsRange = [NSString stringWithFormat:@"%@", facetsRange ? @"NO" : @"YES"]; 
+                             STAssertEqualObjects(@"YES", _facetsRange, @"Should be either YES found or NO not found");
+                             
+                             NSInteger fieldsRange = [string rangeOfString:@"facets"].location == NSNotFound;
+                             NSString *_fieldsRange = [NSString stringWithFormat:@"%@", fieldsRange ? @"NO" : @"YES"]; 
+                             STAssertEqualObjects(@"YES", _fieldsRange, @"Should be either YES found or NO not found");
+                             
+                             NSInteger offsetRange = [string rangeOfString:@"offset"].location == NSNotFound;
+                             NSString *_offset = [NSString stringWithFormat:@"%@", offsetRange ? @"NO" : @"YES"]; 
+                             STAssertEqualObjects(@"YES", _offset, @"Should be either YES found or NO not found");
+                             
+                             NSInteger rankRange = [string rangeOfString:@"rank"].location == NSNotFound;
+                             NSString *_rankRange = [NSString stringWithFormat:@"%@", rankRange ? @"NO" : @"YES"]; 
+                             STAssertEqualObjects(@"YES", _rankRange, @"Should be either YES found or NO not found");
+                             
+                             NSInteger formatRange = [string rangeOfString:@"format"].location == NSNotFound;
+                             NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                             STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                             
+                         }failure:^(NSData *data, NSError *error){
+                             NSLog(@"Errors %@", error);
+                         } tag:@"articles"];
 }
 
 // TODO: DWE: This needs to be moved into its own BestSeller Class, not NYTimesWrapper
@@ -112,6 +194,51 @@
 //    STAssertNil(articles.bestSellerFormat, @"Should be nil if type is incorrect");
 }
 
+- (void)testNYTimesBestSellerConnection
+{
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:ARTICLE_API_KEY];
+    /**
+     Required
+     */
+    [nytimes setListName:@"List Name"];
+    /**
+     Optional
+     */
+    [articles setDate:@"20110102"];
+    [articles setBestSellerOffset:@"20"];
+    [articles setSortBy:@"BestSellers-Date"];    
+    [articles setBestSellerFormat:@"JSON"];
+    
+    [NYTimesBestSeller asyncRequest:nytimes
+                            success:^(NSData *data, NSURLResponse *response){
+                                
+                                NSString *string = [response.URL absoluteString];
+                                
+                                NSInteger listNameRange = [string rangeOfString:@"List-Name"].location == NSNotFound;
+                                NSString *_listNameRange = [NSString stringWithFormat:@"%@", listNameRange ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _listNameRange, @"Should be either YES found or NO not found");
+                                
+//                                NSInteger dateRange = [string rangeOfString:@"20110102"].location == NSNotFound;
+//                                NSString *_dateRange = [NSString stringWithFormat:@"%@", dateRange ? @"NO" : @"YES"]; 
+//                                STAssertEqualObjects(@"YES", _dateRange, @"Should be either YES found or NO not found");
+                                
+                                NSInteger offsetRange = [string rangeOfString:@"offset"].location == NSNotFound;
+                                NSString *_offsetRange = [NSString stringWithFormat:@"%@", offsetRange ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _offsetRange, @"Should be either YES found or NO not found");
+                                
+                                NSInteger sortByRange = [string rangeOfString:@"sortby"].location == NSNotFound;
+                                NSString *_sortByRange = [NSString stringWithFormat:@"%@", sortByRange ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _sortByRange, @"Should be either YES found or NO not found");
+                                
+                                NSInteger formatRange = [string rangeOfString:@".json"].location == NSNotFound;
+                                NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                
+                            }failure:^(NSData *data, NSError *error){
+                                NSLog(@"Errors %@", error);
+                            }tag:@"bestsellers"];
+}
+
 - (void)testCampaignFinanceCandidateSearch
 {
     [articles.campaignFinance setCandidateSearchCycle:@"20111223"];
@@ -140,7 +267,7 @@
     
     [articles.campaignFinance setCandidateDetailsFormat:@"JSON"];
     NSString *candidateDetailsFormat = articles.campaignFinance.candidateDetailsFormat;
-    STAssertEqualObjects(@"JSON", candidateDetailsFormat, @"Should be valid format");
+    STAssertEqualObjects(@"json", candidateDetailsFormat, @"Should be valid format");
     
 //    [articles.campaignFinance setCandidateDetailFormat:@"FOOJSON"];
 //    NSString *candidateDetailsFormat2 = articles.campaignFinance.candidateDetailsFormat;
@@ -187,7 +314,7 @@
     
     [articles.campaignFinance setCandidateLeadersFormat:@"JSON"];
     NSString *candidateLeadersFormat = articles.campaignFinance.candidateLeadersFormat;
-    STAssertEqualObjects(@"JSON", candidateLeadersFormat, @"Should be valid category");
+    STAssertEqualObjects(@"json", candidateLeadersFormat, @"Should be valid category");
 }
 
 - (void)testCampaignFinanceStateCandidates
@@ -218,7 +345,7 @@
     
     [articles.campaignFinance setStateCandidatesFormat:@"JSON"];
     NSString *stateCandidatesFormat = articles.campaignFinance.stateCandidatesFormat;
-    STAssertEqualObjects(@"JSON", stateCandidatesFormat, @"Should be valid format");
+    STAssertEqualObjects(@"json", stateCandidatesFormat, @"Should be valid format");
 }
 
 - (void)testCampaignFinanceNewCandidates
@@ -561,57 +688,7 @@
     STAssertEqualObjects(@"json", communityCommentsByURLFormat, @"Should be valid format");
 }
 
-- (void)testNYTimesArticlesConnection
-{    
-    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:ARTICLE_API_KEY];
-    /**
-        Required
-     */
-    [nytimes setQuery:@"Hackday"];
-    [nytimes setApiKey:ARTICLE_API_KEY];
-    /**
-        Optional
-     */
-    [nytimes setStartDate:@"20110102"];
-    [nytimes setEndDate:@"20110202"];
-    [nytimes setFacets:@"Facet1, Facet2, Facet3"];
-    [nytimes setFields:@"Fields1, Fields2, Fields3"];
-    [nytimes setOffset:@"1"];
-    [nytimes setRank:@"OLDEST"];
-    [nytimes setFormat:@"JSON"];
-    
-    [NYTimesArticle asyncRequest:nytimes 
-                         success:^(NSData *data, NSURLResponse *response){
-                             NSLog(@"Results %@", data);
-                         }failure:^(NSData *data, NSError *error){
-                             NSLog(@"Errors %@", error);
-                         } tag:@"articles"];
-}
-
-- (void)testNYTimesBestSellerConnection
-{
-    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:ARTICLE_API_KEY];
-    /**
-     Required
-     */
-    [nytimes setListName:@"List Name"];
-    /**
-     Optional
-     */
-    [articles setDate:@"20110102"];
-    [articles setBestSellerOffset:@"20"];
-    [articles setSortBy:@"BestSellers-Date"];    
-    [articles setBestSellerFormat:@"JSON"];
-    
-    [NYTimesBestSeller asyncRequest:nytimes
-                            success:^(NSData *data, NSURLResponse *response){
-                                NSLog(@"Results %@", data);
-                            }failure:^(NSData *data, NSError *error){
-                                NSLog(@"Errors %@", error);
-                            }tag:@"bestsellers"];
-}
-
-- (void)testNYTimesCampaignFinanceConnection
+- (void)testNYTimesCampaignFinanceCandidateSearchConnection
 {
     /**
         Candidate Search
@@ -630,16 +707,33 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/candidates"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger lastNameRange = [string rangeOfString:@"query"].location == NSNotFound;
+                                     NSString *_lastNameRange = [NSString stringWithFormat:@"%@", lastNameRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _lastNameRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"search.json?"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
-                                     NSLog(@"Errors %@", error);
+
                                  }tag:@"campaignfinance candidate search"];
-    
+}
+
+- (void)testNYTimesCampaignFinanceCandidateDetailsConnection
+{
     /** 
         Candidate Details
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -652,16 +746,33 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/candidates"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found"); 
+                                     
+                                     NSInteger candidateIdRange = [string rangeOfString:@"P100000000"].location == NSNotFound;
+                                     NSString *_candidateIdRange = [NSString stringWithFormat:@"%@", candidateIdRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _candidateIdRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@".json"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance candidate details"];
-    
+}
+
+- (void)testNYTimesCampaignFinanceCandidateLeadersConnection
+{
     /** 
         Candidate Leaders
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -674,16 +785,33 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/candidates"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found"); 
+                                     
+                                     NSInteger categoryRange = [string rangeOfString:@"candidates/leaders/candidate_loan"].location == NSNotFound;
+                                     NSString *_categoryRange = [NSString stringWithFormat:@"%@", categoryRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _categoryRange, @"Should be either YES found or NO not found"); 
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@".json"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found"); 
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance candidate details"];
-    
+}
+
+- (void)testNYTimesCampaignFinanceStateCandidatesConnection
+{
     /**
         State Candidates
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -697,16 +825,40 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger stateRange = [string rangeOfString:@"seats/AZ"].location == NSNotFound;
+                                     NSString *_stateRange = [NSString stringWithFormat:@"%@", stateRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _stateRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger chamberRange = [string rangeOfString:@"house"].location == NSNotFound;
+                                     NSString *_chamberRange = [NSString stringWithFormat:@"%@", chamberRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _chamberRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"json"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance state candidates"];
+    
+}
+
+- (void)testNYTimesCampaignFinanceNewCandidatesConnection
+{
     
     /** 
         New Candidates
      */
 
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -718,16 +870,30 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@".json"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance new candidates"];
     
+}
+
+- (void)testNYTimesCampaignFinanceComitteeSearchConnection
+{
     /** 
         Committee Search
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -740,16 +906,33 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger searchNameRange = [string rangeOfString:@"query"].location == NSNotFound;
+                                     NSString *_searchNameRange = [NSString stringWithFormat:@"%@", searchNameRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _searchNameRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"json"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance committee search"];
+}
 
+- (void)testNYTimesCampaignFinanceCommitteeDetailsConnection
+{
     /** 
      Committee Details
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -762,16 +945,33 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger committeeIdRange = [string rangeOfString:@"committees/C100000000"].location == NSNotFound;
+                                     NSString *_committeeIdRange = [NSString stringWithFormat:@"%@", committeeIdRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _committeeIdRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@".json?"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance committee details"];
-    
+}
+
+- (void)testNYTimesCampaignFinanceNewCommitteesConnection
+{
     /** 
         New Committees
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -783,16 +983,29 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"committees/new.json?"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance new committees"];
-    
+}
+
+- (void)testNYTimesCampaignFinanceCommitteeContributionsConnection
+{
     /** 
         Committee Contributions
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -806,39 +1019,37 @@
 
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger committeeIdRange = [string rangeOfString:@"committees/"].location == NSNotFound;
+                                     NSString *_committeeIdRange = [NSString stringWithFormat:@"%@", committeeIdRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _committeeIdRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger offSetRange = [string rangeOfString:@"offset"].location == NSNotFound;
+                                     NSString *_offSetRange = [NSString stringWithFormat:@"%@", offSetRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _offSetRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"contributions.json"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance committee contributions"];
-    
-    /** 
-        Committee Contributions
-     */
-    
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-    /**
-     Required
-     */
-    [nytimes.campaignFinance setCommitteeContributionsCycle:@"20111223"];
-    [nytimes.campaignFinance setCommitteeContributionsCommitteeId:@"C100000000"];
-    /**
-     Optional
-     */
-    [nytimes.campaignFinance setCommitteeContributionsOffset:@"20"];
-    [nytimes.campaignFinance setCommitteeContributionsFormat:@"JSON"];
-    
-    [NYTimesCampaignFinance asyncRequest:nytimes
-                                 success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
-                                 }failure:^(NSData *data, NSError *error){
-                                     NSLog(@"Errors %@", error);
-                                 }tag:@"campaignfinance committee contributions"];
-    
+}
+
+- (void)testNYTimesCampaignFinanceCommitteeContributionsToConnection
+{    
     /** 
         Committee Contributions To
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -852,16 +1063,37 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger candidateIdRange = [string rangeOfString:@"candidates/"].location == NSNotFound;
+                                     NSString *_candidateIdRange = [NSString stringWithFormat:@"%@", candidateIdRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _candidateIdRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger committeeIdRange = [string rangeOfString:@"committees/"].location == NSNotFound;
+                                     NSString *_committeeIdRange = [NSString stringWithFormat:@"%@", committeeIdRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _committeeIdRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@".json?"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance committee contributions to"];
-    
+}
+
+- (void)testNYTimesCampaignFinanceCommitteeFilingsConnection
+{
     /** 
         Committee Filings
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -875,16 +1107,33 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger committeeIdRange = [string rangeOfString:@"committees/"].location == NSNotFound;
+                                     NSString *_committeeIdRange = [NSString stringWithFormat:@"%@", committeeIdRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _committeeIdRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"filings.json"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance committee filings"];
-    
+}
+
+- (void)testNYTimesCampaignFinanceLeadershipCommitteesConnection
+{
     /** 
         Leadership Committees
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -896,16 +1145,29 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"committees/leadership.json"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance leadership committees"];
-    
+}
+
+- (void)testNYTimesCampaignFinanceElectronicFilingsByDateConnection
+{
     /** 
         Electronic Filings by Date
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -918,16 +1180,33 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger dateRange = [string rangeOfString:@"20111223"].location == NSNotFound;
+                                     NSString *_dateRange = [NSString stringWithFormat:@"%@", dateRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _dateRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"json"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance electronic filings by date"];
-    
+}
+
+- (void)testNYTimesCampaignFinanceFormTypesConnection
+{
     /** 
         Form Types
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -939,16 +1218,29 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"filings/types"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance form types"];
-    
+}
+
+- (void)testNYTimesCampaignFinanceFilingsByTypeConnection
+{
     /** 
         Filings by Type
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -961,16 +1253,33 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger filingTypeRange = [string rangeOfString:@"F6"].location == NSNotFound;
+                                     NSString *_filingTypeRange = [NSString stringWithFormat:@"%@", filingTypeRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _filingTypeRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger filingTypeFormat = [string rangeOfString:@"json"].location == NSNotFound;
+                                     NSString *_filingTypeFormat = [NSString stringWithFormat:@"%@", filingTypeFormat ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _filingTypeFormat, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance filings by type"];
-    
+}
+
+- (void)testNYTimesCampaignFinancePresCandidateTotalsConnection
+{
     /** 
         Pres. Candidate Totals
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -982,16 +1291,29 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"president/totals"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance pres. candidate totals"];
-    
+}
+
+- (void)testNYTimesCampaignFinancePresCandidateDetailsConnection
+{
     /** 
         Pres. Candidate Details
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -1004,16 +1326,33 @@
 
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger committeeIdRange = [string rangeOfString:@"president/candidates/"].location == NSNotFound;
+                                     NSString *_committeeIdRange = [NSString stringWithFormat:@"%@", committeeIdRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _committeeIdRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"json"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance pres. candidate details"];
-    
+}
+
+- (void)testNYTimesCampaignFinancePresStateZIPtotalsConnection
+{
     /** 
         Pres. State/Zip Totals
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -1027,17 +1366,37 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger resourceTypeRange = [string rangeOfString:@"president"].location == NSNotFound;
+                                     NSString *_resourceTypeRange = [NSString stringWithFormat:@"%@", resourceTypeRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _resourceTypeRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger stateABBRRange = [string rangeOfString:@"AL"].location == NSNotFound;
+                                     NSString *_stateABBRRange = [NSString stringWithFormat:@"%@", stateABBRRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _stateABBRRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"json"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance pres. state/zip totals"];
-    
-    
+}
+
+- (void)testNYTimesCampaignFinancePresDonorInformationConnection
+{    
     /** 
         Pres. Donor Information
      */
     
-    nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
+    NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
     /**
      Required
      */
@@ -1053,7 +1412,29 @@
     
     [NYTimesCampaignFinance asyncRequest:nytimes
                                  success:^(NSData *data, NSURLResponse *response){
-                                     NSLog(@"Results %@", data);
+                                     
+                                     NSString *string = [response.URL absoluteString];
+                                     
+                                     NSInteger cycleRange = [string rangeOfString:@"20111223/"].location == NSNotFound;
+                                     NSString *_cycleRange = [NSString stringWithFormat:@"%@", cycleRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _cycleRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger searchParameterRange = [string rangeOfString:@"lname"].location == NSNotFound;
+                                     NSString *_searchParameterRange = [NSString stringWithFormat:@"%@", searchParameterRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _searchParameterRange, @"Should be either YES found or NO not found");
+
+//                                     NSInteger zipCodeRange = [string rangeOfString:@"zip"].location == NSNotFound;
+//                                     NSString *_zipCodeRange = [NSString stringWithFormat:@"%@", zipCodeRange ? @"NO" : @"YES"]; 
+//                                     STAssertEqualObjects(@"YES", _zipCodeRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger offsetRange = [string rangeOfString:@"offset"].location == NSNotFound;
+                                     NSString *_offsetRange = [NSString stringWithFormat:@"%@", offsetRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _offsetRange, @"Should be either YES found or NO not found");
+                                     
+                                     NSInteger formatRange = [string rangeOfString:@"president/contributions/donorsearch"].location == NSNotFound;
+                                     NSString *_formatRange = [NSString stringWithFormat:@"%@", formatRange ? @"NO" : @"YES"]; 
+                                     STAssertEqualObjects(@"YES", _formatRange, @"Should be either YES found or NO not found");
+                                     
                                  }failure:^(NSData *data, NSError *error){
                                      NSLog(@"Errors %@", error);
                                  }tag:@"campaignfinance pres. donor information"];

@@ -68,18 +68,15 @@
     /**
      Required
      */
-    
-    /**
-     Optional
-     */
+    [nytimes.realEstate setListingsPercentilesPercentValues:@"50"];
     [nytimes.realEstate setListingsPercentilesDateRange:@"2012-01-02"];
     [nytimes.realEstate setListingsPercentilesGeoExtentLevel:@"BOROUGH"];
     [nytimes.realEstate setListingsPercentilesGeoExtentValue:@"NYC-Borough"];
-    [nytimes.realEstate setListingsPercentilesGeoSummaryLevel:@"ZIP"];
-    [nytimes.realEstate setListingsPercentilesLoft:@"YES"];
+    /**
+     Optional
+     */
     [nytimes.realEstate setListingsPercentilesBedrooms:@"3"];
     [nytimes.realEstate setListingsPercentilesBuildingTypeId:@"Condo"];
-    [nytimes.realEstate setListingsPercentilesBuildingBuiltYear:@"1999"];
     [nytimes.realEstate setListingsPercentilesFormat:@"JSON"];
     
     [NYTimesRealEstate asyncRequest:nytimes
@@ -133,7 +130,7 @@
     STAssertEqualObjects(@"API-KEY", listingsCountsApiKey, @"Should be alphanumeric string");
 }
 
-- (void)testRealEstateListingsCountsConnectio
+- (void)testRealEstateListingsCountsConnection
 {
     /**
      Main Request
@@ -143,20 +140,19 @@
     /**
      Required
      */
-    
-    /**
-     Optional
-     */
     [nytimes.realEstate setListingsCountsDateRange:@"2012-01-02"];
     [nytimes.realEstate setListingsCountsGeoExtentLevel:@"BOROUGH"];    
     [nytimes.realEstate setListingsCountsGeoExtentValue:@"NYC-Borough"];
     [nytimes.realEstate setListingsCountsGeoSummaryLevel:@"ZIP"];
+    [nytimes.realEstate setListingsCountsApiKey:@"API-KEY"];
+    /**
+     Optional
+     */
     [nytimes.realEstate setListingsCountsBedrooms:@"2"];
     [nytimes.realEstate setListingsCountsBuildingBuiltYear:@"1999"];
     [nytimes.realEstate setListingsCountsBuildingTypeId:@"34"];
     [nytimes.realEstate setListingsCountsLoft:@"NO"];
     [nytimes.realEstate setListingsCountsFormat:@"JSON"];
-    [nytimes.realEstate setListingsCountsApiKey:@"API-KEY"];
     
     [NYTimesRealEstate asyncRequest:nytimes
                             success:^(NSData *data, NSURLResponse *response){
@@ -207,17 +203,16 @@
     /**
      Required
      */
-    
-    /**
-     Optional
-     */
+    [nytimes.realEstate setSalesPercentilesDateRange:@"1999-01-02"];
     [nytimes.realEstate setSalesPercentilesGeoExtentLevel:@"ZIP"];    
     [nytimes.realEstate setSalesPercentilesGeoExtentValue:@"zip"];
     [nytimes.realEstate setSalesPercentilesPercentileValue:@"3"];
-    [nytimes.realEstate setSalesPercentilesBuildingTypeId:@"30"];
-    [nytimes.realEstate setSalesPercentilesDateRange:@"1999-01-02"];
-    [nytimes.realEstate setSalesPercentilesFormat:@"JSON"];
     [nytimes.realEstate setSalesPercentilesApiKey:@"API-KEY"];
+    /**
+     Optional
+     */
+    [nytimes.realEstate setSalesPercentilesBuildingTypeId:@"30"];
+    [nytimes.realEstate setSalesPercentilesFormat:@"JSON"];
     
     [NYTimesRealEstate asyncRequest:nytimes
                             success:^(NSData *data, NSURLResponse *response){
@@ -271,18 +266,17 @@
     /**
      Required
      */
-    
-    /**
-     Optional
-     */
     [nytimes.realEstate setSalesCountsDateRange:@"1999-01-02"];
     [nytimes.realEstate setSalesCountsGeoExtentLevel:@"NEIGHBORHOOD"];
     [nytimes.realEstate setSalesCountGeoExtentValue:@"neighborhood"];
     [nytimes.realEstate setSalesCountsGeoSummaryLevel:@"ZIP"];
+    [nytimes.realEstate setSalesCountsApiKey:@"API-KEY"];
+    /**
+     Optional
+     */
     [nytimes.realEstate setSalesCountsBuildingBuiltYear:@"1999"];
     [nytimes.realEstate setSalesCountsBuildingTypeId:@"30"];
     [nytimes.realEstate setSalesCountsFormat:@"JSON"];
-    [nytimes.realEstate setSalesCountsApiKey:@"API-KEY"];
     
     [NYTimesRealEstate asyncRequest:nytimes
                             success:^(NSData *data, NSURLResponse *response){

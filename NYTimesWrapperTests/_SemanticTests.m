@@ -53,16 +53,15 @@
     /**
      Required
      */
-    
+    [nytimes.semantic setNameConceptType:@"nytd_geo"];
+    [nytimes.semantic setNameConceptName:@"Baseball"];
+    [nytimes.semantic setNameApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.semantic setNameConceptType:@"nytd_geo"];
-    [nytimes.semantic setNameConceptName:@"Baseball"];
     [nytimes.semantic setNameFields:@"pages, ticker_symbol"];
     [nytimes.semantic setNameOffSet:@"10"];
     [nytimes.semantic setNameFormat:@"JSON"];
-    [nytimes.semantic setNameApiKey:@"API-KEY"];
     
     [NYTimesSemantic asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -101,15 +100,14 @@
     /**
      Required
      */
-    
+    [nytimes.semantic setUriConceptUri:@"http://www.google.com"];
+    [nytimes.semantic setUriFields:@"ALL"];
+    [nytimes.semantic setUriApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.semantic setUriConceptUri:@"http://www.google.com"];
-    [nytimes.semantic setUriFields:@"ALL"];
     [nytimes.semantic setUriOffSet:@"20"];
     [nytimes.semantic setUriFormat:@"JSON"];
-    [nytimes.semantic setUriApiKey:@"API-KEY"];
     
     [NYTimesSemantic asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -148,15 +146,14 @@
     /**
      Required
      */
-    
+    [nytimes.semantic setSemanticArticleArticleUri:@"http://www.google.com"];
+    [nytimes.semantic setSemanticArticleFields:@"ALL"];
+    [nytimes.semantic setSemanticArticleApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.semantic setSemanticArticleArticleUri:@"http://www.google.com"];
-    [nytimes.semantic setSemanticArticleFields:@"ALL"];
     [nytimes.semantic setSemanticArticleOffSet:@"20"];
     [nytimes.semantic setSemanticArticleFormat:@"JSON"];
-    [nytimes.semantic setSemanticArticleApiKey:@"API-KEY"];
     
     [NYTimesSemantic asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -195,15 +192,14 @@
     /**
      Required
      */
-    
+    [nytimes.semantic setSearchQuery:@"SEARCH-TERM"];
+    [nytimes.semantic setSearchFields:@"ALL"];
+    [nytimes.semantic setSearchApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.semantic setSearchQuery:@"SEARCH-TERM"];
-    [nytimes.semantic setSearchFields:@"ALL"];
     [nytimes.semantic setSearchOffSet:@"20"];
     [nytimes.semantic setSearchFormat:@"JSON"];
-    [nytimes.semantic setSearchApiKey:@"API-KEY"];
     
     [NYTimesSemantic asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){

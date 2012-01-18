@@ -82,6 +82,7 @@
 		9F99BAB0148BF2A100F2AC6F /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99BA97148BF2A100F2AC6F /* SBJsonWriter.m */; };
 		9F99BAB7148C544400F2AC6F /* NYTimesWrapperBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F99BAB5148C544400F2AC6F /* NYTimesWrapperBase.h */; };
 		9F99BAB8148C544400F2AC6F /* NYTimesWrapperBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99BAB6148C544400F2AC6F /* NYTimesWrapperBase.m */; };
+		9FA7768114C0DBEC000297B4 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA7768014C0DBEC000297B4 /* libOCMock.a */; };
 		9FD7807814AD62C100435C35 /* NYTimesCommunity.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FD7807614AD62C100435C35 /* NYTimesCommunity.h */; };
 		9FD7807914AD62C100435C35 /* NYTimesCommunity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD7807714AD62C100435C35 /* NYTimesCommunity.m */; };
 		9FE48B95148D764200CE008F /* NYTimesBestSeller.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FE48B93148D764200CE008F /* NYTimesBestSeller.h */; };
@@ -192,6 +193,13 @@
 		9F99BA97148BF2A100F2AC6F /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		9F99BAB5148C544400F2AC6F /* NYTimesWrapperBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesWrapperBase.h; sourceTree = "<group>"; };
 		9F99BAB6148C544400F2AC6F /* NYTimesWrapperBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesWrapperBase.m; sourceTree = "<group>"; };
+		9FA7767A14C0DBEC000297B4 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		9FA7767B14C0DBEC000297B4 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		9FA7767C14C0DBEC000297B4 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		9FA7767D14C0DBEC000297B4 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		9FA7767E14C0DBEC000297B4 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		9FA7767F14C0DBEC000297B4 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		9FA7768014C0DBEC000297B4 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
 		9FD7807614AD62C100435C35 /* NYTimesCommunity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesCommunity.h; sourceTree = "<group>"; };
 		9FD7807714AD62C100435C35 /* NYTimesCommunity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYTimesCommunity.m; sourceTree = "<group>"; };
 		9FE48B93148D764200CE008F /* NYTimesBestSeller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYTimesBestSeller.h; sourceTree = "<group>"; };
@@ -221,6 +229,7 @@
 				9F749C5D1489B016009E1372 /* UIKit.framework in Frameworks */,
 				9F749C5E1489B016009E1372 /* Foundation.framework in Frameworks */,
 				9F749C611489B016009E1372 /* libNYTimesWrapper.a in Frameworks */,
+				9FA7768114C0DBEC000297B4 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +239,7 @@
 		9F749C3E1489B015009E1372 = {
 			isa = PBXGroup;
 			children = (
+				9FA7767714C0DBD0000297B4 /* Libraries */,
 				9F99BA7E148BF2A100F2AC6F /* JSON */,
 				9F749C4E1489B016009E1372 /* NYTimesWrapper */,
 				9F749C621489B016009E1372 /* NYTimesWrapperTests */,
@@ -384,6 +394,36 @@
 			);
 			name = JSON;
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		9FA7767714C0DBD0000297B4 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				9FA7767814C0DBEC000297B4 /* Headers */,
+				9FA7768014C0DBEC000297B4 /* libOCMock.a */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		9FA7767814C0DBEC000297B4 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				9FA7767914C0DBEC000297B4 /* OCMock */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		9FA7767914C0DBEC000297B4 /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				9FA7767A14C0DBEC000297B4 /* NSNotificationCenter+OCMAdditions.h */,
+				9FA7767B14C0DBEC000297B4 /* OCMArg.h */,
+				9FA7767C14C0DBEC000297B4 /* OCMConstraint.h */,
+				9FA7767D14C0DBEC000297B4 /* OCMock.h */,
+				9FA7767E14C0DBEC000297B4 /* OCMockObject.h */,
+				9FA7767F14C0DBEC000297B4 /* OCMockRecorder.h */,
+			);
+			path = OCMock;
 			sourceTree = "<group>";
 		};
 		9FF8A020148ACE2600E470A6 /* Utilities */ = {
@@ -690,7 +730,13 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NYTimesWrapper/NYTimesWrapper-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Libraries/Headers/**";
 				INFOPLIST_FILE = "NYTimesWrapperTests/NYTimesWrapperTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"/**",
+					"\"$(SRCROOT)/Libraries\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -706,7 +752,13 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NYTimesWrapper/NYTimesWrapper-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Libraries/Headers/**";
 				INFOPLIST_FILE = "NYTimesWrapperTests/NYTimesWrapperTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"/**",
+					"\"$(SRCROOT)/Libraries\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;

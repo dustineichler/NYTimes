@@ -90,13 +90,10 @@
     /**
      Required
      */
-    
+    [nytimes.eventListings setMainRequestApiKey:@"API-KEY"];
     /**
      Optional
      */
-    
-    [nytimes.eventListings setMainRequestApiKey:@"API-KEY"];
-    [nytimes.eventListings setMainRequestFormat:@"JSON"];
     [nytimes.eventListings setMainRequestLl:@"40.756146,-73.99021"];
     [nytimes.eventListings setMAinRequestRadius:@"800"];
     [nytimes.eventListings setMainRequestNe:@"40.756146,-73.99021"];
@@ -107,6 +104,7 @@
     [nytimes.eventListings setMainRequestSort:@"ASC"];
     [nytimes.eventListings setMainRequestLimit:@"10"];
     [nytimes.eventListings setMainRequestOffSet:@"20"];
+    [nytimes.eventListings setMainRequestFormat:@"JSON"];
     
     [NYTimesEventListings asyncRequest:nytimes
                                success:^(NSData *data, NSURLResponse *response){

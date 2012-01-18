@@ -61,18 +61,17 @@
     /**
      Required
      */
-    
+    [nytimes.mostPopular setBaseSection:@"ALL SECTIONS"];
+    [nytimes.mostPopular setBaseTimePeriod:@"7"];
+    [nytimes.mostPopular setBaseApiKey:@"API-KEY"];
     /**
      Optional
      */
     [nytimes.mostPopular setBaseResourceType:@"MOSTEMAILED"];
-    [nytimes.mostPopular setBaseSection:@"ALL SECTIONS"];
-    [nytimes.mostPopular setBaseTimePeriod:@"7"];
     [nytimes.mostPopular setBaseResourceType:@"MOSTSHARED"];
     [nytimes.mostPopular setBaseShareTypes:@"DIGG"];
     [nytimes.mostPopular setBaseOffSet:@"40"];
     [nytimes.mostPopular setBaseFormat:@"JSON"];
-    [nytimes.mostPopular setBaseApiKey:@"API-KEY"];
     
     [NYTimesMostPopular asyncRequest:nytimes
                              success:^(NSData *data, NSURLResponse *response){

@@ -58,19 +58,15 @@
     /**
      Required
      */
-
+    [nytimes.congress setMembersOfCongressCongressNumber:@"102"];
+    [nytimes.congress setMembersOfCongressChamber:@"SENATE"];
+    [nytimes.congress setMembersOfCongressApiKey:@"API-KEY"];
     /**
      Optional
      */
-    
-    [nytimes.congress setMembersOfCongressChamber:@"SENATE"];
-    [nytimes.congress setMembersOfCongressCongressNumber:@"102"];    
-    [nytimes.congress setMembersOfCongressChamber:@"HOUSE"];
     [nytimes.congress setMembersOfCongressState:@"CA"];
-    [nytimes.congress setMembersOfCongressChamber:@"HOUSE"];
     [nytimes.congress setMembersOfCongressDistrict:@"DISTRICT-NUMBER"];
     [nytimes.congress setMembersOfCongressFormat:@"JSON"];
-    [nytimes.congress setMembersOfCongressApiKey:@"API-KEY"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -105,14 +101,12 @@
     /**
      Required
      */
-    
+    [nytimes.congress setMemberBiosAndRolesMemberId:@"Member-ID-Foo"];
+    [nytimes.congress setMemberBiosAndRolesApiKey:@"API-KEY"];
     /**
      Optional
      */
-    
-    [nytimes.congress setMemberBiosAndRolesMemberId:@"Member-ID-Foo"];
     [nytimes.congress setMemberBiosAndRolesFormat:@"JSON"];
-    [nytimes.congress setMemberBiosAndRolesApiKey:@"API-KEY"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -143,13 +137,11 @@
     /**
      Required
      */
-    
+    [nytimes.congress setNewMembersApiKey:@"API-KEY"];
     /**
      Optional
      */
-    
     [nytimes.congress setNewMembersFormat:@"JSON"];
-    [nytimes.congress setNewMembersApiKey:@"API-KEY"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -193,16 +185,14 @@
     /**
      Required
      */
-    
+    [nytimes.congress setCurrentMembersByStateAndDistrictChamber:@"HOUSE"];
+    [nytimes.congress setCurrentMembersByStateAndDistrictState:@"NJ"];
+    [nytimes.congress setCurrentMembersByStateAndDistrictDistrict:@"DISTRICT-NUMBER"];
+    [nytimes.congress setCurrentMembersByStateAndDistrictApiKey:@"API-KEY"];
     /**
      Optional
      */
-    
-    [nytimes.congress setCurrentMembersByStateAndDistrictState:@"NJ"];
-    [nytimes.congress setCurrentMembersByStateAndDistrictChamber:@"HOUSE"];
-    [nytimes.congress setCurrentMembersByStateAndDistrictDistrict:@"DISTRICT-NUMBER"];
     [nytimes.congress setCurrentMembersByStateAndDistrictForamt:@"JSON"];
-    [nytimes.congress setCurrentMembersByStateAndDistrictApiKey:@"API-KEY"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -241,15 +231,13 @@
     /**
      Required
      */
-    
+    [nytimes.congress setMembersLeavingOfficeCongressNumber:@"111"];
+    [nytimes.congress setMembersLeavingOfficeChamber:@"SENATE"];
+    [nytimes.congress setMembersLeavingOfficeApiKey:@"API-KEY"];
     /**
      Optional
      */
-    
-    [nytimes.congress setMembersLeavingOfficeCongressNumber:@"111"];
-    [nytimes.congress setMembersLeavingOfficeChamber:@"SENATE"];
     [nytimes.congress setMembersLeavingOfficeFormat:@"JSON"];
-    [nytimes.congress setMembersLeavingOfficeApiKey:@"API-KEY"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -284,12 +272,11 @@
     /**
      Required
      */
-    
+    [nytimes.congress setMemberVotePositionsApiKey:@"API-KEY"];
+    [nytimes.congress setMemberVotePositionsMemberId:@"MemberId"];
     /**
      Optional
      */
-    [nytimes.congress setMemberVotePositionsApiKey:@"API-KEY"];
-    [nytimes.congress setMemberVotePositionsMemberId:@"MemberId"];
     [nytimes.congress setMemberVotePositionsFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes
@@ -338,17 +325,15 @@
     /**
      Required
      */
-    
+    [nytimes.congress setMemberVoteComparisonFirstMemberId:@"FirstId"];
+    [nytimes.congress setMemberVoteComparisonSecondMemberId:@"SecondId"];
+    [nytimes.congress setMemberVoteComparisonCongressNumber:@"105"];
+    [nytimes.congress setMemberVoteComparisonChamber:@"HOUSE"];
+    [nytimes.congress setMemberVoteComparisonApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.congress setMemberVoteComparisonFirstMemberId:@"FirstId"];
-    [nytimes.congress setMemberVoteComparisonSecondMemberId:@"SecondId"];
-    [nytimes.congress setMemberVoteComparisonChamber:@"HOUSE"];
-    [nytimes.congress setMemberVoteComparisonCongressNumber:@"105"];
-    [nytimes.congress setMemberVoteComparisonChamber:@"HOUSE"];
     [nytimes.congress setMemberVoteComparisonFormat:@"JSON"];
-    [nytimes.congress setMemberVoteComparisonApiKey:@"API-KEY"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -387,14 +372,13 @@
     /**
      Required
      */
-    
+    [nytimes.congress setBillsCosponsoredByAMemberMemberId:@"MEMBER-ID"];
+    [nytimes.congress setBillsCosponsoredByAMemberType:@"COSPONSORED"];
+    [nytimes.congress setBillsCosponsoredByAMemberApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.congress setBillsCosponsoredByAMemberMemberId:@"MEMBER-ID"];
-    [nytimes.congress setBillsCosponsoredByAMemberType:@"COSPONSORED"];
     [nytimes.congress setBillsCosponsoredByAMemberFormat:@"JSON"];
-    [nytimes.congress setBillsCosponsoredByAMemberApiKey:@"API-KEY"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -443,19 +427,17 @@
     
     NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
     /**
-     Required
-     */
-    
-    /**
-     Optional
+        Required
      */
     [nytimes.congress setMemberSponsorshipComparisonMemberId2:@"MemberId12"];
     [nytimes.congress setMemberSponsorshipComparisonMemberId1:@"MemberId11"];
     [nytimes.congress setMemberSponsorshipComparisonChamber:@"SENATE"];
     [nytimes.congress setMemberSponsorshipComparisonCongressNumber:@"112"];
-    [nytimes.congress setMemberSponsorshipComparisonChamber:@"HOUSE"];
-    [nytimes.congress setMemberSponsorshipComparisonFormat:@"JSON"];
     [nytimes.congress setMemberSponsorshipComparisonApiKey:@"API-KEY"];
+    /**
+        Optional
+     */
+    [nytimes.congress setMemberSponsorshipComparisonFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -493,13 +475,12 @@
     /**
      Required
      */
-    
+    [nytimes.congress setMemberFloorAppearancesMemberId:@"MemberId1"];
+    [nytimes.congress setMemberFloorAppearancesApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.congress setMemberFloorAppearancesMemberId:@"MemberId1"];
     [nytimes.congress setMemberFloorAppearancesFormat:@"JSON"];
-    [nytimes.congress setMemberFloorAppearancesApiKey:@"API-KEY"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -546,14 +527,14 @@
     /**
      Required
      */
-    
+    [nytimes.congress setRollCallVotesCongressNumber:@"105"];
+    [nytimes.congress setRollCallVotesChamber:@"HOUSE"];
+    [nytimes.congress setRollCallVotesSessionNumber:@"2"];
+    [nytimes.congress setRollCallVotesRollCallNumber:@"14"];
+    [nytimes.congress setRollCallVotesApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.congress setRollCallVotesChamber:@"HOUSE"];
-    [nytimes.congress setRollCallVotesCongressNumber:@"105"];
-    [nytimes.congress setRollCallVotesSessionNumber:@"2"];
-    [nytimes.congress setRollCallVotesRollCallNumber:@"14"];
     [nytimes.congress setRollCallVotesFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes
@@ -597,15 +578,14 @@
     /**
      Required
      */
-    
+    [nytimes.congress setVotesByTypeCongressNumber:@"112"];
+    [nytimes.congress setVotesByTypeChamber:@"HOUSE"];
+    [nytimes.congress setVotesByTypeVoteType:@"MISSED VOTES"];
+    [nytimes.congress setVotesByTypeApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.congress setVotesByTypeChamber:@"HOUSE"];
-    [nytimes.congress setVotesByTypeCongressNumber:@"112"];
-    [nytimes.congress setVotesByTypeVoteType:@"MISSED VOTES"];
     [nytimes.congress setVotesByTypeFormat:@"JSON"];
-    [nytimes.congress setVotesByTypeApiKey:@"API-KEY"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -649,15 +629,14 @@
     /**
      Required
      */
-    
-    /**
-     Optional
-     */
     [nytimes.congress setVotesByDateChamber:@"HOUSE"];
     [nytimes.congress setVotesByDateYearAndMonth:@"201111"];
     [nytimes.congress setVotesByDateRangeOfDates:@"2010-01-01/2010-02-01"];
-    [nytimes.congress setVotesByDateFormat:@"JSON"];
     [nytimes.congress setVotesByDateApiKey:@"API-KEY"];
+    /**
+     Optional
+     */
+    [nytimes.congress setVotesByDateFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -692,13 +671,12 @@
     /**
      Required
      */
-    
+    [nytimes.congress setNominationVotesCongressNumber:@"105"];
+    [nytimes.congress setNominationVotesApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.congress setNominationVotesCongressNumber:@"105"];
     [nytimes.congress setNominationVotesFormat:@"JSON"];
-    [nytimes.congress setNominationVotesApiKey:@"API-KEY"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -739,17 +717,16 @@
     
     NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
     /**
-     Required
+        Required
      */
-    
-    /**
-     Optional
-     */
-    [nytimes.congress setRecentBillsChamber:@"HOUSE"];
     [nytimes.congress setRecentBillsCongressNumber:@"112"];
+    [nytimes.congress setRecentBillsChamber:@"HOUSE"];
     [nytimes.congress setRecentBillsType:@"UPDATED"];
-    [nytimes.congress setRecentBillsFormat:@"JSON"];
     [nytimes.congress setRecentBillsApiKey:@"API-KEY"];
+    /**
+        Optional
+     */
+    [nytimes.congress setRecentBillsFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -786,16 +763,15 @@
     
     NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
     /**
-     Required
-     */
-    
-    /**
-     Optional
+        Required
      */
     [nytimes.congress setBillsByMemberType:@"INTRODUCED"];
     [nytimes.congress setBillsByMemberMemberId:@"MemberId"];
-    [nytimes.congress setBillsByMemberFormat:@"JSON"];
     [nytimes.congress setBillsByMemberApiKey:@"API-KEY"];
+    /**
+        Optional
+     */
+    [nytimes.congress setBillsByMemberFormat:@"JSON"];
 
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -832,16 +808,15 @@
     
     NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
     /**
-     Required
-     */
-    
-    /**
-     Optional
+         Required
      */
     [nytimes.congress setBillDetailsCongressNumber:@"112"];
     [nytimes.congress setBillDetailsBillId:@"BillId"];
-    [nytimes.congress setBillDetailsFormat:@"JSON"];
     [nytimes.congress setBillDetailsApiKey:@"API-KEY"];
+    /**
+         Optional
+     */
+    [nytimes.congress setBillDetailsFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -884,15 +859,14 @@
     /**
      Required
      */
-    
-    /**
-     Optional
-     */
     [nytimes.congress setBillAmendmentsAndRelatedBillsCongressNumber:@"112"];
     [nytimes.congress setBillAmendmentsAndRelatedBillsBillId:@"BillId1"];
     [nytimes.congress setBillAmendmentsAndRelatedBillsResource:@"SUBJECTS"];
-    [nytimes.congress setBillAmendmentsAndRelatedBillsFormat:@"JSON"];
     [nytimes.congress setBillAmendmentsAndRelatedBillsApiKey:@"API-KEY"];
+    /**
+     Optional
+     */
+    [nytimes.congress setBillAmendmentsAndRelatedBillsFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -931,14 +905,13 @@
     /**
      Required
      */
-    
+    [nytimes.congress setBillCosponsorsCongressNumber:@"112"];
+    [nytimes.congress setBillCosponsorsBillId:@"BillId9"];
+    [nytimes.congress setBillCosponsorsApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.congress setBillCosponsorsCongressNumber:@"112"];
-    [nytimes.congress setBillCosponsorsBillId:@"BillId9"];
     [nytimes.congress setBillCosponsorsFormat:@"JSON"];
-    [nytimes.congress setBillCosponsorsApiKey:@"API-KEY"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -975,16 +948,15 @@
     
     NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
     /**
-     Required
-     */
-    
-    /**
-     Optional
+        Required
      */
     [nytimes.congress setNomineeListsCongressNumber:@"112"];
     [nytimes.congress setNomineeListsNomineeCategory:@"RECEIVED"];
-    [nytimes.congress setNomineeListsFormat:@"JSON"];
     [nytimes.congress setNomineeListsApiKey:@"API-KEY"];
+    /**
+        Optional
+     */
+    [nytimes.congress setNomineeListsFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -1021,16 +993,15 @@
     
     NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
     /**
-     Required
-     */
-    
-    /**
-     Optional
+         Required
      */
     [nytimes.congress setNomineeDetailsCongressNumber:@"112"];
     [nytimes.congress setNomineeDetailsNomineeId:@"NomineeId44"];
-    [nytimes.congress setNomineeDetailsFormat:@"JSON"];
     [nytimes.congress setNomineeDetailsApiKey:@"API-KEY"];
+    /**
+         Optional
+     */
+    [nytimes.congress setNomineeDetailsFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -1067,16 +1038,15 @@
     
     NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
     /**
-     Required
-     */
-    
-    /**
-     Optional
+        Required
      */
     [nytimes.congress setNomineesByStateCongressNumber:@"107"];
     [nytimes.congress setNomineesByStateState:@"CA"];
-    [nytimes.congress setNomineesByStateFormat:@"JSON"];
     [nytimes.congress setNomineesByStateApiKey:@"API-KEY"];
+    /**
+        Optional
+     */
+    [nytimes.congress setNomineesByStateFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
@@ -1105,13 +1075,12 @@
     
     NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
     /**
-     Required
-     */
-    
-    /**
-     Optional
+        Required
      */
     [nytimes.congress setStatePartyCountsApiKey:@"API-KEY"];
+    /**
+        Optional
+     */
     [nytimes.congress setStatePartyCountsFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes
@@ -1149,15 +1118,15 @@
     
     NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:@"API-KEY"];
     /**
-     Required
-     */
-    
-    /**
-     Optional
+        Required
      */
     [nytimes.congress setCommitteesAndCommitteeMembersChamber:@"HOUSE"];
     [nytimes.congress setCommitteesAndCommitteeMembersCongressNumber:@"111"];
     [nytimes.congress setCommitteesAndCommitteeMembersCommitteeId:@"CommiteeId99"];
+    [nytimes.congress setCommitteesAndCommitteeMembersApiKey:@"API-KEY"];
+    /**
+        Optional
+     */
     [nytimes.congress setCommitteesAndCommitteeMembersFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes
@@ -1189,11 +1158,10 @@
     /**
      Required
      */
-    
+    [nytimes.congress setChamberScheduleApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.congress setChamberScheduleApiKey:@"API-KEY"];
     [nytimes.congress setChamberScheduleFormat:@"JSON"];
     
     [NYTimesCongress asyncRequest:nytimes

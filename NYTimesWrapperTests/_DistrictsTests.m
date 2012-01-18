@@ -48,11 +48,10 @@
     /**
      Required
      */
-    
+    [nytimes.districts setMainRequestApiKey:@"API-KEY"];
     /**
      Optional
      */
-    [nytimes.districts setMainRequestApiKey:@"API-KEY"];
     [nytimes.districts setMainRequestLat:@"LAT-NUMBER"];
     [nytimes.districts setMainRequestLng:@"LNG-NUMBER"];
     [nytimes.districts setMainRequestFormat:@"JSON"];
