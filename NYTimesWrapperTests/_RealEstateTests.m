@@ -68,6 +68,7 @@
     /**
      Required
      */
+    [nytimes.realEstate setListingsPercentilesApiKey:@"API-KEY"];
     [nytimes.realEstate setListingsPercentilesPercentValues:@"50"];
     [nytimes.realEstate setListingsPercentilesDateRange:@"2012-01-02"];
     [nytimes.realEstate setListingsPercentilesGeoExtentLevel:@"BOROUGH"];
@@ -81,7 +82,37 @@
     
     [NYTimesRealEstate asyncRequest:nytimes
                             success:^(NSData *data, NSURLResponse *response){
-                                NSLog(@"Results %@", data);
+                                
+                                NSString *string = [response.URL absoluteString];
+                                
+                                NSInteger percentValues = [string rangeOfString:@"50"].location == NSNotFound;
+                                NSString *_percentValues = [NSString stringWithFormat:@"%@", percentValues ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _percentValues, @"Should be either YES found or NO not found");
+                                
+                                NSInteger range = [string rangeOfString:@"date-range"].location == NSNotFound;
+                                NSString *_range = [NSString stringWithFormat:@"%@", range ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _range, @"Should be either YES found or NO not found");
+                                
+                                NSInteger extentLevel = [string rangeOfString:@"geo-extent-level"].location == NSNotFound;
+                                NSString *_extentLevel = [NSString stringWithFormat:@"%@", extentLevel ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _extentLevel, @"Should be either YES found or NO not found");
+                                
+                                NSInteger extentValue = [string rangeOfString:@"geo-extent-value"].location == NSNotFound;
+                                NSString *_extentValue = [NSString stringWithFormat:@"%@", extentValue ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _extentValue, @"Should be either YES found or NO not found");
+                                
+                                NSInteger bedrooms = [string rangeOfString:@"bedrooms"].location == NSNotFound;
+                                NSString *_bedrooms = [NSString stringWithFormat:@"%@", bedrooms ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _bedrooms, @"Should be either YES found or NO not found");
+                                
+                                NSInteger typeId = [string rangeOfString:@"building-type-id"].location == NSNotFound;
+                                NSString *_typeId = [NSString stringWithFormat:@"%@", typeId ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _typeId, @"Should be either YES found or NO not found");
+                                
+                                NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                                NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                                
                             }failure:^(NSData *data, NSError *error){
                                 NSLog(@"Errors %@", error);
                             }tag:@"realestate listings percentiles"];
@@ -140,11 +171,11 @@
     /**
      Required
      */
+    [nytimes.realEstate setListingsCountsApiKey:@"API-KEY"];
     [nytimes.realEstate setListingsCountsDateRange:@"2012-01-02"];
     [nytimes.realEstate setListingsCountsGeoExtentLevel:@"BOROUGH"];    
     [nytimes.realEstate setListingsCountsGeoExtentValue:@"NYC-Borough"];
     [nytimes.realEstate setListingsCountsGeoSummaryLevel:@"ZIP"];
-    [nytimes.realEstate setListingsCountsApiKey:@"API-KEY"];
     /**
      Optional
      */
@@ -156,7 +187,45 @@
     
     [NYTimesRealEstate asyncRequest:nytimes
                             success:^(NSData *data, NSURLResponse *response){
-                                NSLog(@"Results %@", data);
+                                
+                                NSString *string = [response.URL absoluteString];
+                                
+                                NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                                NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                                
+                                NSInteger range = [string rangeOfString:@"date-range"].location == NSNotFound;
+                                NSString *_range = [NSString stringWithFormat:@"%@", range ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _range, @"Should be either YES found or NO not found");
+                                
+                                NSInteger extentLevel = [string rangeOfString:@"geo-extent-level"].location == NSNotFound;
+                                NSString *_extentLevel = [NSString stringWithFormat:@"%@", extentLevel ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _extentLevel, @"Should be either YES found or NO not found");
+                                
+                                NSInteger extentValue = [string rangeOfString:@"geo-extent-value"].location == NSNotFound;
+                                NSString *_extentValue = [NSString stringWithFormat:@"%@", extentValue ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _extentValue, @"Should be either YES found or NO not found");
+                                
+                                NSInteger summary = [string rangeOfString:@"geo-summary-level"].location == NSNotFound;
+                                NSString *_summary = [NSString stringWithFormat:@"%@", summary ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _summary, @"Should be either YES found or NO not found");
+                                
+                                NSInteger bedrooms = [string rangeOfString:@"bedrooms"].location == NSNotFound;
+                                NSString *_bedrooms = [NSString stringWithFormat:@"%@", bedrooms ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _bedrooms, @"Should be either YES found or NO not found");
+                                
+                                NSInteger buildingByYear = [string rangeOfString:@"building-built-year"].location == NSNotFound;
+                                NSString *_buildingByYear = [NSString stringWithFormat:@"%@", buildingByYear ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _buildingByYear, @"Should be either YES found or NO not found");
+                                
+                                NSInteger typeId = [string rangeOfString:@"building-type-id"].location == NSNotFound;
+                                NSString *_typeId = [NSString stringWithFormat:@"%@", typeId ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _typeId, @"Should be either YES found or NO not found");
+                                
+                                NSInteger loft = [string rangeOfString:@"loft"].location == NSNotFound;
+                                NSString *_loft = [NSString stringWithFormat:@"%@", loft ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _loft, @"Should be either YES found or NO not found");
+                                
                             }failure:^(NSData *data, NSError *error){
                                 NSLog(@"Errors %@", error);
                             }tag:@"realestate listings counts"];
@@ -216,7 +285,37 @@
     
     [NYTimesRealEstate asyncRequest:nytimes
                             success:^(NSData *data, NSURLResponse *response){
-                                NSLog(@"Results %@", data);
+                                
+                                NSString *string = [response.URL absoluteString];
+                                
+                                NSInteger range = [string rangeOfString:@"date-range"].location == NSNotFound;
+                                NSString *_range = [NSString stringWithFormat:@"%@", range ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _range, @"Should be either YES found or NO not found");
+                                
+                                NSInteger extentLevel = [string rangeOfString:@"geo-extent-level"].location == NSNotFound;
+                                NSString *_extentLevel = [NSString stringWithFormat:@"%@", extentLevel ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _extentLevel, @"Should be either YES found or NO not found");
+                                
+                                NSInteger extentValue = [string rangeOfString:@"geo-extent-value"].location == NSNotFound;
+                                NSString *_extentValue = [NSString stringWithFormat:@"%@", extentValue ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _extentValue, @"Should be either YES found or NO not found");
+                                
+                                NSInteger percentileValue = [string rangeOfString:@"percentile"].location == NSNotFound;
+                                NSString *_percentileValue = [NSString stringWithFormat:@"%@", percentileValue ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _percentileValue, @"Should be either YES found or NO not found");
+                                
+                                NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                                NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                                
+                                NSInteger typeId = [string rangeOfString:@"building-type-id"].location == NSNotFound;
+                                NSString *_typeId = [NSString stringWithFormat:@"%@", typeId ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _typeId, @"Should be either YES found or NO not found");
+                                
+                                NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                                NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                                
                             }failure:^(NSData *data, NSError *error){
                                 NSLog(@"Errors %@", error);
                             }tag:@"realestate sales percentiles"];
@@ -280,7 +379,41 @@
     
     [NYTimesRealEstate asyncRequest:nytimes
                             success:^(NSData *data, NSURLResponse *response){
-                                NSLog(@"Results %@", data);
+                                
+                                NSString *string = [response.URL absoluteString];
+                                
+                                NSInteger range = [string rangeOfString:@"date-range"].location == NSNotFound;
+                                NSString *_range = [NSString stringWithFormat:@"%@", range ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _range, @"Should be either YES found or NO not found");
+                                
+                                NSInteger level = [string rangeOfString:@"geo-extent-level"].location == NSNotFound;
+                                NSString *_level = [NSString stringWithFormat:@"%@", level ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _level, @"Should be either YES found or NO not found");
+                                
+                                NSInteger value = [string rangeOfString:@"geo-extent-value"].location == NSNotFound;
+                                NSString *_value = [NSString stringWithFormat:@"%@", value ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _value, @"Should be either YES found or NO not found");
+                                
+                                NSInteger summary = [string rangeOfString:@"geo-summary-level"].location == NSNotFound;
+                                NSString *_summary = [NSString stringWithFormat:@"%@", summary ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _summary, @"Should be either YES found or NO not found");
+                                
+                                NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                                NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                                
+                                NSInteger year = [string rangeOfString:@"building-built-year"].location == NSNotFound;
+                                NSString *_year = [NSString stringWithFormat:@"%@", year ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _year, @"Should be either YES found or NO not found");
+                                
+                                NSInteger typeId = [string rangeOfString:@"building-type-id"].location == NSNotFound;
+                                NSString *_typeId = [NSString stringWithFormat:@"%@", typeId ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _typeId, @"Should be either YES found or NO not found");
+                                
+                                NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                                NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                                STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                                
                             }failure:^(NSData *data, NSError *error){
                                 NSLog(@"Errors %@", error);
                             }tag:@"realestate sales percentiles"];

@@ -94,7 +94,49 @@
     
     [NYTimesMovieReviews asyncRequest:nytimes
                               success:^(NSData *data, NSURLResponse *response){
-                                  NSLog(@"Results %@", data);
+                                  
+                                  NSString *string = [response.URL absoluteString];
+                                  
+                                  NSInteger query = [string rangeOfString:@"query"].location == NSNotFound;
+                                  NSString *_query = [NSString stringWithFormat:@"%@", query ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _query, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger critics = [string rangeOfString:@"critics-pick"].location == NSNotFound;
+                                  NSString *_critics = [NSString stringWithFormat:@"%@", critics ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _critics, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger thousandBest = [string rangeOfString:@"thousand-best"].location == NSNotFound;
+                                  NSString *_thousandBest = [NSString stringWithFormat:@"%@", thousandBest ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _thousandBest, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger dvd = [string rangeOfString:@"dvd"].location == NSNotFound;
+                                  NSString *_dvd = [NSString stringWithFormat:@"%@", dvd ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _dvd, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger reviewer = [string rangeOfString:@"reviewer"].location == NSNotFound;
+                                  NSString *_reviewer = [NSString stringWithFormat:@"%@", reviewer ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _reviewer, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger pubDate = [string rangeOfString:@"publication-date"].location == NSNotFound;
+                                  NSString *_pubDate = [NSString stringWithFormat:@"%@", pubDate ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _pubDate, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger openingDate = [string rangeOfString:@"opening-date"].location == NSNotFound;
+                                  NSString *_openingDate = [NSString stringWithFormat:@"%@", openingDate ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _openingDate, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger offset = [string rangeOfString:@"offset"].location == NSNotFound;
+                                  NSString *_offset = [NSString stringWithFormat:@"%@", offset ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _offset, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger order = [string rangeOfString:@"order"].location == NSNotFound;
+                                  NSString *_order = [NSString stringWithFormat:@"%@", order ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _order, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                                  NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                                  
                               }failure:^(NSData *data, NSError *error){
                                   NSLog(@"Errors %@", error);
                               }tag:@"moviereviews by keywords"];
@@ -142,10 +184,28 @@
     [nytimes.movieReviews setReviewsAndNYTCriticsPicksOffSet:@"40"];
     [nytimes.movieReviews setReviewsAndNYTCriticsPicksOrder:@"BY TITLE"];
     [nytimes.movieReviews setReviewsAndNYTCriticsPicksFormat:@"JSON"];
-    
+
     [NYTimesMovieReviews asyncRequest:nytimes
                               success:^(NSData *data, NSURLResponse *response){
-                                  NSLog(@"Results %@", data);
+                                  
+                                  NSString *string = [response.URL absoluteString];
+                                  
+                                  NSInteger resource = [string rangeOfString:@"dvd-picks"].location == NSNotFound;
+                                  NSString *_resource = [NSString stringWithFormat:@"%@", resource ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _resource, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger offset = [string rangeOfString:@"offset"].location == NSNotFound;
+                                  NSString *_offset = [NSString stringWithFormat:@"%@", offset ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _offset, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger order = [string rangeOfString:@"order"].location == NSNotFound;
+                                  NSString *_order = [NSString stringWithFormat:@"%@", order ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _order, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                                  NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                                  
                               }failure:^(NSData *data, NSError *error){
                                   NSLog(@"Errors %@", error);
                               }tag:@"moviereviews reviews and nytimes critics picks"];
@@ -201,7 +261,29 @@
 
     [NYTimesMovieReviews asyncRequest:nytimes
                               success:^(NSData *data, NSURLResponse *response){
-                                  NSLog(@"Results %@", data);
+                                  
+                                  NSString *string = [response.URL absoluteString];
+                                  
+                                  NSInteger critics = [string rangeOfString:@"critics-pick"].location == NSNotFound;
+                                  NSString *_critics = [NSString stringWithFormat:@"%@", critics ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _critics, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger reviewer = [string rangeOfString:@"reviewer"].location == NSNotFound;
+                                  NSString *_reviewer = [NSString stringWithFormat:@"%@", reviewer ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _reviewer, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger offset = [string rangeOfString:@"offset"].location == NSNotFound;
+                                  NSString *_offset = [NSString stringWithFormat:@"%@", offset ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _offset, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger order = [string rangeOfString:@"order"].location == NSNotFound;
+                                  NSString *_order = [NSString stringWithFormat:@"%@", order ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _order, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                                  NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                                  
                               }failure:^(NSData *data, NSError *error){
                                   NSLog(@"Errors %@", error);
                               }tag:@"moviereviews reviews by reviewers"];
@@ -241,7 +323,21 @@
     
     [NYTimesMovieReviews asyncRequest:nytimes
                               success:^(NSData *data, NSURLResponse *response){
-                                  NSLog(@"Results %@", data);
+                                  
+                                  NSString *string = [response.URL absoluteString];
+                                  
+                                  NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                                  NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger resource = [string rangeOfString:@"full-time"].location == NSNotFound;
+                                  NSString *_resouce = [NSString stringWithFormat:@"%@", resource ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _resouce, @"Should be either YES found or NO not found");
+                                  
+                                  NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                                  NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                                  STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                                  
                               }failure:^(NSData *data, NSError *error){
                                   NSLog(@"Errors %@", error);
                               }tag:@"moviereviews reviews by reviewers"];

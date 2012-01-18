@@ -27,11 +27,7 @@
 {
     NSMutableString *params = [NSMutableString stringWithFormat:@"%@", @""];
     
-    // Code goes here...
-    // {resource-type}/{section}[/share-types]/{time-period}[.response-format]?api-key={your-API-key}
-    
-    if (obj.mostPopular.baseResourceType && obj.mostPopular.baseSection
-        && obj.mostPopular.baseTimePeriod && obj.mostPopular.baseApiKey)
+    if (obj.mostPopular.baseResourceType && obj.mostPopular.baseSection && obj.mostPopular.baseTimePeriod && obj.mostPopular.baseApiKey)
     {
         if (obj.mostPopular.baseResourceType)
         {
@@ -61,14 +57,17 @@
             [params appendFormat:@".%@?", obj.mostPopular.baseFormat];
         }
         
+        if (obj.mostPopular.baseOffSet)
+        {
+            [params appendFormat:@"&offset=%@", obj.mostPopular.baseOffSet];
+        }
+        
         if (obj.mostPopular.baseApiKey)
         {
-            [params appendFormat:@"api-key=%@", obj.mostPopular.baseApiKey];
+            [params appendFormat:@"&api-key=%@", obj.mostPopular.baseApiKey];
         }
     }
     
-    NSString *baseURL = [NSString stringWithFormat:SERVER_URL@"%@", params];
-    
-    return baseURL;
+    return [NSString stringWithFormat:@"%@%@", SERVER_URL, params];
 }
 @end

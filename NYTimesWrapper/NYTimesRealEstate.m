@@ -63,7 +63,7 @@
         
         if (obj.realEstate.listingsPercentilesBuildingTypeId)
         {
-            [params appendFormat:@"&bulding-type-id=%@", obj.realEstate.listingsPercentilesBuildingTypeId];
+            [params appendFormat:@"&building-type-id=%@", obj.realEstate.listingsPercentilesBuildingTypeId];
         }
         
         if (obj.realEstate.listingsPercentilesApiKey)
@@ -211,10 +211,7 @@
         }
     }
     
-    
-    NSString *baseURL = [NSString stringWithFormat:SERVER_URL@"%@", params];
-    
-    return baseURL;
+    return [NSString stringWithFormat:@"%@%@", SERVER_URL, params];
 }
 
 @end

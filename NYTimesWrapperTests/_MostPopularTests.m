@@ -68,14 +68,35 @@
      Optional
      */
     [nytimes.mostPopular setBaseResourceType:@"MOSTEMAILED"];
-    [nytimes.mostPopular setBaseResourceType:@"MOSTSHARED"];
     [nytimes.mostPopular setBaseShareTypes:@"DIGG"];
     [nytimes.mostPopular setBaseOffSet:@"40"];
     [nytimes.mostPopular setBaseFormat:@"JSON"];
     
     [NYTimesMostPopular asyncRequest:nytimes
                              success:^(NSData *data, NSURLResponse *response){
-                                 NSLog(@"Results %@", data);
+                                 
+                                 NSString *string = [response.URL absoluteString];
+                                 
+                                 NSInteger timePeriod = [string rangeOfString:@"7"].location == NSNotFound;
+                                 NSString *_timePeriod = [NSString stringWithFormat:@"%@", timePeriod ? @"NO" : @"YES"]; 
+                                 STAssertEqualObjects(@"YES", _timePeriod, @"Should be either YES found or NO not found");
+                                 
+                                 NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                                 NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                                 STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                                 
+                                 NSInteger resource = [string rangeOfString:@"mostemailed"].location == NSNotFound;
+                                 NSString *_resource = [NSString stringWithFormat:@"%@", resource ? @"NO" : @"YES"]; 
+                                 STAssertEqualObjects(@"YES", _resource, @"Should be either YES found or NO not found");
+                                 
+                                 NSInteger offset = [string rangeOfString:@"offset"].location == NSNotFound;
+                                 NSString *_offset = [NSString stringWithFormat:@"%@", offset ? @"NO" : @"YES"]; 
+                                 STAssertEqualObjects(@"YES", _offset, @"Should be either YES found or NO not found");
+                                 
+                                 NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                                 NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                                 STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                                 
                              }failure:^(NSData *data, NSError *error){
                                  NSLog(@"Errors %@", error);
                              }tag:@"mostpopular main request"];

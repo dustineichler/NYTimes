@@ -50,7 +50,7 @@
 {
     int _ne = [ne intValue];
     
-    if ([self mainRequestSw] && _ne > 0)
+    if (_ne > 0)
     {
         self->mainRequest.ne = ne;
     }
@@ -65,8 +65,7 @@
 {
     int _sw = [sw intValue];
     
-    if ([self mainRequestNe] && _sw > 0)
-    {
+    if (_sw > 0) {
         self->mainRequest.sw = sw;
     } else {
         NSLog(@"--Error: NE is Required with SW");

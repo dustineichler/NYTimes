@@ -27,8 +27,6 @@
 { 
     NSMutableString *params = [NSMutableString stringWithFormat:@"%@", @""];
     
-    NSString *baseURL = [NSString stringWithFormat:SERVER_URL@"%@", params];
-    
     if (obj.districts.mainRequestApiKey)
     {
         if (obj.districts.mainRequestFormat)
@@ -52,6 +50,6 @@
         }
     }
     
-    return baseURL;
+    return [NSString stringWithFormat:@"%@%@", SERVER_URL, params];;
 }
 @end

@@ -58,7 +58,25 @@
     
     [NYTimesDistricts asyncRequest:nytimes
                            success:^(NSData *data, NSURLResponse *response){
-                               NSLog(@"Results %@", data);
+                               
+                               NSString *string = [response.URL absoluteString];
+                               
+                               NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                               NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                               STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                               
+                               NSInteger lat = [string rangeOfString:@"lat"].location == NSNotFound;
+                               NSString *_lat = [NSString stringWithFormat:@"%@", lat ? @"NO" : @"YES"]; 
+                               STAssertEqualObjects(@"YES", _lat, @"Should be either YES found or NO not found");
+                               
+                               NSInteger lng = [string rangeOfString:@"lng"].location == NSNotFound;
+                               NSString *_lng = [NSString stringWithFormat:@"%@", lng ? @"NO" : @"YES"]; 
+                               STAssertEqualObjects(@"YES", _lng, @"Should be either YES found or NO not found");
+                               
+                               NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                               NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                               STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                               
                            }failure:^(NSData *data, NSError *error){
                                NSLog(@"Errors %@", error);
                            }tag:@"districts main request"];
