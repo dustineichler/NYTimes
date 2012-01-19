@@ -74,4 +74,8 @@ Resources
 
 Contribute
 -------------------------------------------------------------
-Fork, commit, push, and send us a pull request.
+Fork, commit and submit a pull request.
+
+Todo
+-------------------------------------------------------------
+Plenty
