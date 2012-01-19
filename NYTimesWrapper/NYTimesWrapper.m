@@ -1663,10 +1663,16 @@
 
 - (void)dealloc
 {
-    [super release];
     [campaignFinance release];
     [community release];
     [districts release];
+    [eventListings release];
+    [mostPopular release];
+    [movieReviews release];
+    [realEstate release];
+    [semantic release];
+    [newsWire release];
+    [super release];
 }
 
 - (id)initWithAPIKey:(NSString *)key
