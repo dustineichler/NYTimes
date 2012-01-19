@@ -57,7 +57,7 @@
     /**
      Required
      */
-    
+    [nytimes.newsWire setRecentNewsApiKey:@"API-KEY"];
     /**
      Optional
      */
@@ -67,11 +67,40 @@
     [nytimes.newsWire setRecentNewsLimit:@"15"];
     [nytimes.newsWire setRecentNewsOffSet:@"20"];
     [nytimes.newsWire setRecentNewsFormat:@"JSON"];
-    [nytimes.newsWire setRecentNewsApiKey:@"API-KEY"];
     
     [NYTimesNewsWire asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger source = [string rangeOfString:@"nyt"].location == NSNotFound;
+                              NSString *_source = [NSString stringWithFormat:@"%@", source ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _source, @"Should be either YES found or NO not found");
+                              
+                              NSInteger sections = [string rangeOfString:@"all"].location == NSNotFound;
+                              NSString *_sections = [NSString stringWithFormat:@"%@", sections ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _sections, @"Should be either YES found or NO not found");
+                              
+                              NSInteger time = [string rangeOfString:@"55"].location == NSNotFound;
+                              NSString *_time = [NSString stringWithFormat:@"%@", time ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _time, @"Should be either YES found or NO not found");
+                              
+                              NSInteger limit = [string rangeOfString:@"limit"].location == NSNotFound;
+                              NSString *_limit = [NSString stringWithFormat:@"%@", limit ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _limit, @"Should be either YES found or NO not found");
+                              
+                              NSInteger offset = [string rangeOfString:@"offset"].location == NSNotFound;
+                              NSString *_offset = [NSString stringWithFormat:@"%@", offset ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _offset, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"newswire"];
@@ -101,17 +130,30 @@
     /**
      Required
      */
-    
+    [nytimes.newsWire setSpecificNewsItemsApiKey:@"API-KEY"];
     /**
      Optional
      */
     [nytimes.newsWire setSpecificNewsItemsUrl:@"http://www.nytimes.com"];
     [nytimes.newsWire setSpecificNewsItemsFormat:@"JSON"];
-    [nytimes.newsWire setSpecificNewsItemsApiKey:@"API-KEY"];\
     
     [NYTimesNewsWire asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger url = [string rangeOfString:@"url"].location == NSNotFound;
+                              NSString *_url = [NSString stringWithFormat:@"%@", url ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _url, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"newswire"];

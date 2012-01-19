@@ -27,8 +27,6 @@
 {
     NSMutableString *params = [NSMutableString stringWithFormat:@"%@", @""];
     
-    NSString *baseURL = [NSString stringWithFormat:SERVER_URL@"%@", params];
-    
     // Name
     
     if (obj.semantic.nameApiKey)
@@ -154,6 +152,6 @@
         }
     }
     
-    return baseURL;
+    return [NSString stringWithFormat:@"%@%@", SERVER_URL, params];;
 }
 @end

@@ -65,7 +65,34 @@
     
     [NYTimesSemantic asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger type = [string rangeOfString:@"nytd_geo"].location == NSNotFound;
+                              NSString *_type = [NSString stringWithFormat:@"%@", type ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _type, @"Should be either YES found or NO not found");
+                              
+                              NSInteger name = [string rangeOfString:@"baseball"].location == NSNotFound;
+                              NSString *_name = [NSString stringWithFormat:@"%@", name ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _name, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+
+//                            TODO: DWE: This needs to be fixed pronto.
+//                              NSInteger fields = [string rangeOfString:@"fields"].location == NSNotFound;
+//                              NSString *_fields = [NSString stringWithFormat:@"%@", fields ? @"NO" : @"YES"]; 
+//                              STAssertEqualObjects(@"YES", _fields, @"Should be either YES found or NO not found");
+                              
+                              NSInteger offset = [string rangeOfString:@"offset"].location == NSNotFound;
+                              NSString *_offset = [NSString stringWithFormat:@"%@", offset ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _offset, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"semantic"];
@@ -111,7 +138,29 @@
     
     [NYTimesSemantic asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+
+                              NSInteger uri = [string rangeOfString:@"uri"].location == NSNotFound;
+                              NSString *_uri = [NSString stringWithFormat:@"%@", uri ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _uri, @"Should be either YES found or NO not found");
+                              
+                              NSInteger fields = [string rangeOfString:@"fields"].location == NSNotFound;
+                              NSString *_fields = [NSString stringWithFormat:@"%@", fields ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _fields, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger offset = [string rangeOfString:@"offset"].location == NSNotFound;
+                              NSString *_offset = [NSString stringWithFormat:@"%@", offset ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _offset, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"semantic"];
@@ -157,7 +206,29 @@
     
     [NYTimesSemantic asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger uri = [string rangeOfString:@"article"].location == NSNotFound;
+                              NSString *_uri = [NSString stringWithFormat:@"%@", uri ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _uri, @"Should be either YES found or NO not found");
+                              
+                              NSInteger fields = [string rangeOfString:@"fields"].location == NSNotFound;
+                              NSString *_fields = [NSString stringWithFormat:@"%@", fields ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _fields, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger offset = [string rangeOfString:@"offset"].location == NSNotFound;
+                              NSString *_offset = [NSString stringWithFormat:@"%@", offset ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _offset, @"Should be either YES found or NO not found");
+                              
+                              NSInteger format = [string rangeOfString:@"json"].location == NSNotFound;
+                              NSString *_format = [NSString stringWithFormat:@"%@", format ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _format, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"semantic"];
@@ -203,7 +274,25 @@
     
     [NYTimesSemantic asyncRequest:nytimes
                           success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
+                              
+                              NSString *string = [response.URL absoluteString];
+                              
+                              NSInteger query = [string rangeOfString:@"query"].location == NSNotFound;
+                              NSString *_query = [NSString stringWithFormat:@"%@", query ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _query, @"Should be either YES found or NO not found");
+                              
+                              NSInteger fields = [string rangeOfString:@"fields"].location == NSNotFound;
+                              NSString *_fields = [NSString stringWithFormat:@"%@", fields ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _fields, @"Should be either YES found or NO not found");
+                              
+                              NSInteger apiKey = [string rangeOfString:@"api-key"].location == NSNotFound;
+                              NSString *_apiKey = [NSString stringWithFormat:@"%@", apiKey ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _apiKey, @"Should be either YES found or NO not found");
+                              
+                              NSInteger offset = [string rangeOfString:@"offset"].location == NSNotFound;
+                              NSString *_offset = [NSString stringWithFormat:@"%@", offset ? @"NO" : @"YES"]; 
+                              STAssertEqualObjects(@"YES", _offset, @"Should be either YES found or NO not found");
+                              
                           }failure:^(NSData *data, NSError *error){
                               NSLog(@"Errors %@", error);
                           }tag:@"semantic"];
