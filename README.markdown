@@ -1,529 +1,77 @@
-# NYTimesWrapper
 
-NYTimes Client Library.
+NYTimes API Client
+=============================================================
+Unifies NYTimes API under one Objective-C roof, 
+so to speak.
 
-## Article
+Get Started
+-------------------------------------------------------------
+Installation.
 
-Conceived at NYTimes HackDay 2011. Related article. http://open.blogs.nytimes.com/2011/12/06/recapping-timesopen-hack-day/
+    TODO: DWE: Instructions needed.
 
-## Classes (currently)
+Get the source.
 
-*[NYTimesWrapper](https://github.com/dustineichler/NYTimes/blob/master/NYTimesWrapper/NYTimesWrapper.h) - Base Class.
-*[NYTimesArticle](https://github.com/dustineichler/NYTimes/blob/master/NYTimesWrapper/NYTimesArticle.h) - API support for NYTimes Articles.
-*[NYTimesBestSeller](https://github.com/dustineichler/NYTimes/blob/master/NYTimesWrapper/NYTimesBestSeller.h) - API support for NYTimes Best Sellers.
-*[NYTimesCampaignFinance](https://github.com/dustineichler/NYTimes/blob/master/NYTimesWrapper/NYTimesCampaignFinance.h) - API support for NYTimes Campaign Finance.
+    git clone https://github.com/dustineichler/NYTimes
 
-## Example
-### NYTimes Articles API
-<pre>
-  NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:ARTICLE_API_KEY];
-  
-  /**
-      Required
-   */
-  
-  [nytimes setQuery:@"Hackday"];
-  [nytimes setApiKey:ARTICLE_API_KEY];
+API
+-------------------------------------------------------------
 
-  /**
-      Optional
-   */
-  
-  [nytimes setStartDate:@"20110102"];
-  [nytimes setEndDate:@"20110202"];
-  [nytimes setFacets:@"Facet1, Facet2, Facet3"];
-  [nytimes setFields:@"Fields1, Fields2, Fields3"];
-  [nytimes setOffset:@"1"];
-  [nytimes setRank:@"OLDEST"];
-  [nytimes setFormat:@"JSON"];
-  
-  [NYTimesArticle asyncRequest:nytimes 
-                       success:^(NSData *data, NSURLResponse *response){
-                           NSLog(@"Results %@", data);
-                       }failure:^(NSData *data, NSError *error){
-                           NSLog(@"Errors %@", error);
-                       } tag:@"tag"];
-</pre>
+### [The Article Search API](https://github.com/dustineichler/NYTimes/wiki/articleSearch)
 
-### NYTimes BestSeller API
+With the Article Search API, you can search New York Times articles from 1981 to today, retrieving headlines, abstracts, lead paragraphs, links to associated multimedia and other article metadata.
 
-``` objective-c
-  NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:ARTICLE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes setListName:@"List Name"];
-  /**
-   Optional
-   */
-  [articles setDate:@"20110102"];
-  [articles setBestSellerOffset:@"20"];
-  [articles setSortBy:@"BestSellers-Date"];    
-  [articles setBestSellerFormat:@"JSON"];
-  
-  [NYTimesBestSeller asyncRequest:nytimes
-                          success:^(NSData *data, NSURLResponse *response){
-                              NSLog(@"Results %@", data);
-                          }failure:^(NSData *data, NSError *error){
-                              NSLog(@"Errors %@", error);
-                          }tag:@"bestsellers"];
-```
+### [The Best Sellers API](https://github.com/dustineichler/NYTimes/wiki/Best-Sellers)
 
-### NYTimes Campaign Finance API
+With the Best Sellers API, you can get data from all New York Times best-seller lists, including rank history for specific best sellers.
+    
+### [The Campaign Finance API](https://github.com/dustineichler/NYTimes/wiki/Campaign-Finance)
 
-<pre>
-  /**
-      Candidate Search
-   */
-  
-  NYTimesWrapper *nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setCandidateSearchCycle:@"20111223"];
-  [nytimes.campaignFinance setCandidateSearchLastName:@"Greene"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setCandidateSearchFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance candidate search"];
-  
-  /** 
-      Candidate Details
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setCandidateDetailsCycle:@"20111223"];
-  [nytimes.campaignFinance setCandidateDetailCandidateId:@"P100000000"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setCandidateDetailsFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance candidate details"];
-  
-  /** 
-      Candidate Leaders
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setCandidateLeadersCycle:@"20111223"];
-  [nytimes.campaignFinance setCandidateLeadersCategory:@"Candidate Loan"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setCandidateLeadersFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance candidate details"];
-  
-  /**
-      State Candidates
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setStateCandidatesCycle:@"20111223"];
-  [nytimes.campaignFinance setStateCandidatesState:@"AZ"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setStateCandidatesChamber:@"House"];
-  [nytimes.campaignFinance setStateCandidatesFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance state candidates"];
-  
-  /** 
-      New Candidates
-   */
+With the Campaign Finance API, you can retrieve data from United States Federal Election Commission filings.
 
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setNewCandidatesCycle:@"20111223"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setNewCandidatesFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance new candidates"];
-  
-  /** 
-      Committee Search
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setCommitteeSearchCycle:@"20111223"];    
-  [nytimes.campaignFinance setCommitteeSearchName:@"medicare"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setCommitteeSearchFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance committee search"];
+### [The Community API](https://github.com/dustineichler/NYTimes/wiki/Community)
 
-  /** 
-   Committee Details
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setCommitteeDetailsCycle:@"20111223"];
-  [nytimes.campaignFinance setCommitteeDetailsCommitteeId:@"C100000000"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setCommitteeDetailsFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance committee details"];
-  
-  /** 
-      New Committees
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setNewCommitteeCycle:@"20111223"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setNewCommitteeFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance new committees"];
-  
-  /** 
-      Committee Contributions
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setCommitteeContributionsCycle:@"20111223"];
-  [nytimes.campaignFinance setCommitteeContributionsCommitteeId:@"C100000000"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setCommitteeContributionsOffset:@"20"];
-  [nytimes.campaignFinance setCommitteeContributionsFormat:@"JSON"];
+With the Community API, you can get user-generated NYTimes.com content. The current release includes article comments and readers' reviews of movies.
+    
+### [The Congress API](https://github.com/dustineichler/NYTimes/wiki/Congress)
 
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance committee contributions"];
-  
-  /** 
-      Committee Contributions
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setCommitteeContributionsCycle:@"20111223"];
-  [nytimes.campaignFinance setCommitteeContributionsCommitteeId:@"C100000000"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setCommitteeContributionsOffset:@"20"];
-  [nytimes.campaignFinance setCommitteeContributionsFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance committee contributions"];
-  
-  /** 
-      Committee Contributions To
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setCommitteeContributionsToCycle:@"20111223"];
-  [nytimes.campaignFinance setCommitteeContributionsToCandidateId:@"P100000000"];
-  [nytimes.campaignFinance setCommitteeContributionsToCommitteeId:@"C100000000"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setCommitteeContributionsToFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance committee contributions to"];
-  
-  /** 
-      Committee Filings
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setCommitteeFilingsCycle:@"20111223"];
-  [nytimes.campaignFinance setCommitteeFilingsCommitteeId:@"C100000000"];
-  /**
-   Optional
-   */
-  
-  [nytimes.campaignFinance setCommitteeFilingsFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance committee filings"];
-  
-  /** 
-      Leadership Committees
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setLeadershipCommitteeCycle:@"20111223"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setLeadershipCommitteeFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance leadership committees"];
-  
-  /** 
-      Electronic Filings by Date
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setElectronicFilingsByDateCycle:@"20111223"];
-  [nytimes.campaignFinance setElectronicFilingsByDateDate:@"20111223"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setElectronicFilingsByDateFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance electronic filings by date"];
-  
-  /** 
-      Form Types
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setFormTypesCycle:@"20111223"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setFormTypesFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance form types"];
-  
-  /** 
-      Filings by Type
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setFilingsByTypeCycle:@"20111223"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setFilingsByTypeFilingType:@"F6"];
-  [nytimes.campaignFinance setFilingsByTypeFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance filings by type"];
-  
-  /** 
-      Pres. Candidate Totals
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setPresCandidateTotalsCycle:@"20111223"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setPresCandidateTotalsFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance pres. candidate totals"];
-  
-  /** 
-      Pres. Candidate Details
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setPresCandidateDetailsCycle:@"20111223"];
-  [nytimes.campaignFinance setPresCandidateDetailsCandidateNameOrCommitteeId:@"Foobar"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setPresCandidateDetailsFormat:@"JSON"];
+With the Congress API, you can get summaries of roll-call votes in the U.S. Congress; get lists of members of Congress; and get vote data, floor appearances, biographical information and role data for individual House and Senate members
 
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance pres. candidate details"];
-  
-  /** 
-      Pres. State/Zip Totals
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setPresStateAndZipTotalsCycle:@"20111223"];
-  [nytimes.campaignFinance setPresStateAndZipTotalsResourceType:@"State"];
-  [nytimes.campaignFinance setPresStateAndZipTotalsStateAbbr:@"AL"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setPresStateAndZipTotalsFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance pres. state/zip totals"];
-  
-  
-  /** 
-      Pres. Donor Information
-   */
-  
-  nytimes = [[NYTimesWrapper alloc] initWithAPIKey:CAMPAIGN_FINANCE_API_KEY];
-  /**
-   Required
-   */
-  [nytimes.campaignFinance setPresDonorInformationCycle:@"20111223"];
-  [nytimes.campaignFinance setPresDonorInformationSearchParameter:@"LNAME"];
-  [nytimes.campaignFinance setPresDonorInformationLastName:@"AnyLastName"];
-  [nytimes.campaignFinance setPresDonorInformationZipCode:@"99999"];
-  /**
-   Optional
-   */
-  [nytimes.campaignFinance setPresDonorInformationOffSet:@"20"];
-  [nytimes.campaignFinance setPresDonorInformationFormat:@"JSON"];
-  
-  [NYTimesCampaignFinance asyncRequest:nytimes
-                               success:^(NSData *data, NSURLResponse *response){
-                                   NSLog(@"Results %@", data);
-                               }failure:^(NSData *data, NSError *error){
-                                   NSLog(@"Errors %@", error);
-                               }tag:@"campaignfinance pres. donor information"];
-</pre>
+### [The Districts API](https://github.com/dustineichler/NYTimes/wiki/Districts)
 
-### NYTimes Community API
+With the Districts API, you can get political districts based on a pair of coordinates. Currently, the Districts API is limited to New York City.
 
-``` objective-c
+### [The Event Listings API](https://github.com/dustineichler/NYTimes/wiki/Event-Listings)
 
-```
+With the Event Listings API, you can search the New York Times listing of noteworthy cultural events in New York City and beyond.
 
+### [The Most Popular API](https://github.com/dustineichler/NYTimes/wiki/Most-Popular)
 
-## TODO
-plenty. 
+With the Most Popular API, you can get links and metadata for the blog posts and articles that are most frequently e-mailed, shared and viewed by NYTimes.com readers.
+
+### [The Movie Reviews API](https://github.com/dustineichler/NYTimes/wiki/Movie-Reviews)
+
+With the Movie Reviews API, you can search New York Times movie reviews by keyword and get lists of NYT Critics' Picks.
+
+### [The Real Estate API](https://github.com/dustineichler/NYTimes/wiki/Real-Estate)
+
+With the Real Estate API, you can get percentiles and counts for real estate listings and sales in New York City.
+
+### [The Times Newswire API](https://github.com/dustineichler/NYTimes/wiki/Times-Newswire)
+
+With the Times Newswire API, you can get links and metadata for Times articles and blog posts as soon as they are published on NYTimes.com. The Times Newswire API provides an up-to-the-minute stream of published items.
+
+### [The Semantic API](https://github.com/dustineichler/NYTimes/wiki/Semantic)
+
+With the Semantic API, you get access to the long list of people, places, organizations and other locations, entities and descriptors that make up the controlled vocabulary used as metadata by The New York Times.
+
+Resources
+-------------------------------------------------------------
+  * Website - [developer.nytimes.com](http://developer.nytimes.com)
+  * Wiki - [github.com/dustineichler/NYTimes/wiki](https://github.com/dustineichler/NYTimes/wiki)
+  * Twitter - [twitter.com/dustineichler](http://twitter.com/dustineichler)
+  * Issue Tracker [github.com/dustineichler/NYTimes/issues](https://github.com/dustineichler/NYTimes/issues)
+
+Contribute
+-------------------------------------------------------------
+Fork, commit, push, and send us a pull request.
