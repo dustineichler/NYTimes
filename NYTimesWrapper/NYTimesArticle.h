@@ -13,7 +13,6 @@
 @interface NYTimesArticle : NYTimesWrapperBase
 {
     NSString *tag;
-    NSString *foo;
 }
 
 @property (nonatomic, retain) NSString *tag;
@@ -22,8 +21,5 @@
              success:(NYTimesNSURLConnectionSuccessBlock)successBlock_ 
              failure:(NYTImesErrorBlock)failureBlock_ 
                  tag:(NSString *)t;
-
-- (NSString *)foo;
-- (void)setFoo:(NSString *)foo;
 
 @end
