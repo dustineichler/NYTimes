@@ -8,7 +8,7 @@ Get Started
 -------------------------------------------------------------
 Installation.
 
-    TODO: DWE: Instructions needed.
+    pod 'nytimes', '~> 0.1'
 
 Get the source.
 

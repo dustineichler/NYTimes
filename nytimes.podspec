@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
     :tag => "0.1" 
     }
   s.source_files  = "NYTimesWrapper", "**/*.{h,m}"
-  # s.exclude_files = "Classes/Exclude"
+  s.exclude_files = "NYTimesWrapperTests/*.{h,m}"
   # s.public_header_files = "Classes/**/*.h"
   s.requires_arc = false
 end
