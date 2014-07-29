@@ -9,8 +9,8 @@
 #import "NYTimesWrapperTests.h"
 #import "SBJson.h"
 
-#define ARTICLE_API_KEY @"e54e6d296ec5da4fc406da071676d50b:10:60749136"
-#define BEST_SELLER_API_KEY @"9227495210144cc6ebf6de9b7ba2a3cf:17:60749136"
+#define ARTICLE_API_KEY @"BLANK"
+#define BEST_SELLER_API_KEY @"BLANK"
 #define CAMPAIGN_FINANCE_API_KEY @"BLANK"
 
 #define ARTICLE_SERVER_URL @"http://api.nytimes.com/svc/search/v1/article?"
